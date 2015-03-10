@@ -17,7 +17,7 @@ public class InitialMatches {
 			String[] singleline=singleinfo[i].split(":");
 			for (int j = 0; j < singleline.length; j++) {
 				String[] temp=singleline[j].split(";");
-				String sql="INSERT INTO matches (date,`h/g`,name,total,first,second,third,fourth) values('"
+				String sql="INSERT INTO matches values('"
 						+ temp[0]
 						+ "','"
 						+ temp[1]
@@ -32,7 +32,11 @@ public class InitialMatches {
 						+ "','"
 						+ temp[6]
 						+ "','"
-						+ temp[7] + "')";
+						+ temp[7]
+						+ "','"
+						+ temp[8]
+						+ "','"
+						+ temp[9] + "')";
 				try {
 					statement.addBatch(sql);
 				} catch (SQLException e) {
@@ -60,15 +64,21 @@ public class InitialMatches {
 				String[] temp=line.split(";");
 				info=info+temp[0]+";h;";
 				String guest=":"+temp[0]+";g;";
-				for (int j = 0; j < 2; j++) {
-					String[] temp1=temp[j+1].split("-");
-					info=info+temp1[0]+";";
-					guest=guest+temp1[1]+";";
+				String[] temp1=temp[1].split("-");
+				info=info+temp1[0]+";"+temp1[1]+";";
+				guest=guest+temp1[1]+";"+temp1[0]+";";
+				temp1=temp[2].split("-");
+				if(Integer.parseInt(temp1[0])>Integer.parseInt(temp1[1])){
+					info=info+"w;"+temp1[0]+";";
+					guest=guest+"l;"+temp1[1]+";";
+				}else{
+					info=info+"l;"+temp1[0]+";";
+					guest=guest+"w;"+temp1[1]+";";
 				}
 				line=br.readLine();
 				temp=line.split(";");
 				for (int j = 0; j < 4; j++) {
-					String[] temp1=temp[j].split("-");
+					temp1=temp[j].split("-");
 					info=info+temp1[0]+";";
 					guest=guest+temp1[1]+";";
 				}

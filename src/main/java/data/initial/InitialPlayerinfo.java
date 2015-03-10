@@ -8,6 +8,7 @@ import java.sql.Statement;
 
 public class InitialPlayerinfo {
 //初始化球员基本信息
+	public static String[] filelist;   //球员姓名
 	String info="";
 	public InitialPlayerinfo(Statement statement) {
 		System.out.println("初始化球员基本信息……");
@@ -54,7 +55,7 @@ public class InitialPlayerinfo {
 	
 	public void ReadIn(){
 		File f=new File("data/players/info");
-		String[] filelist=f.list();
+		filelist=f.list();
 		for (int i = 0; i <filelist.length; i++) {
 			try {
 				FileReader fr=new FileReader("data/players/info/"+filelist[i]);

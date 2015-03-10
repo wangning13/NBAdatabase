@@ -18,28 +18,12 @@ public class TeamPO {
 	int turnOver;//失误数
 	int foul;//犯规数
 	int scoring;//比赛得分
-	double fieldGoalPercentage;//投篮命中率
-	double threePointShotPercentage;//三分命中率
-	double freeThrowPercentage;//罚球命中率
-	double winningPercentage;//胜率
-	int Possessions;//进攻回合
-	double offensiveEfficiency;//进攻效率
-	double defensiveEfficiency;//防守效率
-	double backboardEfficiency;//篮板效率
-	double stealEfficiency;//抢断效率
-	double assitEfficiency;//助攻效率
 	public TeamPO(String teamName, int matches, int fieldGoal,
 			int fieldGoalAttempts, int threePointFieldGoal,
 			int threePointFieldGoalAttempts, int freeThrow,
 			int freeThrowAttempts, int offensiveRebound, int defensiveRebound,
 			int backboard, int assist, int steal, int block, int turnOver,
-			int foul, int scoring, double fieldGoalPercentage,
-			double threePointShotPercentage, double freeThrowPercentage,
-			double winningPercentage, int possessions,
-			double offensiveEfficiency, double defensiveEfficiency,
-			double backboardEfficiency, double stealEfficiency,
-			double assitEfficiency) {
-		super();
+			int foul, int scoring) {
 		this.teamName = teamName;
 		this.matches = matches;
 		this.fieldGoal = fieldGoal;
@@ -57,16 +41,6 @@ public class TeamPO {
 		this.turnOver = turnOver;
 		this.foul = foul;
 		this.scoring = scoring;
-		this.fieldGoalPercentage = fieldGoalPercentage;
-		this.threePointShotPercentage = threePointShotPercentage;
-		this.freeThrowPercentage = freeThrowPercentage;
-		this.winningPercentage = winningPercentage;
-		Possessions = possessions;
-		this.offensiveEfficiency = offensiveEfficiency;
-		this.defensiveEfficiency = defensiveEfficiency;
-		this.backboardEfficiency = backboardEfficiency;
-		this.stealEfficiency = stealEfficiency;
-		this.assitEfficiency = assitEfficiency;
 	}
 	public String getTeamName() {
 		return teamName;
@@ -170,67 +144,4 @@ public class TeamPO {
 	public void setScoring(int scoring) {
 		this.scoring = scoring;
 	}
-	public double getFieldGoalPercentage() {
-		return fieldGoalPercentage;
-	}
-	public void setFieldGoalPercentage(double fieldGoalPercentage) {
-		this.fieldGoalPercentage = fieldGoalPercentage;
-	}
-	public double getThreePointShotPercentage() {
-		return threePointShotPercentage;
-	}
-	public void setThreePointShotPercentage(double threePointShotPercentage) {
-		this.threePointShotPercentage = threePointShotPercentage;
-	}
-	public double getFreeThrowPercentage() {
-		return freeThrowPercentage;
-	}
-	public void setFreeThrowPercentage(double freeThrowPercentage) {
-		this.freeThrowPercentage = freeThrowPercentage;
-	}
-	public double getWinningPercentage() {
-		return winningPercentage;
-	}
-	public void setWinningPercentage(double winningPercentage) {
-		this.winningPercentage = winningPercentage;
-	}
-	public int getPossessions() {
-		return Possessions;
-	}
-	public void setPossessions(int possessions) {
-		Possessions = possessions;
-	}
-	public double getOffensiveEfficiency() {
-		return offensiveEfficiency;
-	}
-	public void setOffensiveEfficiency(double offensiveEfficiency) {
-		this.offensiveEfficiency = offensiveEfficiency;
-	}
-	public double getDefensiveEfficiency() {
-		return defensiveEfficiency;
-	}
-	public void setDefensiveEfficiency(double defensiveEfficiency) {
-		this.defensiveEfficiency = defensiveEfficiency;
-	}
-	public double getBackboardEfficiency() {
-		return backboardEfficiency;
-	}
-	public void setBackboardEfficiency(double backboardEfficiency) {
-		this.backboardEfficiency = backboardEfficiency;
-	}
-	public double getStealEfficiency() {
-		return stealEfficiency;
-	}
-	public void setStealEfficiency(double stealEfficiency) {
-		this.stealEfficiency = stealEfficiency;
-	}
-	public double getAssitEfficiency() {
-		return assitEfficiency;
-	}
-	public void setAssitEfficiency(double assitEfficiency) {
-		this.assitEfficiency = assitEfficiency;
-	}
-	
-	
-
 }

@@ -3,73 +3,57 @@ package data.initial;
 import java.io.BufferedReader;
 import java.io.File;
 import java.io.FileReader;
+import java.sql.Connection;
+import java.sql.PreparedStatement;
 import java.sql.SQLException;
 import java.sql.Statement;
 
 public class InitialPlayerdata {
 //初始化球员技术统计
 	String info="";
-	public InitialPlayerdata(Statement statement) {
-		System.out.println("初始化球员技术统计……");
-		ReadIn();
-		String[] singleinfo=info.split("%");
-		for (int i = 0; i < singleinfo.length; i++) {
-			String[] temp=singleinfo[i].split(";");
-			for (int j = 0; j < temp.length; j++) {
-				if(temp[j].contains("'"))
-					temp[j]=temp[j].substring(0, temp[j].indexOf("'"))+"\\"+temp[j].substring(temp[j].indexOf("'"), temp[j].length());
+	public InitialPlayerdata(Connection conn) {
+		try {
+			PreparedStatement ps=conn.prepareStatement("INSERT INTO playerdata  values(?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?)");
+			System.out.println("初始化球员技术统计……");
+			ReadIn();
+			String[] singleinfo=info.split("%");
+			for (int i = 0; i < singleinfo.length; i++) {
+				String[] temp=singleinfo[i].split(";");
+				if(temp[2].contains("'"))
+					temp[2]=temp[2].substring(0, temp[2].indexOf("'"))+"\\"+temp[2].substring(temp[2].indexOf("'"), temp[2].length());
+				if(temp[19].charAt(0)<48||temp[19].charAt(0)>57)
+					temp[19]="0";
+				String[] temp1=temp[4].split(":");
+				int time=Integer.parseInt(temp1[0])*60+Integer.parseInt(temp1[1]);
+				ps.setString(1, temp[0]); 
+				ps.setString(2, temp[1]); 
+				ps.setString(3, temp[2]); 
+				ps.setString(4, temp[3]); 
+				ps.setInt(5, time); 
+				ps.setInt(6, Integer.parseInt(temp[5]));
+				ps.setInt(7, Integer.parseInt(temp[6]));
+				ps.setInt(8, Integer.parseInt(temp[7]));
+				ps.setInt(9, Integer.parseInt(temp[8]));
+				ps.setInt(10, Integer.parseInt(temp[9]));
+				ps.setInt(11, Integer.parseInt(temp[10]));
+				ps.setInt(12, Integer.parseInt(temp[11]));
+				ps.setInt(13, Integer.parseInt(temp[12]));
+				ps.setInt(14, Integer.parseInt(temp[13]));
+				ps.setInt(15, Integer.parseInt(temp[14]));
+				ps.setInt(16, Integer.parseInt(temp[15]));
+				ps.setInt(17, Integer.parseInt(temp[16]));
+				ps.setInt(18, Integer.parseInt(temp[17]));
+				ps.setInt(19, Integer.parseInt(temp[18]));
+				ps.setInt(20, Integer.parseInt(temp[19]));
+				ps.addBatch();
+				
 			}
-			if(temp[19].charAt(0)<48||temp[19].charAt(0)>57)
-				temp[19]="0";
-			String sql="INSERT INTO playerdata  (`date`,team,playername,position,minites,fieldGoal,fieldGoalAttempts,`three-pointFieldGoal`,`three-pointFieldGoalAttempts`,freeThrow,freeThrowAttempts,offensiveRebound,defensiveRebound,backboard,assit,steal,block,turnOver,foul,scoring)  values('" 
-					+ temp[0]
-					+ "','"
-					+ temp[1]
-					+ "','"
-					+ temp[2]
-					+ "','"
-					+ temp[3]
-					+ "','"
-					+ temp[4]
-					+ "','"
-					+ temp[5]
-					+ "','"
-					+ temp[6]
-					+ "','"
-					+ temp[7]
-					+ "','"
-					+ temp[8]
-					+ "','"
-					+ temp[9]
-					+ "','"
-					+ temp[10]
-					+ "','"
-					+ temp[11]
-					+ "','"
-					+ temp[12]
-					+ "','"
-					+ temp[13]
-					+ "','"
-					+ temp[14]
-					+ "','"
-					+ temp[15]
-					+ "','"
-					+ temp[16]
-					+ "','"
-					+ temp[17]
-					+ "','"
-					+ temp[18]
-					+ "','"
-					+ temp[19] + "')";
-		try {
-				statement.addBatch(sql);
-			} catch (SQLException e) {
-				// TODO Auto-generated catch block
-				e.printStackTrace();
-			}  
-		}
-		try {
-			statement.executeBatch();
+			ps.executeBatch();
+			conn.commit(); 
+			ps.clearBatch();
+		} catch (NumberFormatException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
 		} catch (SQLException e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
