@@ -28,6 +28,208 @@ public class TeamPO {
 	double backboardEfficiency;//篮板效率
 	double stealEfficiency;//抢断效率
 	double assitEfficiency;//助攻效率
+	public TeamPO(String teamName, int matches, int fieldGoal,
+			int fieldGoalAttempts, int threePointFieldGoal,
+			int threePointFieldGoalAttempts, int freeThrow,
+			int freeThrowAttempts, int offensiveRebound, int defensiveRebound,
+			int backboard, int assist, int steal, int block, int turnOver,
+			int foul, int scoring, double fieldGoalPercentage,
+			double threePointShotPercentage, double freeThrowPercentage,
+			double winningPercentage, int possessions,
+			double offensiveEfficiency, double defensiveEfficiency,
+			double backboardEfficiency, double stealEfficiency,
+			double assitEfficiency) {
+		super();
+		this.teamName = teamName;
+		this.matches = matches;
+		this.fieldGoal = fieldGoal;
+		this.fieldGoalAttempts = fieldGoalAttempts;
+		this.threePointFieldGoal = threePointFieldGoal;
+		this.threePointFieldGoalAttempts = threePointFieldGoalAttempts;
+		this.freeThrow = freeThrow;
+		this.freeThrowAttempts = freeThrowAttempts;
+		this.offensiveRebound = offensiveRebound;
+		this.defensiveRebound = defensiveRebound;
+		this.backboard = backboard;
+		this.assist = assist;
+		this.steal = steal;
+		this.block = block;
+		this.turnOver = turnOver;
+		this.foul = foul;
+		this.scoring = scoring;
+		this.fieldGoalPercentage = fieldGoalPercentage;
+		this.threePointShotPercentage = threePointShotPercentage;
+		this.freeThrowPercentage = freeThrowPercentage;
+		this.winningPercentage = winningPercentage;
+		Possessions = possessions;
+		this.offensiveEfficiency = offensiveEfficiency;
+		this.defensiveEfficiency = defensiveEfficiency;
+		this.backboardEfficiency = backboardEfficiency;
+		this.stealEfficiency = stealEfficiency;
+		this.assitEfficiency = assitEfficiency;
+	}
+	public String getTeamName() {
+		return teamName;
+	}
+	public void setTeamName(String teamName) {
+		this.teamName = teamName;
+	}
+	public int getMatches() {
+		return matches;
+	}
+	public void setMatches(int matches) {
+		this.matches = matches;
+	}
+	public int getFieldGoal() {
+		return fieldGoal;
+	}
+	public void setFieldGoal(int fieldGoal) {
+		this.fieldGoal = fieldGoal;
+	}
+	public int getFieldGoalAttempts() {
+		return fieldGoalAttempts;
+	}
+	public void setFieldGoalAttempts(int fieldGoalAttempts) {
+		this.fieldGoalAttempts = fieldGoalAttempts;
+	}
+	public int getThreePointFieldGoal() {
+		return threePointFieldGoal;
+	}
+	public void setThreePointFieldGoal(int threePointFieldGoal) {
+		this.threePointFieldGoal = threePointFieldGoal;
+	}
+	public int getThreePointFieldGoalAttempts() {
+		return threePointFieldGoalAttempts;
+	}
+	public void setThreePointFieldGoalAttempts(int threePointFieldGoalAttempts) {
+		this.threePointFieldGoalAttempts = threePointFieldGoalAttempts;
+	}
+	public int getFreeThrow() {
+		return freeThrow;
+	}
+	public void setFreeThrow(int freeThrow) {
+		this.freeThrow = freeThrow;
+	}
+	public int getFreeThrowAttempts() {
+		return freeThrowAttempts;
+	}
+	public void setFreeThrowAttempts(int freeThrowAttempts) {
+		this.freeThrowAttempts = freeThrowAttempts;
+	}
+	public int getOffensiveRebound() {
+		return offensiveRebound;
+	}
+	public void setOffensiveRebound(int offensiveRebound) {
+		this.offensiveRebound = offensiveRebound;
+	}
+	public int getDefensiveRebound() {
+		return defensiveRebound;
+	}
+	public void setDefensiveRebound(int defensiveRebound) {
+		this.defensiveRebound = defensiveRebound;
+	}
+	public int getBackboard() {
+		return backboard;
+	}
+	public void setBackboard(int backboard) {
+		this.backboard = backboard;
+	}
+	public int getAssist() {
+		return assist;
+	}
+	public void setAssist(int assist) {
+		this.assist = assist;
+	}
+	public int getSteal() {
+		return steal;
+	}
+	public void setSteal(int steal) {
+		this.steal = steal;
+	}
+	public int getBlock() {
+		return block;
+	}
+	public void setBlock(int block) {
+		this.block = block;
+	}
+	public int getTurnOver() {
+		return turnOver;
+	}
+	public void setTurnOver(int turnOver) {
+		this.turnOver = turnOver;
+	}
+	public int getFoul() {
+		return foul;
+	}
+	public void setFoul(int foul) {
+		this.foul = foul;
+	}
+	public int getScoring() {
+		return scoring;
+	}
+	public void setScoring(int scoring) {
+		this.scoring = scoring;
+	}
+	public double getFieldGoalPercentage() {
+		return fieldGoalPercentage;
+	}
+	public void setFieldGoalPercentage(double fieldGoalPercentage) {
+		this.fieldGoalPercentage = fieldGoalPercentage;
+	}
+	public double getThreePointShotPercentage() {
+		return threePointShotPercentage;
+	}
+	public void setThreePointShotPercentage(double threePointShotPercentage) {
+		this.threePointShotPercentage = threePointShotPercentage;
+	}
+	public double getFreeThrowPercentage() {
+		return freeThrowPercentage;
+	}
+	public void setFreeThrowPercentage(double freeThrowPercentage) {
+		this.freeThrowPercentage = freeThrowPercentage;
+	}
+	public double getWinningPercentage() {
+		return winningPercentage;
+	}
+	public void setWinningPercentage(double winningPercentage) {
+		this.winningPercentage = winningPercentage;
+	}
+	public int getPossessions() {
+		return Possessions;
+	}
+	public void setPossessions(int possessions) {
+		Possessions = possessions;
+	}
+	public double getOffensiveEfficiency() {
+		return offensiveEfficiency;
+	}
+	public void setOffensiveEfficiency(double offensiveEfficiency) {
+		this.offensiveEfficiency = offensiveEfficiency;
+	}
+	public double getDefensiveEfficiency() {
+		return defensiveEfficiency;
+	}
+	public void setDefensiveEfficiency(double defensiveEfficiency) {
+		this.defensiveEfficiency = defensiveEfficiency;
+	}
+	public double getBackboardEfficiency() {
+		return backboardEfficiency;
+	}
+	public void setBackboardEfficiency(double backboardEfficiency) {
+		this.backboardEfficiency = backboardEfficiency;
+	}
+	public double getStealEfficiency() {
+		return stealEfficiency;
+	}
+	public void setStealEfficiency(double stealEfficiency) {
+		this.stealEfficiency = stealEfficiency;
+	}
+	public double getAssitEfficiency() {
+		return assitEfficiency;
+	}
+	public void setAssitEfficiency(double assitEfficiency) {
+		this.assitEfficiency = assitEfficiency;
+	}
 	
 	
 
