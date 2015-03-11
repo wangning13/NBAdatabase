@@ -6,7 +6,6 @@ import java.io.FileReader;
 import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.SQLException;
-import java.sql.Statement;
 
 public class InitialPlayerdata {
 //初始化球员技术统计
@@ -23,8 +22,13 @@ public class InitialPlayerdata {
 					temp[2]=temp[2].substring(0, temp[2].indexOf("'"))+"\\"+temp[2].substring(temp[2].indexOf("'"), temp[2].length());
 				if(temp[19].charAt(0)<48||temp[19].charAt(0)>57)
 					temp[19]="0";
-				String[] temp1=temp[4].split(":");
-				int time=Integer.parseInt(temp1[0])*60+Integer.parseInt(temp1[1]);
+				int time=0;
+				if(temp[4].contains(":")){
+					String[] temp1=temp[4].split(":");
+					time=Integer.parseInt(temp1[0])*60+Integer.parseInt(temp1[1]);
+				}else if(temp[4].charAt(0)>=48&&temp[4].charAt(0)<=57){
+					time=Integer.parseInt(temp[4]);
+				}
 				ps.setString(1, temp[0]); 
 				ps.setString(2, temp[1]); 
 				ps.setString(3, temp[2]); 
@@ -69,6 +73,7 @@ public class InitialPlayerdata {
 			String[] team=temp[2].split("-");
 			try {
 				FileReader fr=new FileReader("data/matches/"+filelist[i]);
+				@SuppressWarnings("resource")
 				BufferedReader br=new BufferedReader(fr);
 				String line="";
 				int count=0;

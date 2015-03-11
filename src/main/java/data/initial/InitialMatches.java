@@ -59,6 +59,7 @@ public class InitialMatches {
 		for (int i = 0; i < filelist.length; i++) {
 			try {
 				FileReader fr=new FileReader("data/matches/"+filelist[i]);
+				@SuppressWarnings("resource")
 				BufferedReader br=new BufferedReader(fr);
 				String line=br.readLine();
 				String[] temp=line.split(";");

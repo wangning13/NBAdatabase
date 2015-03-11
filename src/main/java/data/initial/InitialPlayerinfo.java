@@ -59,6 +59,7 @@ public class InitialPlayerinfo {
 		for (int i = 0; i <filelist.length; i++) {
 			try {
 				FileReader fr=new FileReader("data/players/info/"+filelist[i]);
+				@SuppressWarnings("resource")
 				BufferedReader br=new BufferedReader(fr);
 				String line="";
 				while((line=br.readLine())!=null){

@@ -5,6 +5,7 @@ import java.sql.DriverManager;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Statement;
+import java.util.ArrayList;
 
 import po.TeamPO;
 import data.initial.InitialDatabase;
@@ -70,8 +71,103 @@ public class GetTeamdata {
 		return po;
 	}
 	
-	public String getAllTeamdata(){
-		String r="";
+	public ArrayList<TeamPO> getAllTeamdata(String key,String order){
+		ArrayList<TeamPO> po=new ArrayList<TeamPO>();
+		ArrayList<TeamPO> r=new ArrayList<TeamPO>();
+		try {
+			ResultSet rs=statement.executeQuery(SqlStatement.getTeamName());
+			ArrayList<String> teamName=new ArrayList<String>();
+			while(rs.next())
+				teamName.add(rs.getString(1));
+			for (int i = 0; i < teamName.size(); i++) {
+				TeamPO temp=getTeamdata(teamName.get(i));
+				po.add(temp);
+			}
+			r=getByOrder(po,key,order);
+		} catch (SQLException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+		return r;
+	}
+	
+	public ArrayList<TeamPO> getSomeTeamdata(String condition,String key,String order){
+		ArrayList<TeamPO> po=new ArrayList<TeamPO>();
+		ArrayList<TeamPO> r=new ArrayList<TeamPO>();
+		ArrayList<String> team=new ArrayList<String>();
+		String sql="SELECT * FROM teaminfo WHERE "+condition;
+		try {
+			ResultSet rs=statement.executeQuery(sql);
+			while(rs.next())
+				team.add(rs.getString(2));
+		} catch (SQLException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+		for (int i = 0; i < team.size(); i++) {
+			TeamPO temp=getTeamdata(team.get(i));
+			po.add(temp);
+		}
+		r=getByOrder(po, key, order);
+		return r;
+	}
+	
+	private ArrayList<TeamPO> getByOrder(ArrayList<TeamPO> po,String key,String order){
+		ArrayList<TeamPO> r=new ArrayList<TeamPO>();
+		String sql="CREATE TABLE temp (teamName varchar(255), matches int, fieldGoal int, fieldGoalAttempts int, threePointFieldGoal int, threePointFieldGoalAttempts int, freeThrow int, freeThrowAttempts int, offensiveRebound int, defensiveRebound int, backboard int, assist int, steal int, block int, turnOver int, foul int, scoring int)";
+		try {
+			statement.addBatch(sql);
+			for (int i = 0; i < po.size(); i++) {
+				TeamPO tt=po.get(i);
+				sql="INSERT INTO temp values('"
+						+ tt.getTeamName()
+						+ "','"
+						+ tt.getMatches()
+						+ "','"
+						+ tt.getFieldGoal()
+						+ "','"
+						+ tt.getFieldGoalAttempts()
+						+ "','"
+						+ tt.getThreePointFieldGoal()
+						+ "','"
+						+ tt.getThreePointFieldGoalAttempts()
+						+ "','"
+						+ tt.getFreeThrow()
+						+ "','"
+						+ tt.getFreeThrowAttempts()
+						+ "','"
+						+ tt.getOffensiveRebound()
+						+ "','"
+						+ tt.getDefensiveRebound()
+						+ "','"
+						+ tt.getBackboard()
+						+ "','"
+						+ tt.getAssist()
+						+ "','"
+						+ tt.getSteal()
+						+ "','"
+						+ tt.getBlock()
+						+ "','"
+						+ tt.getTurnOver()
+						+ "','"
+						+ tt.getFoul()
+						+ "','"
+						+ tt.getScoring() + "')";
+				statement.addBatch(sql);
+			}
+			statement.executeBatch();
+			sql="SELECT * FROM temp ORDER BY `"+key+"`"+order;
+			ResultSet rs=statement.executeQuery(sql);
+			while(rs.next()){
+				TeamPO tt=new TeamPO(rs.getString(1), rs.getInt(2), rs.getInt(3), rs.getInt(4), rs.getInt(5), rs.getInt(6), rs.getInt(7), rs.getInt(8), rs.getInt(9), rs.getInt(10), rs.getInt(11), rs.getInt(12), rs.getInt(13), rs.getInt(14), rs.getInt(15), rs.getInt(16), rs.getInt(17));
+				r.add(tt);
+			}
+			sql="DROP TABLE temp";
+			statement.execute(sql);
+		} catch (SQLException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
 		return r;
 	}
 }
