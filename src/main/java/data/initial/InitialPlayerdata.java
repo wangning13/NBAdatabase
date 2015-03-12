@@ -6,6 +6,7 @@ import java.io.FileReader;
 import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.SQLException;
+import java.text.DecimalFormat;
 
 public class InitialPlayerdata {
 //初始化球员技术统计
@@ -19,21 +20,22 @@ public class InitialPlayerdata {
 			for (int i = 0; i < singleinfo.length; i++) {
 				String[] temp=singleinfo[i].split(";");
 				if(temp[2].contains("'"))
-					temp[2]=temp[2].substring(0, temp[2].indexOf("'"))+"\\"+temp[2].substring(temp[2].indexOf("'"), temp[2].length());
+					temp[2]=temp[2].replaceAll("'", "\'");
 				if(temp[19].charAt(0)<48||temp[19].charAt(0)>57)
 					temp[19]="0";
-				int time=0;
+				double time=0;
+				DecimalFormat df=new DecimalFormat("#.0");  
 				if(temp[4].contains(":")){
 					String[] temp1=temp[4].split(":");
-					time=Integer.parseInt(temp1[0])*60+Integer.parseInt(temp1[1]);
+					time=Double.parseDouble(temp1[0])+Double.parseDouble(df.format(Double.parseDouble(temp1[1])/60));
 				}else if(temp[4].charAt(0)>=48&&temp[4].charAt(0)<=57){
-					time=Integer.parseInt(temp[4]);
+					time=Double.parseDouble(df.format(Double.parseDouble(temp[4])/60));
 				}
 				ps.setString(1, temp[0]); 
 				ps.setString(2, temp[1]); 
 				ps.setString(3, temp[2]); 
 				ps.setString(4, temp[3]); 
-				ps.setInt(5, time); 
+				ps.setDouble(5, time);
 				ps.setInt(6, Integer.parseInt(temp[5]));
 				ps.setInt(7, Integer.parseInt(temp[6]));
 				ps.setInt(8, Integer.parseInt(temp[7]));

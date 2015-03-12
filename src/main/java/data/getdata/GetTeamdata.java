@@ -26,6 +26,7 @@ public class GetTeamdata {
 	
 	public TeamPO getTeamdata(String teamName){
 		int matches=0;//比赛场数
+		int wins=0;//胜利场数
 		int fieldGoal=0;//投篮命中数
 		int fieldGoalAttempts=0;//投篮出手次数
 		int threePointFieldGoal=0;//三分命中数
@@ -34,6 +35,8 @@ public class GetTeamdata {
 		int freeThrowAttempts=0;//罚球出手数
 		int offensiveRebound=0;//进攻篮板数
 		int defensiveRebound=0;//防守篮板数
+		int opponentOffensiveRebound=0;//对手进攻篮板数
+		int opponentDefensiveRebound=0;//对手防守篮板数
 		int backboard=0;//篮板数
 		int assist=0;//助攻数
 		int steal=0;//抢断数
@@ -44,30 +47,51 @@ public class GetTeamdata {
 		try {
 			ResultSet rs=statement.executeQuery(SqlStatement.countTeamMatches(teamName));
 			while(rs.next())
-				matches=rs.getInt(1);
+			    matches=rs.getInt(1);
 			rs=statement.executeQuery(SqlStatement.countTeamSum(teamName));
 			while(rs.next()){
-				fieldGoal=rs.getInt(1);
-				fieldGoalAttempts=rs.getInt(2);
-				threePointFieldGoal=rs.getInt(3);
-				threePointFieldGoalAttempts=rs.getInt(4);
-				freeThrow=rs.getInt(5);
-				freeThrowAttempts=rs.getInt(6);
-				offensiveRebound=rs.getInt(7);
-				defensiveRebound=rs.getInt(8);
-				backboard=rs.getInt(9);
-				assist=rs.getInt(10);
-				steal=rs.getInt(11);
-				block=rs.getInt(12);
-				turnOver=rs.getInt(13);
-				foul=rs.getInt(14);
-				scoring=rs.getInt(15);
+		        fieldGoal=rs.getInt(1);
+		        fieldGoalAttempts=rs.getInt(2);
+		        threePointFieldGoal=rs.getInt(3);
+		        threePointFieldGoalAttempts=rs.getInt(4);
+		        freeThrow=rs.getInt(5);
+		        freeThrowAttempts=rs.getInt(6);
+		        offensiveRebound=rs.getInt(7);
+		        defensiveRebound=rs.getInt(8);
+		        backboard=rs.getInt(9);
+		        assist=rs.getInt(10);
+		        steal=rs.getInt(11);
+		        block=rs.getInt(12);
+		        turnOver=rs.getInt(13);
+		        foul=rs.getInt(14);
+		        scoring=rs.getInt(15);
+			}
+			rs=statement.executeQuery(SqlStatement.countTeamWins(teamName));
+			while(rs.next())
+				wins=rs.getInt(1);
+			ArrayList<String> date=new ArrayList<String>();
+			ArrayList<String> opponent=new ArrayList<String>();
+			rs=statement.executeQuery(SqlStatement.getTeamOpponent(teamName));
+			while(rs.next()){
+				date.add(rs.getString(1));
+				opponent.add(rs.getString(2));
+			}
+			for (int i = 0; i < date.size(); i++) {
+				rs=statement.executeQuery(SqlStatement.getTeamOpponentRebound(date.get(i), opponent.get(i)));
+				int temp1=0;
+				int temp2=0;
+				while(rs.next()){
+					temp1=rs.getInt(1);
+					temp2=rs.getInt(2);
+				}
+				opponentOffensiveRebound=opponentOffensiveRebound+temp1;
+				opponentDefensiveRebound=opponentDefensiveRebound+temp2;
 			}
 		} catch (SQLException e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
-		TeamPO po=new TeamPO(teamName, matches, fieldGoal, fieldGoalAttempts, threePointFieldGoal, threePointFieldGoalAttempts, freeThrow, freeThrowAttempts, offensiveRebound, defensiveRebound, backboard, assist, steal, block, turnOver, foul, scoring);
+		TeamPO po=new TeamPO(teamName, matches, wins, fieldGoal, fieldGoalAttempts, threePointFieldGoal, threePointFieldGoalAttempts, freeThrow, freeThrowAttempts, offensiveRebound, defensiveRebound, opponentOffensiveRebound, opponentDefensiveRebound, backboard, assist, steal, block, turnOver, foul, scoring);
 		return po;
 	}
 	
@@ -114,7 +138,7 @@ public class GetTeamdata {
 	
 	private ArrayList<TeamPO> getByOrder(ArrayList<TeamPO> po,String key,String order){
 		ArrayList<TeamPO> r=new ArrayList<TeamPO>();
-		String sql="CREATE TABLE temp (teamName varchar(255), matches int, fieldGoal int, fieldGoalAttempts int, threePointFieldGoal int, threePointFieldGoalAttempts int, freeThrow int, freeThrowAttempts int, offensiveRebound int, defensiveRebound int, backboard int, assist int, steal int, block int, turnOver int, foul int, scoring int)";
+		String sql="CREATE TABLE temp (teamName varchar(255), matches int,wins int, fieldGoal int, fieldGoalAttempts int, threePointFieldGoal int, threePointFieldGoalAttempts int, freeThrow int, freeThrowAttempts int, offensiveRebound int, defensiveRebound int,	opponentOffensiveRebound int ,opponentDefensiveRebound int , backboard int, assist int, steal int, block int, turnOver int, foul int, scoring int)";
 		try {
 			statement.addBatch(sql);
 			for (int i = 0; i < po.size(); i++) {
@@ -123,6 +147,8 @@ public class GetTeamdata {
 						+ tt.getTeamName()
 						+ "','"
 						+ tt.getMatches()
+						+ "','"
+						+ tt.getWins()
 						+ "','"
 						+ tt.getFieldGoal()
 						+ "','"
@@ -139,6 +165,10 @@ public class GetTeamdata {
 						+ tt.getOffensiveRebound()
 						+ "','"
 						+ tt.getDefensiveRebound()
+						+ "','"
+						+ tt.getOpponentOffensiveRebound()
+						+ "','"
+						+ tt.getOpponentDefensiveRebound()
 						+ "','"
 						+ tt.getBackboard()
 						+ "','"
@@ -159,7 +189,7 @@ public class GetTeamdata {
 			sql="SELECT * FROM temp ORDER BY `"+key+"`"+order;
 			ResultSet rs=statement.executeQuery(sql);
 			while(rs.next()){
-				TeamPO tt=new TeamPO(rs.getString(1), rs.getInt(2), rs.getInt(3), rs.getInt(4), rs.getInt(5), rs.getInt(6), rs.getInt(7), rs.getInt(8), rs.getInt(9), rs.getInt(10), rs.getInt(11), rs.getInt(12), rs.getInt(13), rs.getInt(14), rs.getInt(15), rs.getInt(16), rs.getInt(17));
+				TeamPO tt=new TeamPO(rs.getString(1), rs.getInt(2), rs.getInt(3), rs.getInt(4), rs.getInt(5), rs.getInt(6), rs.getInt(7), rs.getInt(8), rs.getInt(9), rs.getInt(10), rs.getInt(11), rs.getInt(12), rs.getInt(13), rs.getInt(14), rs.getInt(15), rs.getInt(16), rs.getInt(17),rs.getInt(18), rs.getInt(19), rs.getInt(20));
 				r.add(tt);
 			}
 			sql="DROP TABLE temp";

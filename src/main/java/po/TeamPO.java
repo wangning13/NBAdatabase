@@ -3,6 +3,7 @@ package po;
 public class TeamPO {
 	String teamName;//球队名称
 	int matches;//比赛场数
+	int wins;//胜利场数
 	int fieldGoal;//投篮命中数
 	int fieldGoalAttempts;//投篮出手次数
 	int threePointFieldGoal;//三分命中数
@@ -11,6 +12,8 @@ public class TeamPO {
 	int freeThrowAttempts;//罚球出手数
 	int offensiveRebound;//进攻篮板数
 	int defensiveRebound;//防守篮板数
+	int opponentOffensiveRebound;//对手进攻篮板数
+	int opponentDefensiveRebound;//对手防守篮板数
 	int backboard;//篮板数
 	int assist;//助攻数
 	int steal;//抢断数
@@ -18,14 +21,15 @@ public class TeamPO {
 	int turnOver;//失误数
 	int foul;//犯规数
 	int scoring;//比赛得分
-	public TeamPO(String teamName, int matches, int fieldGoal,
+	public TeamPO(String teamName, int matches,int wins, int fieldGoal,
 			int fieldGoalAttempts, int threePointFieldGoal,
 			int threePointFieldGoalAttempts, int freeThrow,
-			int freeThrowAttempts, int offensiveRebound, int defensiveRebound,
+			int freeThrowAttempts, int offensiveRebound, int defensiveRebound,int opponentOffensiveRebound,int opponentDefensiveRebound,
 			int backboard, int assist, int steal, int block, int turnOver,
 			int foul, int scoring) {
 		this.teamName = teamName;
 		this.matches = matches;
+		this.wins=wins;
 		this.fieldGoal = fieldGoal;
 		this.fieldGoalAttempts = fieldGoalAttempts;
 		this.threePointFieldGoal = threePointFieldGoal;
@@ -34,6 +38,8 @@ public class TeamPO {
 		this.freeThrowAttempts = freeThrowAttempts;
 		this.offensiveRebound = offensiveRebound;
 		this.defensiveRebound = defensiveRebound;
+		this.opponentOffensiveRebound=opponentOffensiveRebound;
+		this.opponentDefensiveRebound=opponentDefensiveRebound;
 		this.backboard = backboard;
 		this.assist = assist;
 		this.steal = steal;
@@ -53,6 +59,12 @@ public class TeamPO {
 	}
 	public void setMatches(int matches) {
 		this.matches = matches;
+	}
+	public int getWins() {
+		return wins;
+	}
+	public void setWins(int wins) {
+		this.wins = wins;
 	}
 	public int getFieldGoal() {
 		return fieldGoal;
@@ -101,6 +113,18 @@ public class TeamPO {
 	}
 	public void setDefensiveRebound(int defensiveRebound) {
 		this.defensiveRebound = defensiveRebound;
+	}
+	public int getOpponentOffensiveRebound() {
+		return opponentOffensiveRebound;
+	}
+	public void setOpponentOffensiveRebound(int opponentOffensiveRebound) {
+		this.opponentOffensiveRebound = opponentOffensiveRebound;
+	}
+	public int getOpponentDefensiveRebound() {
+		return opponentDefensiveRebound;
+	}
+	public void setOpponentDefensiveRebound(int opponentDefensiveRebound) {
+		this.opponentDefensiveRebound = opponentDefensiveRebound;
 	}
 	public int getBackboard() {
 		return backboard;

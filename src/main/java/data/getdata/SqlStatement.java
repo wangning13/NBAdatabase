@@ -7,6 +7,11 @@ public class SqlStatement {
 		return r;
 	}
 	
+	public static String countTeamWins(String teamName){
+		String r="SELECT COUNT(name) FROM matches WHERE name='"+teamName+"' AND `win/lose`='w'";
+		return r;
+	}
+	
 	public static String countTeamSum(String teamName){
 		String r="SELECT SUM(fieldGoal),SUM(fieldGoalAttempts),SUM(`threepointFieldGoal`),SUM(`threepointFieldGoalAttempts`),SUM(freeThrow),SUM(freeThrowAttempts),SUM(offensiveRebound),SUM(defensiveRebound),SUM(backboard),SUM(assit),SUM(steal),SUM(block),SUM(turnOver),SUM(foul),SUM(scoring) FROM playerdata WHERE team='"+teamName+"'";
 		return r;
@@ -14,6 +19,16 @@ public class SqlStatement {
 	
 	public static String getTeamName(){
 		String r="SELECT abbr FROM teaminfo";
+		return r;
+	}
+	
+	public static String getTeamOpponent(String teamName){
+		String r="SELECT date,opponent FROM matches WHERE name='"+teamName+"'";
+		return r;
+	}
+	
+	public static String getTeamOpponentRebound(String date,String opponent){
+		String r="SELECT SUM(offensiveRebound),SUM(defensiveRebound) FROM playerdata WHERE date='"+date+"' AND team='"+opponent+"'";
 		return r;
 	}
 	
@@ -28,12 +43,21 @@ public class SqlStatement {
 	}
 	
 	public static String countPlayerSum(String playerName){
-		String r="SELECT SUM(fieldGoal),SUM(fieldGoalAttempts),SUM(`three-pointFieldGoal`),SUM(`three-pointFieldGoalAttempts`),SUM(freeThrow),SUM(freeThrowAttempts),SUM(offensiveRebound),SUM(defensiveRebound),SUM(backboard),SUM(assit),SUM(steal),SUM(block),SUM(turnOver),SUM(foul),SUM(scoring) FROM playerdata WHERE playername='"+playerName+"'";
+		String r="SELECT SUM(fieldGoal),SUM(fieldGoalAttempts),SUM(`threepointFieldGoal`),SUM(`threepointFieldGoalAttempts`),SUM(freeThrow),SUM(freeThrowAttempts),SUM(offensiveRebound),SUM(defensiveRebound),SUM(backboard),SUM(assit),SUM(steal),SUM(block),SUM(turnOver),SUM(foul),SUM(scoring) FROM playerdata WHERE playername='"+playerName+"'";
+		return r;
+	}
+	public static String getPlayerinfo(String playerName){
+		String r="SELECT * FROM playerinfo WHERE name='"+playerName+"'";
 		return r;
 	}
 	
-	public static String getPlayerinfo(String playerName){
-		String r="SELECT * FROM playerinfo WHERE name='"+playerName+"'";
+	public static String getPlayerFirstPlay(String playerName){
+		String r="SELECT COUNT(*) FROM playerdata WHERE position !=''AND playername='"+playerName+"'";
+		return r;
+	}
+	
+	public static String getPlayerTeam(String playerName){
+		String r="SELECT team FROM playerdata WHERE playername='"+playerName+"'";
 		return r;
 	}
 }
