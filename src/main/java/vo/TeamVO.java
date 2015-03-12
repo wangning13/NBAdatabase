@@ -239,6 +239,7 @@ public class TeamVO {
 	}
 	public int getFoul() {
 		return foul;
+		
 	}
 	public void setFoul(int foul) {
 		this.foul = foul;
