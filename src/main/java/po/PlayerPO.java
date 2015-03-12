@@ -22,7 +22,14 @@ public class PlayerPO {
 	int turnOver;//失误数
 	int foul;//犯规数 
 	int scoring;//比赛得分
-	public PlayerPO(	String playerName,String team,int appearance,int firstPlay,int fieldGoal,int fieldGoalAttempts,int threePointFieldGoal,int threePointFieldGoalAttempts,int freeThrow,int freeThrowAttempts,int offensiveRebound,int defensiveRebound,int backboard,	int assit,double minites,int steal,int block,int turnOver,int foul,int scoring) {
+	int teamFieldGoalAttempts;//球队总出手次数
+	int teamBackboard;//球队总篮板
+	double teamMinutes;//球队上场总时间
+	int teamFreeThrowAttempts;//球队罚球次数
+	int teamTurnOver;//球队失误数
+	int opponentFieldGoalAttempts;//对手投篮出手次数
+	int opponentThreePointFieldGoalAttempts;//对手三分出手数
+	public PlayerPO(	String playerName,String team,int appearance,int firstPlay,int fieldGoal,int fieldGoalAttempts,int threePointFieldGoal,int threePointFieldGoalAttempts,int freeThrow,int freeThrowAttempts,int offensiveRebound,int defensiveRebound,int backboard,	int assit,double minites,int steal,int block,int turnOver,int foul,int scoring,int teamFieldGoalAttempts,int teamBackboard,double teamMinutes,int teamFreeThrowAttempts,int teamTurnOver,int opponentFieldGoalAttempts,int opponentThreePointFieldGoalAttempts) {
 		this.playerName=playerName;
 		this.team=team;
 		this.appearance=appearance;
@@ -43,6 +50,13 @@ public class PlayerPO {
 		this.turnOver=turnOver;
 		this.foul=foul;
 		this.scoring=scoring;
+		this.teamFieldGoalAttempts=teamFieldGoalAttempts;
+		this.teamBackboard=teamBackboard;
+		this.teamMinutes=teamMinutes;
+		this.teamFreeThrowAttempts=teamFreeThrowAttempts;
+		this.teamTurnOver=teamTurnOver;
+		this.opponentFieldGoalAttempts=opponentFieldGoalAttempts;
+		this.opponentThreePointFieldGoalAttempts=opponentThreePointFieldGoalAttempts;
 	}
 	public String getPlayerName() {
 		return playerName;
@@ -164,5 +178,47 @@ public class PlayerPO {
 	public void setScoring(int scoring) {
 		this.scoring = scoring;
 	}
-
+	public int getTeamFieldGoalAttempts() {
+		return teamFieldGoalAttempts;
+	}
+	public void setTeamFieldGoalAttempts(int teamFieldGoalAttempts) {
+		this.teamFieldGoalAttempts = teamFieldGoalAttempts;
+	}
+	public int getTeamBackboard() {
+		return teamBackboard;
+	}
+	public void setTeamBackboard(int teamBackboard) {
+		this.teamBackboard = teamBackboard;
+	}
+	public double getTeamMinutes() {
+		return teamMinutes;
+	}
+	public void setTeamMinutes(double teamMinutes) {
+		this.teamMinutes = teamMinutes;
+	}
+	public int getTeamFreeThrowAttempts() {
+		return teamFreeThrowAttempts;
+	}
+	public void setTeamFreeThrowAttempts(int teamFreeThrowAttempts) {
+		this.teamFreeThrowAttempts = teamFreeThrowAttempts;
+	}
+	public int getTeamTurnOver() {
+		return teamTurnOver;
+	}
+	public void setTeamTurnOver(int teamTurnOver) {
+		this.teamTurnOver = teamTurnOver;
+	}
+	public int getOpponentFieldGoalAttempts() {
+		return opponentFieldGoalAttempts;
+	}
+	public void setOpponentFieldGoalAttempts(int opponentFieldGoalAttempts) {
+		this.opponentFieldGoalAttempts = opponentFieldGoalAttempts;
+	}
+	public int getOpponentThreePointFieldGoalAttempts() {
+		return opponentThreePointFieldGoalAttempts;
+	}
+	public void setOpponentThreePointFieldGoalAttempts(
+			int opponentThreePointFieldGoalAttempts) {
+		this.opponentThreePointFieldGoalAttempts = opponentThreePointFieldGoalAttempts;
+	}
 }
