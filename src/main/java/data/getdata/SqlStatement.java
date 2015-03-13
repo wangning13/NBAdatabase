@@ -27,8 +27,8 @@ public class SqlStatement {
 		return r;
 	}
 	
-	public static String getTeamOpponentRebound(String date,String opponent){
-		String r="SELECT SUM(offensiveRebound),SUM(defensiveRebound) FROM playerdata WHERE date='"+date+"' AND team='"+opponent+"'";
+	public static String getTeamOpponentSum(String date,String opponent){
+		String r="SELECT SUM(fieldGoal),SUM(fieldGoalAttempts),SUM(freeThrowAttempts),SUM(offensiveRebound),SUM(defensiveRebound),SUM(turnOver),SUM(scoring) FROM playerdata WHERE date='"+date+"' AND team='"+opponent+"'";
 		return r;
 	}
 	

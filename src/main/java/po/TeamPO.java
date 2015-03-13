@@ -1,12 +1,10 @@
 package po;
-//对手投篮命中数，对手投篮出手数，对手失误数,对手罚球数
 public class TeamPO {
 	int opponentFieldGoal;//对手投篮命中数
 	int opponentFieldGoalAttempts;//对手投篮出手次数
 	int opponentTurnOver;//对手失误数
 	int opponentFreeThrowAttempts;//对手罚球数
 	int oppenentScoring;//对手得分
-	
 	String teamName;//球队名称
 	int matches;//比赛场数
 	int wins;//胜利场数

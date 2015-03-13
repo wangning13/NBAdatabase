@@ -26,6 +26,11 @@ public class GetTeamdata implements GetTeamdataDataService{
 	}
 	
 	public TeamPO getTeamdata(String teamName){
+		int opponentFieldGoal=0;//对手投篮命中数
+		int opponentFieldGoalAttempts=0;//对手投篮出手次数
+		int opponentTurnOver=0;//对手失误数
+		int opponentFreeThrowAttempts=0;//对手罚球数
+		int oppenentScoring=0;//对手得分
 		int matches=0;//比赛场数
 		int wins=0;//胜利场数
 		int fieldGoal=0;//投篮命中数
@@ -78,21 +83,36 @@ public class GetTeamdata implements GetTeamdataDataService{
 				opponent.add(rs.getString(2));
 			}
 			for (int i = 0; i < date.size(); i++) {
-				rs=statement.executeQuery(SqlStatement.getTeamOpponentRebound(date.get(i), opponent.get(i)));
+				rs=statement.executeQuery(SqlStatement.getTeamOpponentSum(date.get(i), opponent.get(i)));
 				int temp1=0;
 				int temp2=0;
+				int temp3=0;
+				int temp4=0;
+				int temp5=0;
+				int temp6=0;
+				int temp7=0;
 				while(rs.next()){
 					temp1=rs.getInt(1);
 					temp2=rs.getInt(2);
+					temp3=rs.getInt(3);
+					temp4=rs.getInt(4);
+					temp5=rs.getInt(5);
+					temp6=rs.getInt(6);
+					temp7=rs.getInt(7);
 				}
-				opponentOffensiveRebound=opponentOffensiveRebound+temp1;
-				opponentDefensiveRebound=opponentDefensiveRebound+temp2;
+				opponentFieldGoal=opponentFieldGoal+temp1;
+				opponentFieldGoalAttempts=opponentFieldGoalAttempts+temp2;
+				opponentFreeThrowAttempts=opponentFreeThrowAttempts+temp3;
+				opponentOffensiveRebound=opponentOffensiveRebound+temp4;
+				opponentDefensiveRebound=opponentDefensiveRebound+temp5;
+				opponentTurnOver=opponentTurnOver+temp6;
+				oppenentScoring=oppenentScoring+temp7;
 			}
 		} catch (SQLException e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
-		TeamPO po=new TeamPO(teamName, matches, wins, fieldGoal, fieldGoalAttempts, threePointFieldGoal, threePointFieldGoalAttempts, freeThrow, freeThrowAttempts, offensiveRebound, defensiveRebound, opponentOffensiveRebound, opponentDefensiveRebound, backboard, assist, steal, block, turnOver, foul, scoring);
+		TeamPO po=new TeamPO(opponentFieldGoal, opponentFieldGoalAttempts, opponentTurnOver, opponentFreeThrowAttempts, oppenentScoring, teamName, matches, wins, fieldGoal, fieldGoalAttempts, threePointFieldGoal, threePointFieldGoalAttempts, freeThrow, freeThrowAttempts, offensiveRebound, defensiveRebound, opponentOffensiveRebound, opponentDefensiveRebound, backboard, assist, steal, block, turnOver, foul, scoring);
 		return po;
 	}
 	
@@ -139,12 +159,22 @@ public class GetTeamdata implements GetTeamdataDataService{
 	
 	private ArrayList<TeamPO> getByOrder(ArrayList<TeamPO> po,String key,String order){
 		ArrayList<TeamPO> r=new ArrayList<TeamPO>();
-		String sql="CREATE TABLE temp (teamName varchar(255), matches int,wins int, fieldGoal int, fieldGoalAttempts int, threePointFieldGoal int, threePointFieldGoalAttempts int, freeThrow int, freeThrowAttempts int, offensiveRebound int, defensiveRebound int,	opponentOffensiveRebound int ,opponentDefensiveRebound int , backboard int, assist int, steal int, block int, turnOver int, foul int, scoring int)";
+		String sql="CREATE TABLE temp (	opponentFieldGoal int,opponentFieldGoalAttempts int,opponentTurnOver int ,opponentFreeThrowAttempts int ,oppenentScoring int,teamName varchar(255), matches int,wins int, fieldGoal int, fieldGoalAttempts int, threePointFieldGoal int, threePointFieldGoalAttempts int, freeThrow int, freeThrowAttempts int, offensiveRebound int, defensiveRebound int,	opponentOffensiveRebound int ,opponentDefensiveRebound int , backboard int, assist int, steal int, block int, turnOver int, foul int, scoring int)";
 		try {
 			statement.addBatch(sql);
 			for (int i = 0; i < po.size(); i++) {
 				TeamPO tt=po.get(i);
 				sql="INSERT INTO temp values('"
+						+ tt.getOpponentFieldGoal()
+						+ "','"
+						+ tt.getOpponentFieldGoalAttempts()
+						+ "','"
+						+ tt.getOpponentTurnOver()
+						+ "','"
+						+ tt.getOpponentFreeThrowAttempts()
+						+ "','"
+						+ tt.getOppenentScoring()
+						+ "','"
 						+ tt.getTeamName()
 						+ "','"
 						+ tt.getMatches()
@@ -190,7 +220,7 @@ public class GetTeamdata implements GetTeamdataDataService{
 			sql="SELECT * FROM temp ORDER BY `"+key+"`"+order;
 			ResultSet rs=statement.executeQuery(sql);
 			while(rs.next()){
-				TeamPO tt=new TeamPO(rs.getString(1), rs.getInt(2), rs.getInt(3), rs.getInt(4), rs.getInt(5), rs.getInt(6), rs.getInt(7), rs.getInt(8), rs.getInt(9), rs.getInt(10), rs.getInt(11), rs.getInt(12), rs.getInt(13), rs.getInt(14), rs.getInt(15), rs.getInt(16), rs.getInt(17),rs.getInt(18), rs.getInt(19), rs.getInt(20));
+				TeamPO tt=new TeamPO(rs.getInt(1), rs.getInt(2), rs.getInt(3), rs.getInt(4), rs.getInt(5), rs.getString(6), rs.getInt(7), rs.getInt(8), rs.getInt(9), rs.getInt(10), rs.getInt(11), rs.getInt(12), rs.getInt(13), rs.getInt(14), rs.getInt(15), rs.getInt(16), rs.getInt(17),rs.getInt(18), rs.getInt(19), rs.getInt(20), rs.getInt(21), rs.getInt(22),rs.getInt(23), rs.getInt(24), rs.getInt(25));
 				r.add(tt);
 			}
 			sql="DROP TABLE temp";
