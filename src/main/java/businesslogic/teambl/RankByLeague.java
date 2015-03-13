@@ -43,10 +43,10 @@ public class RankByLeague {
 				//进攻效率
 				offensiveEfficiency = ((double)teamPOs.get(i).getScoring())/possessions*100;
 				//防守回合
-				possessions = teamPOs.get(i).getFieldGoalAttempts() + 0.4*teamPOs.get(i).getFreeThrowAttempts()
-						- 1.07*(((double)teamPOs.get(i).getOffensiveRebound()/
+				double opponentPossessions = teamPOs.get(i).getOpponentFieldGoalAttempts() + 0.4*teamPOs.get(i).getOpponentFreeThrowAttempts()
+						- 1.07*(((double)teamPOs.get(i).getOpponentOffensiveRebound()/
 								(teamPOs.get(i).getOffensiveRebound()+teamPOs.get(i).getOpponentOffensiveRebound())
-								*(teamPOs.get(i).getFieldGoalAttempts()-teamPOs.get(i).getFieldGoal()))) + 1.07*teamPOs.get(i).getTurnOver();
+								*(teamPOs.get(i).getOpponentFieldGoalAttempts()-teamPOs.get(i).getOpponentFieldGoal()))) + 1.07*teamPOs.get(i).getOpponentTurnOver();
 				//防守效率
 				defensiveEfficiency = ((double)teamPOs.get(i).getScoring())/teamPOs.get(i).getMatches()*100;
 				

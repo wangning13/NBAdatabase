@@ -5,6 +5,7 @@ public class TeamPO {
 	int opponentFieldGoalAttempts;//对手投篮出手次数
 	int opponentTurnOver;//对手失误数
 	int opponentFreeThrowAttempts;//对手罚球数
+	int oppenentScoring;//对手得分
 	
 	String teamName;//球队名称
 	int matches;//比赛场数
@@ -28,8 +29,8 @@ public class TeamPO {
 	int scoring;//比赛得分
 	public TeamPO(int opponentFieldGoal, int opponentFieldGoalAttempts,
 			int opponentTurnOver, int opponentFreeThrowAttempts,
-			String teamName, int matches, int wins, int fieldGoal,
-			int fieldGoalAttempts, int threePointFieldGoal,
+			int oppenentScoring, String teamName, int matches, int wins,
+			int fieldGoal, int fieldGoalAttempts, int threePointFieldGoal,
 			int threePointFieldGoalAttempts, int freeThrow,
 			int freeThrowAttempts, int offensiveRebound, int defensiveRebound,
 			int opponentOffensiveRebound, int opponentDefensiveRebound,
@@ -40,6 +41,7 @@ public class TeamPO {
 		this.opponentFieldGoalAttempts = opponentFieldGoalAttempts;
 		this.opponentTurnOver = opponentTurnOver;
 		this.opponentFreeThrowAttempts = opponentFreeThrowAttempts;
+		this.oppenentScoring = oppenentScoring;
 		this.teamName = teamName;
 		this.matches = matches;
 		this.wins = wins;
@@ -84,6 +86,12 @@ public class TeamPO {
 	}
 	public void setOpponentFreeThrowAttempts(int opponentFreeThrowAttempts) {
 		this.opponentFreeThrowAttempts = opponentFreeThrowAttempts;
+	}
+	public int getOppenentScoring() {
+		return oppenentScoring;
+	}
+	public void setOppenentScoring(int oppenentScoring) {
+		this.oppenentScoring = oppenentScoring;
 	}
 	public String getTeamName() {
 		return teamName;
@@ -205,5 +213,6 @@ public class TeamPO {
 	public void setScoring(int scoring) {
 		this.scoring = scoring;
 	}
+	
 	
 }
