@@ -50,6 +50,17 @@ public class GetTeamdata implements GetTeamdataDataService{
 		int turnOver=0;//失误数
 		int foul=0;//犯规数
 		int scoring=0;//比赛得分
+		double fieldGoalPercentage=0;//投篮命中率
+		double threePointShotPercentage=0;//三分命中率
+		double freeThrowPercentage=0;//三分命中率
+		double winningPercentage=0;//胜率
+		double possessions=0;//进攻回合
+		double offensiveEfficiency=0;//进攻效率
+		double defensiveEfficiency=0;//防守效率
+		double offensivebackboardEfficiency=0;//进攻篮板效率
+		double defensivebackboardEfficiency=0;//防守篮板效率
+		double stealEfficiency=0;//抢断效率
+		double assitEfficiency=0;//助攻效率
 		try {
 			ResultSet rs=statement.executeQuery(SqlStatement.countTeamMatches(teamName));
 			while(rs.next())
@@ -112,7 +123,7 @@ public class GetTeamdata implements GetTeamdataDataService{
 			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
-		TeamPO po=new TeamPO(opponentFieldGoal, opponentFieldGoalAttempts, opponentTurnOver, opponentFreeThrowAttempts, oppenentScoring, teamName, matches, wins, fieldGoal, fieldGoalAttempts, threePointFieldGoal, threePointFieldGoalAttempts, freeThrow, freeThrowAttempts, offensiveRebound, defensiveRebound, opponentOffensiveRebound, opponentDefensiveRebound, backboard, assist, steal, block, turnOver, foul, scoring);
+		TeamPO po=new TeamPO(opponentFieldGoal, opponentFieldGoalAttempts, opponentTurnOver, opponentFreeThrowAttempts, oppenentScoring, teamName, matches, wins, fieldGoal, fieldGoalAttempts, threePointFieldGoal, threePointFieldGoalAttempts, freeThrow, freeThrowAttempts, offensiveRebound, defensiveRebound, opponentOffensiveRebound, opponentDefensiveRebound, backboard, assist, steal, block, turnOver, foul, scoring, fieldGoalPercentage, threePointShotPercentage, freeThrowPercentage, winningPercentage, possessions, offensiveEfficiency, defensiveEfficiency, offensivebackboardEfficiency, defensivebackboardEfficiency, stealEfficiency, assitEfficiency);
 		return po;
 	}
 	
@@ -220,7 +231,105 @@ public class GetTeamdata implements GetTeamdataDataService{
 			sql="SELECT * FROM temp ORDER BY `"+key+"`"+order;
 			ResultSet rs=statement.executeQuery(sql);
 			while(rs.next()){
-				TeamPO tt=new TeamPO(rs.getInt(1), rs.getInt(2), rs.getInt(3), rs.getInt(4), rs.getInt(5), rs.getString(6), rs.getInt(7), rs.getInt(8), rs.getInt(9), rs.getInt(10), rs.getInt(11), rs.getInt(12), rs.getInt(13), rs.getInt(14), rs.getInt(15), rs.getInt(16), rs.getInt(17),rs.getInt(18), rs.getInt(19), rs.getInt(20), rs.getInt(21), rs.getInt(22),rs.getInt(23), rs.getInt(24), rs.getInt(25));
+				TeamPO tt=new TeamPO(rs.getInt(1), rs.getInt(2), rs.getInt(3), rs.getInt(4), rs.getInt(5), rs.getString(6), rs.getInt(7), rs.getInt(8), rs.getInt(9), rs.getInt(10), rs.getInt(11), rs.getInt(12), rs.getInt(13), rs.getInt(14), rs.getInt(15), rs.getInt(16), rs.getInt(17),rs.getInt(18), rs.getInt(19), rs.getInt(20), rs.getInt(21), rs.getInt(22),rs.getInt(23), rs.getInt(24), rs.getInt(25),0,0,0,0,0,0,0,0,0,0,0);
+				r.add(tt);
+			}
+			sql="DROP TABLE temp";
+			statement.execute(sql);
+		} catch (SQLException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+		return r;
+	}
+	
+	public ArrayList<TeamPO> getByEfficiency(ArrayList<TeamPO> po,String key,String order){
+		ArrayList<TeamPO> r=new ArrayList<TeamPO>();
+		String sql="CREATE TABLE temp (	opponentFieldGoal int,opponentFieldGoalAttempts int,opponentTurnOver int ,opponentFreeThrowAttempts int ,oppenentScoring int,teamName varchar(255), matches int,wins int, fieldGoal int, fieldGoalAttempts int, threePointFieldGoal int, threePointFieldGoalAttempts int, freeThrow int, freeThrowAttempts int, offensiveRebound int, defensiveRebound int,	opponentOffensiveRebound int ,opponentDefensiveRebound int , backboard int, assist int, steal int, block int, turnOver int, foul int, scoring int,fieldGoalPercentage double,threePointShotPercentage double,freeThrowPercentage double,winningPercentage double,possessions double,offensiveEfficiency double,defensiveEfficiency double,offensivebackboardEfficiency double,defensivebackboardEfficiency double,stealEfficiency double,assitEfficiency double)";
+		try {
+			statement.addBatch(sql);
+			for (int i = 0; i < po.size(); i++) {
+				TeamPO tt=po.get(i);
+				sql="INSERT INTO temp values('"
+						+ tt.getOpponentFieldGoal()
+						+ "','"
+						+ tt.getOpponentFieldGoalAttempts()
+						+ "','"
+						+ tt.getOpponentTurnOver()
+						+ "','"
+						+ tt.getOpponentFreeThrowAttempts()
+						+ "','"
+						+ tt.getOppenentScoring()
+						+ "','"
+						+ tt.getTeamName()
+						+ "','"
+						+ tt.getMatches()
+						+ "','"
+						+ tt.getWins()
+						+ "','"
+						+ tt.getFieldGoal()
+						+ "','"
+						+ tt.getFieldGoalAttempts()
+						+ "','"
+						+ tt.getThreePointFieldGoal()
+						+ "','"
+						+ tt.getThreePointFieldGoalAttempts()
+						+ "','"
+						+ tt.getFreeThrow()
+						+ "','"
+						+ tt.getFreeThrowAttempts()
+						+ "','"
+						+ tt.getOffensiveRebound()
+						+ "','"
+						+ tt.getDefensiveRebound()
+						+ "','"
+						+ tt.getOpponentOffensiveRebound()
+						+ "','"
+						+ tt.getOpponentDefensiveRebound()
+						+ "','"
+						+ tt.getBackboard()
+						+ "','"
+						+ tt.getAssist()
+						+ "','"
+						+ tt.getSteal()
+						+ "','"
+						+ tt.getBlock()
+						+ "','"
+						+ tt.getTurnOver()
+						+ "','"
+						+ tt.getFoul()
+						+ "','"
+						+ tt.getScoring() 
+						+ "','"
+						+ tt.getFieldGoalPercentage()
+						+ "','"
+						+tt.getThreePointShotPercentage()
+						+ "','"
+						+tt.getFieldGoalPercentage()
+						+ "','"
+						+tt.getWinningPercentage()
+						+ "','"
+						+tt.getPossessions()
+						+ "','" 
+						+tt.getOffensiveEfficiency()
+						+ "','"
+						+tt.getDefensiveEfficiency()
+						+ "','"
+						+tt.getOffensivebackboardEfficiency()
+						+ "','"
+						+tt.getDefensivebackboardEfficiency()
+						+ "','"
+						+tt.getStealEfficiency()
+						+ "','"
+						+tt.getAssitEfficiency()
+						+ "')";
+				statement.addBatch(sql);
+			}
+			statement.executeBatch();
+			sql="SELECT * FROM temp ORDER BY `"+key+"`"+order;
+			ResultSet rs=statement.executeQuery(sql);
+			while(rs.next()){
+				TeamPO tt=new TeamPO(rs.getInt(1), rs.getInt(2), rs.getInt(3), rs.getInt(4), rs.getInt(5), rs.getString(6), rs.getInt(7), rs.getInt(8), rs.getInt(9), rs.getInt(10), rs.getInt(11), rs.getInt(12), rs.getInt(13), rs.getInt(14), rs.getInt(15), rs.getInt(16), rs.getInt(17),rs.getInt(18), rs.getInt(19), rs.getInt(20), rs.getInt(21), rs.getInt(22),rs.getInt(23), rs.getInt(24), rs.getInt(25),rs.getDouble(26),rs.getDouble(27),rs.getDouble(28),rs.getDouble(29),rs.getDouble(30),rs.getDouble(31),rs.getDouble(32),rs.getDouble(33),rs.getDouble(34),rs.getDouble(35),rs.getDouble(36));
 				r.add(tt);
 			}
 			sql="DROP TABLE temp";
