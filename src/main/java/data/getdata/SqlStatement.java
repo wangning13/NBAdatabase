@@ -60,4 +60,14 @@ public class SqlStatement {
 		String r="SELECT team FROM playerdata WHERE playername='"+playerName+"'";
 		return r;
 	}
+	
+	public static String countTeamSumForPlayer(String teamName){
+		String r="SELECT SUM(fieldGoalAttempts),SUM(minutes),SUM(freeThrowAttempts),SUM(backboard),SUM(turnOver) FROM playerdata WHERE team='"+teamName+"'";
+		return r;
+	}
+	
+	public static String getOpponentSumForPlayer(String date,String opponent){
+		String r="SELECT SUM(fieldGoalAttempts),SUM(threePointFieldGoalAttempts) FROM playerdata WHERE date='"+date+"' AND team='"+opponent+"'";
+		return r;
+	}
 }
