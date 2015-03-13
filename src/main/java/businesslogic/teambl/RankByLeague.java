@@ -27,14 +27,28 @@ public class RankByLeague {
 		if (league.equals(League.EAST)) {
 			teamPOs = g.getSomeTeamdata("`east/west`='E'", "wins", "DESC");
 			for (int i = 0; i < teamPOs.size(); i++) {
+				//胜率
 				winningPercentage = ((double)teamPOs.get(i).getWins())/teamPOs.get(i).getMatches();
+				//排名
 				rank = i;
+				//投篮命中率
 				fieldGoalPercentage = ((double)teamPOs.get(i).getFieldGoal())/teamPOs.get(i).getFieldGoalAttempts();
+				//三分命中率
 				threePointShotPercentage = ((double)teamPOs.get(i).getThreePointFieldGoal())/teamPOs.get(i).getThreePointFieldGoalAttempts();
+				//进攻回合
 				possessions = teamPOs.get(i).getFieldGoalAttempts() + 0.4*teamPOs.get(i).getFreeThrowAttempts()
 						- 1.07*(((double)teamPOs.get(i).getOffensiveRebound()/
 								(teamPOs.get(i).getOffensiveRebound()+teamPOs.get(i).getOpponentOffensiveRebound())
 								*(teamPOs.get(i).getFieldGoalAttempts()-teamPOs.get(i).getFieldGoal()))) + 1.07*teamPOs.get(i).getTurnOver();
+				//进攻效率
+				offensiveEfficiency = ((double)teamPOs.get(i).getScoring())/possessions*100;
+				//防守回合
+				possessions = teamPOs.get(i).getFieldGoalAttempts() + 0.4*teamPOs.get(i).getFreeThrowAttempts()
+						- 1.07*(((double)teamPOs.get(i).getOffensiveRebound()/
+								(teamPOs.get(i).getOffensiveRebound()+teamPOs.get(i).getOpponentOffensiveRebound())
+								*(teamPOs.get(i).getFieldGoalAttempts()-teamPOs.get(i).getFieldGoal()))) + 1.07*teamPOs.get(i).getTurnOver();
+				//防守效率
+				defensiveEfficiency = ((double)teamPOs.get(i).getScoring())/teamPOs.get(i).getMatches()*100;
 				
 				
 				
