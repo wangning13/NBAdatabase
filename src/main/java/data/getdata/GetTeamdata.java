@@ -9,8 +9,9 @@ import java.util.ArrayList;
 
 import po.TeamPO;
 import data.initial.InitialDatabase;
+import dataservice.getdatadataservice.GetTeamdataDataService;
 
-public class GetTeamdata {
+public class GetTeamdata implements GetTeamdataDataService{
 
 	Statement statement;
 	public GetTeamdata() {

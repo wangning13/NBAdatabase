@@ -11,8 +11,9 @@ import java.util.ArrayList;
 import po.PlayerPO;
 import data.initial.InitialDatabase;
 import data.initial.InitialPlayerinfo;
+import dataservice.getdatadataservice.GetPlayerdataDataService;
 
-public class GetPlayerdata {
+public class GetPlayerdata implements GetPlayerdataDataService{
 
 	Statement statement;
 	public GetPlayerdata() {
