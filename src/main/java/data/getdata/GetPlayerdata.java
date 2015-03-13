@@ -9,6 +9,7 @@ import java.text.DecimalFormat;
 import java.util.ArrayList;
 
 import po.PlayerPO;
+import po.PlayerinfoPO;
 import data.initial.InitialDatabase;
 import data.initial.InitialPlayerinfo;
 import dataservice.getdatadataservice.GetPlayerdataDataService;
@@ -112,6 +113,19 @@ public class GetPlayerdata implements GetPlayerdataDataService{
 			e.printStackTrace();
 		}
 		PlayerPO po=new PlayerPO(playerName, team, appearance, firstPlay, fieldGoal, fieldGoalAppempts, threePointFieldGoal, threePointFieldGoalAppempts, freeThrow, freeThrowAppempts, offensiveRebound, defensiveRebound, backboard, assist, minites, steal, block, turnOver, foul, scoring, teamFieldGoalAppempts, teamBackboard, teamMinutes, teamFreeThrowAppempts, teamTurnOver, opponentFieldGoalAppempts, opponenpphreePointFieldGoalAppempts);
+		return po;
+	}
+	
+	public PlayerinfoPO getPlayerinfo(String playerName){
+		PlayerinfoPO po =null;
+		try {
+			ResultSet rs=statement.executeQuery(SqlStatement.getPlayerinfo(playerName));
+			while(rs.next())
+				po=new PlayerinfoPO(rs.getString(1), rs.getString(2), rs.getString(3), rs.getString(4), rs.getInt(5), rs.getString(6), rs.getInt(7), rs.getString(8), rs.getString(9));
+		} catch (SQLException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
 		return po;
 	}
 	
@@ -260,6 +274,12 @@ public class GetPlayerdata implements GetPlayerdataDataService{
 			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
+		return r;
+	}
+	
+	public ArrayList<PlayerPO> getByEfficiency(ArrayList<PlayerPO> po,String key,String order){
+		ArrayList<PlayerPO> r=new ArrayList<PlayerPO>();
+		
 		return r;
 	}
 }

@@ -8,6 +8,7 @@ import java.sql.Statement;
 import java.util.ArrayList;
 
 import po.TeamPO;
+import po.TeaminfoPO;
 import data.initial.InitialDatabase;
 import dataservice.getdatadataservice.GetTeamdataDataService;
 
@@ -23,6 +24,19 @@ public class GetTeamdata implements GetTeamdataDataService{
 			// TODO Auto-generated catch block
 			e.printStackTrace();
 		} 
+	}
+	
+	public TeaminfoPO getTeaminfo(String teamName){
+		TeaminfoPO po=null;;
+		try {
+			ResultSet rs=statement.executeQuery(SqlStatement.getTeaminfo(teamName));
+			while(rs.next())
+				po=new TeaminfoPO(rs.getString(1), rs.getString(2), rs.getString(3), rs.getString(4), rs.getString(5), rs.getString(6), rs.getInt(7));
+		} catch (SQLException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+		return po;
 	}
 	
 	public TeamPO getTeamdata(String teamName){

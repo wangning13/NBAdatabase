@@ -29,6 +29,9 @@ public class PlayerPO {
 	int teamTurnOver;//球队失误数
 	int opponentFieldGoalAttempts;//对手投篮出手次数
 	int opponentThreePointFieldGoalAttempts;//对手三分出手数
+	
+	double efficiency;//效率
+	double GmScEfficiency;//GmSc效率
 	public PlayerPO(	String playerName,String team,int appearance,int firstPlay,int fieldGoal,int fieldGoalAttempts,int threePointFieldGoal,int threePointFieldGoalAttempts,int freeThrow,int freeThrowAttempts,int offensiveRebound,int defensiveRebound,int backboard,	int assist,double minites,int steal,int block,int turnOver,int foul,int scoring,int teamFieldGoalAttempts,int teamBackboard,double teamMinutes,int teamFreeThrowAttempts,int teamTurnOver,int opponentFieldGoalAttempts,int opponentThreePointFieldGoalAttempts) {
 		this.playerName=playerName;
 		this.team=team;
