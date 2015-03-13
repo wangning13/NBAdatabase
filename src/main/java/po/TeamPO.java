@@ -26,15 +26,23 @@ public class TeamPO {
 	int turnOver;//失误数
 	int foul;//犯规数
 	int scoring;//比赛得分
-	public TeamPO(String teamName, int matches,int wins, int fieldGoal,
+	public TeamPO(int opponentFieldGoal, int opponentFieldGoalAttempts,
+			int opponentTurnOver, int opponentFreeThrowAttempts,
+			String teamName, int matches, int wins, int fieldGoal,
 			int fieldGoalAttempts, int threePointFieldGoal,
 			int threePointFieldGoalAttempts, int freeThrow,
-			int freeThrowAttempts, int offensiveRebound, int defensiveRebound,int opponentOffensiveRebound,int opponentDefensiveRebound,
+			int freeThrowAttempts, int offensiveRebound, int defensiveRebound,
+			int opponentOffensiveRebound, int opponentDefensiveRebound,
 			int backboard, int assist, int steal, int block, int turnOver,
 			int foul, int scoring) {
+		super();
+		this.opponentFieldGoal = opponentFieldGoal;
+		this.opponentFieldGoalAttempts = opponentFieldGoalAttempts;
+		this.opponentTurnOver = opponentTurnOver;
+		this.opponentFreeThrowAttempts = opponentFreeThrowAttempts;
 		this.teamName = teamName;
 		this.matches = matches;
-		this.wins=wins;
+		this.wins = wins;
 		this.fieldGoal = fieldGoal;
 		this.fieldGoalAttempts = fieldGoalAttempts;
 		this.threePointFieldGoal = threePointFieldGoal;
@@ -43,8 +51,8 @@ public class TeamPO {
 		this.freeThrowAttempts = freeThrowAttempts;
 		this.offensiveRebound = offensiveRebound;
 		this.defensiveRebound = defensiveRebound;
-		this.opponentOffensiveRebound=opponentOffensiveRebound;
-		this.opponentDefensiveRebound=opponentDefensiveRebound;
+		this.opponentOffensiveRebound = opponentOffensiveRebound;
+		this.opponentDefensiveRebound = opponentDefensiveRebound;
 		this.backboard = backboard;
 		this.assist = assist;
 		this.steal = steal;
@@ -52,6 +60,30 @@ public class TeamPO {
 		this.turnOver = turnOver;
 		this.foul = foul;
 		this.scoring = scoring;
+	}
+	public int getOpponentFieldGoal() {
+		return opponentFieldGoal;
+	}
+	public void setOpponentFieldGoal(int opponentFieldGoal) {
+		this.opponentFieldGoal = opponentFieldGoal;
+	}
+	public int getOpponentFieldGoalAttempts() {
+		return opponentFieldGoalAttempts;
+	}
+	public void setOpponentFieldGoalAttempts(int opponentFieldGoalAttempts) {
+		this.opponentFieldGoalAttempts = opponentFieldGoalAttempts;
+	}
+	public int getOpponentTurnOver() {
+		return opponentTurnOver;
+	}
+	public void setOpponentTurnOver(int opponentTurnOver) {
+		this.opponentTurnOver = opponentTurnOver;
+	}
+	public int getOpponentFreeThrowAttempts() {
+		return opponentFreeThrowAttempts;
+	}
+	public void setOpponentFreeThrowAttempts(int opponentFreeThrowAttempts) {
+		this.opponentFreeThrowAttempts = opponentFreeThrowAttempts;
 	}
 	public String getTeamName() {
 		return teamName;
@@ -173,4 +205,5 @@ public class TeamPO {
 	public void setScoring(int scoring) {
 		this.scoring = scoring;
 	}
+	
 }
