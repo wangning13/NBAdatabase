@@ -15,7 +15,7 @@ public class PlayerPO {
 	int offensiveRebound;//进攻数
 	int defensiveRebound;//防守数
 	int backboard;//篮板数
-	int assit;//助攻数
+	int assist;//助攻数
 	double minites;//在场时间
 	int steal;//抢断数
 	int block;//盖帽数
@@ -29,7 +29,7 @@ public class PlayerPO {
 	int teamTurnOver;//球队失误数
 	int opponentFieldGoalAttempts;//对手投篮出手次数
 	int opponentThreePointFieldGoalAttempts;//对手三分出手数
-	public PlayerPO(	String playerName,String team,int appearance,int firstPlay,int fieldGoal,int fieldGoalAttempts,int threePointFieldGoal,int threePointFieldGoalAttempts,int freeThrow,int freeThrowAttempts,int offensiveRebound,int defensiveRebound,int backboard,	int assit,double minites,int steal,int block,int turnOver,int foul,int scoring,int teamFieldGoalAttempts,int teamBackboard,double teamMinutes,int teamFreeThrowAttempts,int teamTurnOver,int opponentFieldGoalAttempts,int opponentThreePointFieldGoalAttempts) {
+	public PlayerPO(	String playerName,String team,int appearance,int firstPlay,int fieldGoal,int fieldGoalAttempts,int threePointFieldGoal,int threePointFieldGoalAttempts,int freeThrow,int freeThrowAttempts,int offensiveRebound,int defensiveRebound,int backboard,	int assist,double minites,int steal,int block,int turnOver,int foul,int scoring,int teamFieldGoalAttempts,int teamBackboard,double teamMinutes,int teamFreeThrowAttempts,int teamTurnOver,int opponentFieldGoalAttempts,int opponentThreePointFieldGoalAttempts) {
 		this.playerName=playerName;
 		this.team=team;
 		this.appearance=appearance;
@@ -41,7 +41,7 @@ public class PlayerPO {
 		this.freeThrow=freeThrow;
 		this.freeThrowAttempts=freeThrowAttempts;
 		this.backboard=backboard;
-		this.assit=assit;
+		this.assist=assist;
 		this.minites=minites;
 		this.offensiveRebound=offensiveRebound;
 		this.defensiveRebound=defensiveRebound;
@@ -124,11 +124,11 @@ public class PlayerPO {
 	public void setBackboard(int backboard) {
 		this.backboard = backboard;
 	}
-	public int getAssit() {
-		return assit;
+	public int getAssist() {
+		return assist;
 	}
-	public void setAssit(int assit) {
-		this.assit = assit;
+	public void setAssist(int assist) {
+		this.assist = assist;
 	}
 	public double getMinites() {
 		return minites;
