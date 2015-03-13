@@ -7,7 +7,7 @@ import java.sql.Statement;
 public class InitialDatabase {
 //进攻回合
 	public static String driver = "com.mysql.jdbc.Driver";
-	public static String url = "jdbc:mysql://127.0.0.1:3306/nba";
+	public static String url = "jdbc:mysql://127.0.0.1:3306/nba?rewriteBatchedStatements=true";
 	public static String user = "root";
 	public static String password = "123";
 	public static void main(String[] args) {
@@ -26,13 +26,13 @@ public class InitialDatabase {
 				statement.addBatch(sql);
 				sql="drop table teaminfo";
 				statement.addBatch(sql);
-				sql="CREATE TABLE teaminfo (name varchar(255) ,abbr varchar(255) ,city varchar(255) ,`east/west` varchar(255) ,`partition` varchar(255) ,court varchar(255) ,year varchar(255));";
+				sql="CREATE TABLE teaminfo (name varchar(255) ,abbr varchar(255) ,city varchar(255) ,`east/west` varchar(255) ,`partition` varchar(255) ,court varchar(255) ,year varchar(255))";
 				statement.addBatch(sql);
-				sql="CREATE TABLE matches (date varchar(255), `host/guest` varchar(1), name varchar(255),opponent varchar(255),`win/lose` varchar(1) , total int ,first int ,second int ,third int ,fourth int ,primary key (date,name));";
+				sql="CREATE TABLE matches (date varchar(255), `host/guest` varchar(1), name varchar(255),opponent varchar(255),`win/lose` varchar(1) , total int ,first int ,second int ,third int ,fourth int,primary key(date,name))";
 				statement.addBatch(sql);
-				sql="CREATE TABLE playerdata (`date`  varchar(255) ,team varchar(255) ,playername varchar(255) ,position varchar(255),minutes double ,fieldGoal int ,fieldGoalAttempts int ,`threepointFieldGoal` int ,`threepointFieldGoalAttempts` int ,freeThrow int ,freeThrowAttempts int ,offensiveRebound int ,defensiveRebound int ,backboard int ,assit int ,steal int ,block int ,turnOver int ,foul int ,scoring int,index(date,team,playername));";
+				sql="CREATE TABLE playerdata (`date`  varchar(255) ,team varchar(255) ,playername varchar(255) ,position varchar(255),minutes double ,fieldGoal int ,fieldGoalAttempts int ,`threepointFieldGoal` int ,`threepointFieldGoalAttempts` int ,freeThrow int ,freeThrowAttempts int ,offensiveRebound int ,defensiveRebound int ,backboard int ,assit int ,steal int ,block int ,turnOver int ,foul int ,scoring int,primary key(date,team,playername))";
 				statement.addBatch(sql);
-				sql="CREATE TABLE playerinfo (name varchar(255) ,number varchar(255) ,position varchar(255) ,height varchar(255) ,weight int ,birth varchar(255) ,age int ,exp varchar(255) ,school varchar(255) );";
+				sql="CREATE TABLE playerinfo (name varchar(255) ,number varchar(255) ,position varchar(255) ,height varchar(255) ,weight int ,birth varchar(255) ,age int ,exp varchar(255) ,school varchar(255) )";
 				statement.addBatch(sql);
 				statement.executeBatch();
 				statement.clearBatch();
@@ -43,8 +43,7 @@ public class InitialDatabase {
 				new InitialTeaminfo(statement);
 				conn.commit();  
 				statement.clearBatch();
-				new InitialMatches(statement); 
-				conn.commit();  
+				new InitialMatches(conn); 
 				statement.clearBatch();
 				new InitialPlayerdata(conn); 
 				conn.close(); 

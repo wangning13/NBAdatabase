@@ -3,53 +3,45 @@ package data.initial;
 import java.io.BufferedReader;
 import java.io.File;
 import java.io.FileReader;
+import java.sql.Connection;
+import java.sql.PreparedStatement;
 import java.sql.SQLException;
-import java.sql.Statement;
 
 public class InitialMatches {
 //初始化比赛数据
 	String info="";
-	public InitialMatches(Statement statement) {
+	public InitialMatches(Connection conn) {
 		System.out.println("初始化比赛数据……");
 		ReadIn();
-		String[] singleinfo=info.split("%");
-		for (int i = 0; i < singleinfo.length; i++) {
-			String[] singleline=singleinfo[i].split(":");
-			for (int j = 0; j < singleline.length; j++) {
-				String[] temp=singleline[j].split(";");
-				String sql="INSERT INTO matches values('"
-						+ temp[0]
-						+ "','"
-						+ temp[1]
-						+ "','"
-						+ temp[2]
-						+ "','"
-						+ temp[3]
-						+ "','"
-						+ temp[4]
-						+ "','"
-						+ temp[5]
-						+ "','"
-						+ temp[6]
-						+ "','"
-						+ temp[7]
-						+ "','"
-						+ temp[8]
-						+ "','"
-						+ temp[9] + "')";
-				try {
-					statement.addBatch(sql);
-				} catch (SQLException e) {
-					// TODO Auto-generated catch block
-					e.printStackTrace();
-				}  
+		try {
+			PreparedStatement ps=conn.prepareStatement("INSERT INTO matches  values(?,?,?,?,?,?,?,?,?,?)");
+			String[] singleinfo=info.split("%");
+			for (int i = 0; i < singleinfo.length; i++) {
+				String[] singleline=singleinfo[i].split(":");
+				for (int j = 0; j < singleline.length; j++) {
+					String[] temp=singleline[j].split(";");
+					ps.setString(1, temp[0]);
+					ps.setString(2, temp[1]);
+					ps.setString(3, temp[2]);
+					ps.setString(4, temp[3]);
+					ps.setString(5, temp[4]);
+					ps.setInt(6, Integer.parseInt(temp[5]));
+					ps.setInt(7, Integer.parseInt(temp[6]));
+					ps.setInt(8, Integer.parseInt(temp[7]));
+					ps.setInt(9, Integer.parseInt(temp[8]));
+					ps.setInt(10, Integer.parseInt(temp[9]));
+					ps.addBatch();
+					if (i % 200 == 0) {  
+	                    ps.executeBatch();  
+	                    conn.commit();  
+	                } 
+				}
 			}
-			try {
-				statement.executeBatch();
-			} catch (SQLException e) {
-				// TODO Auto-generated catch block
-				e.printStackTrace();
-			}
+			ps.executeBatch();
+			conn.commit(); 
+		} catch (SQLException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
 		}
 	}
 	

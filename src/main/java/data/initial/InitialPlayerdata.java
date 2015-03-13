@@ -13,8 +13,8 @@ public class InitialPlayerdata {
 	String info="";
 	public InitialPlayerdata(Connection conn) {
 		try {
-			PreparedStatement ps=conn.prepareStatement("INSERT INTO playerdata  values(?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?)");
 			System.out.println("初始化球员技术统计……");
+			PreparedStatement ps=conn.prepareStatement("INSERT INTO playerdata  values(?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?)");
 			ReadIn();
 			String[] singleinfo=info.split("%");
 			for (int i = 0; i < singleinfo.length; i++) {
@@ -52,11 +52,13 @@ public class InitialPlayerdata {
 				ps.setInt(19, Integer.parseInt(temp[18]));
 				ps.setInt(20, Integer.parseInt(temp[19]));
 				ps.addBatch();
-				
+				if (i % 500 == 0) {  
+                    ps.executeBatch();  
+                    conn.commit();  
+                } 
 			}
 			ps.executeBatch();
 			conn.commit(); 
-			ps.clearBatch();
 		} catch (NumberFormatException e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
