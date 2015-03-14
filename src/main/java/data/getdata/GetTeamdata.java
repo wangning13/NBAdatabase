@@ -39,6 +39,20 @@ public class GetTeamdata implements GetTeamdataDataService{
 		return po;
 	}
 	
+	public ArrayList<String> getTeamPlayer(String teamName){
+		ArrayList<String> teamPlayer=new ArrayList<String>();
+		String sql="SELECT playername FROM(SELECT * FROM(SELECT DISTINCT team,playername FROM playerdata ORDER BY date DESC) AS a GROUP BY playername) AS b where team='"+teamName+"'";
+		try {
+			ResultSet rs=statement.executeQuery(sql);
+			while(rs.next())
+				teamPlayer.add(rs.getString(1));
+		} catch (SQLException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+		return teamPlayer;
+	}
+	
 	public TeamPO getTeamdata(String teamName){
 		int opponentFieldGoal=0;//对手投篮命中数
 		int opponentFieldGoalAttempts=0;//对手投篮出手次数
