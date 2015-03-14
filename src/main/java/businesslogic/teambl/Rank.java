@@ -8,6 +8,7 @@ import data.getdata.GetTeamdata;
 import dataservice.*;
 import dataservice.getdatadataservice.GetTeamdataDataService;
 import po.TeamPO;
+import po.TeaminfoPO;
 import vo.TeamVO;
 
 public class Rank {
@@ -105,8 +106,9 @@ public class Rank {
 		}
     }
     
-    public void getTeamInfo(){
-    	
+    public TeaminfoPO getTeamInfo(String teamName){
+    	GetTeamdataDataService g=new GetTeamdata();
+    	return g.getTeaminfo(teamName);
     }
 	
 
