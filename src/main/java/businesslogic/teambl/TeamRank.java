@@ -11,23 +11,10 @@ import po.TeamPO;
 import po.TeaminfoPO;
 import vo.TeamVO;
 
-public class Rank {
+public class TeamRank {
 	ArrayList<TeamPO> teamPOs;
 	ArrayList<TeamPO> teamPOs2;
 	ArrayList<TeamVO> teamVOs;
-	
-	int rank = 0;//排名
-	double fieldGoalPercentage = 0.0;//投篮命中率
-	double threePointShotPercentage = 0.0;//三分命中率
-	double freeThrowPercentage = 0.0;//三分命中率
-	double winningPercentage = 0.0;//胜率
-	double possessions = 0.0;//进攻回合
-	double offensiveEfficiency = 0.0;//进攻效率
-	double defensiveEfficiency = 0.0;//防守效率
-	double offensivebackboardEfficiency = 0.0;//进攻篮板效率
-	double defensivebackboardEfficiency = 0.0;//防守篮板效率
-	double stealEfficiency = 0.0;//抢断效率
-	double assitEfficiency = 0.0;//助攻效率
 	
 	private ArrayList<TeamPO> Ranking(String condition, String key,String order) {
     	GetTeamdataDataService g=new GetTeamdata();
@@ -44,6 +31,7 @@ public class Rank {
 					- 1.07*(((double)teamPOs.get(i).getOffensiveRebound()/
 							(teamPOs.get(i).getOffensiveRebound()+teamPOs.get(i).getOpponentOffensiveRebound())
 							*(teamPOs.get(i).getFieldGoalAttempts()-teamPOs.get(i).getFieldGoal()))) + 1.07*teamPOs.get(i).getTurnOver());
+			double possessions = teamPOs.get(i).getPossessions();
 			//进攻效率
 			teamPOs.get(i).setOffensiveEfficiency(((double)teamPOs.get(i).getScoring())/possessions*100);
 			//防守回合
@@ -82,9 +70,10 @@ public class Rank {
 					teamPOs2.get(i).getFreeThrowAttempts(), teamPOs2.get(i).getOffensiveRebound(), teamPOs2.get(i).getDefensiveRebound(),
 					teamPOs2.get(i).getBackboard(), teamPOs2.get(i).getAssist(), teamPOs2.get(i).getSteal(), teamPOs2.get(i).getBlock(), teamPOs2.get(i).getTurnOver(),
 					teamPOs2.get(i).getFoul(), teamPOs2.get(i).getScoring());
+			teamVOs.add(teamVO);
 		}
 		getrank();
-		return null;
+		return teamVOs;
 	}
     
     private void getrank(){

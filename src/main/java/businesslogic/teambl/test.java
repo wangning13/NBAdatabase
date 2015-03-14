@@ -7,7 +7,7 @@ import vo.TeamVO;
 
 public class test {
 	public static void main(String[] args) {
-		Rank rank = new Rank();
+		TeamRank rank = new TeamRank();
 		ArrayList<TeamVO> vos = rank.Ranked("`east/west`='E'", "winningPercentage","ASC");
 		
 		for (int i = 0; i < vos.size(); i++) {

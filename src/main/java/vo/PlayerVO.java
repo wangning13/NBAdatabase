@@ -1,7 +1,6 @@
-package po;
+package vo;
 
-public class PlayerPO {
-
+public class PlayerVO {
 	String playerName;//球员姓名
 	String team;//所属球队
 	int appearance;//参赛场数
@@ -24,16 +23,10 @@ public class PlayerPO {
 	int scoring;//比赛得分
 	int teamFieldGoalAttempts;//球队总出手次数
 	int teamBackboard;//球队总篮板
-	int teamFieldGoal;//球队投篮命中数
-	int teamFreeThrow;//球队的罚球命中数
-	int teamOffensiveRebound;//球队总进攻篮板
-	int teamDefensiveRebound;//球队总防守篮板
 	double teamMinutes;//球队所有球员上场时间
 	int teamFreeThrowAttempts;//球队罚球次数
 	int teamTurnOver;//球队失误数
 	int opponentBackBoard;//对手总篮板
-	int opponentOffensiveRebound;//对手总进攻篮板
-	int opponentDefensiveRebound;//对手总防守篮板
 	int opponentFieldGoalAttempts;//对手投篮出手次数
 	int opponentThreePointFieldGoalAttempts;//对手三分出手数
 	
@@ -55,19 +48,14 @@ public class PlayerPO {
 	
 	double previousAverageScoring;//五场前的平均得分
 	double nearlyFiveAverageScoring;//近五场的平均得分
-	
-	
-	public PlayerPO(String playerName, String team, int appearance,
+	public PlayerVO(String playerName, String team, int appearance,
 			int firstPlay, int backboard, int assist, double minites,
 			int fieldGoal, int fieldGoalAttempts, int threePointFieldGoal,
 			int threePointFieldGoalAttempts, int freeThrow,
 			int freeThrowAttempts, int offensiveRebound, int defensiveRebound,
 			int steal, int block, int turnOver, int foul, int scoring,
-			int teamFieldGoalAttempts, int teamBackboard, int teamFieldGoal,
-			int teamFreeThrow, int teamOffensiveRebound,
-			int teamDefensiveRebound, double teamMinutes,
+			int teamFieldGoalAttempts, int teamBackboard, double teamMinutes,
 			int teamFreeThrowAttempts, int teamTurnOver, int opponentBackBoard,
-			int opponentOffensiveRebound, int opponentDefensiveRebound,
 			int opponentFieldGoalAttempts,
 			int opponentThreePointFieldGoalAttempts,
 			double threePointShotPercentage, double freeThrowPercentage,
@@ -102,16 +90,10 @@ public class PlayerPO {
 		this.scoring = scoring;
 		this.teamFieldGoalAttempts = teamFieldGoalAttempts;
 		this.teamBackboard = teamBackboard;
-		this.teamFieldGoal = teamFieldGoal;
-		this.teamFreeThrow = teamFreeThrow;
-		this.teamOffensiveRebound = teamOffensiveRebound;
-		this.teamDefensiveRebound = teamDefensiveRebound;
 		this.teamMinutes = teamMinutes;
 		this.teamFreeThrowAttempts = teamFreeThrowAttempts;
 		this.teamTurnOver = teamTurnOver;
 		this.opponentBackBoard = opponentBackBoard;
-		this.opponentOffensiveRebound = opponentOffensiveRebound;
-		this.opponentDefensiveRebound = opponentDefensiveRebound;
 		this.opponentFieldGoalAttempts = opponentFieldGoalAttempts;
 		this.opponentThreePointFieldGoalAttempts = opponentThreePointFieldGoalAttempts;
 		this.threePointShotPercentage = threePointShotPercentage;
@@ -403,42 +385,6 @@ public class PlayerPO {
 	public void setNearlyFiveAverageScoring(double nearlyFiveAverageScoring) {
 		this.nearlyFiveAverageScoring = nearlyFiveAverageScoring;
 	}
-	public int getTeamOffensiveRebound() {
-		return teamOffensiveRebound;
-	}
-	public void setTeamOffensiveRebound(int teamOffensiveRebound) {
-		this.teamOffensiveRebound = teamOffensiveRebound;
-	}
-	public int getTeamDefensiveRebound() {
-		return teamDefensiveRebound;
-	}
-	public void setTeamDefensiveRebound(int teamDefensiveRebound) {
-		this.teamDefensiveRebound = teamDefensiveRebound;
-	}
-	public int getOpponentOffensiveRebound() {
-		return opponentOffensiveRebound;
-	}
-	public void setOpponentOffensiveRebound(int opponentOffensiveRebound) {
-		this.opponentOffensiveRebound = opponentOffensiveRebound;
-	}
-	public int getOpponentDefensiveRebound() {
-		return opponentDefensiveRebound;
-	}
-	public void setOpponentDefensiveRebound(int opponentDefensiveRebound) {
-		this.opponentDefensiveRebound = opponentDefensiveRebound;
-	}
-	public int getTeamFieldGoal() {
-		return teamFieldGoal;
-	}
-	public void setTeamFieldGoal(int teamFieldGoal) {
-		this.teamFieldGoal = teamFieldGoal;
-	}
-	public int getTeamFreeThrow() {
-		return teamFreeThrow;
-	}
-	public void setTeamFreeThrow(int teamFreeThrow) {
-		this.teamFreeThrow = teamFreeThrow;
-	}
 	
-	
+
 }
