@@ -71,7 +71,7 @@ public class TeamRank {
 		return teamPOs;
 	}
 	
-    public ArrayList<TeamVO> Ranked(String condition, String key,String order) {
+    public ArrayList<TeamVO>  getTeamPlayer(String condition, String key,String order) {
     	ArrayList<TeamPO> teamPOs2 = null;
     	GetTeamdataDataService g;
     	try {
@@ -107,7 +107,7 @@ public class TeamRank {
 	}
     
     private void getrank(){
-    	ArrayList<TeamVO> teamVOs2 = Ranked("`east/west`='E'", "winningPercentage","ASC");
+    	ArrayList<TeamVO> teamVOs2 = getTeamPlayer("`east/west`='E'", "winningPercentage","ASC");
     	for (int i = 0; i < teamVOs2.size(); i++) {
 			for (int j = 0; j < teamVOs.size(); j++) {
 				if (teamVOs.get(j).equals(teamVOs2.get(i))) {
@@ -115,7 +115,7 @@ public class TeamRank {
 				}
 			}
 		}
-    	ArrayList<TeamVO> teamVOs3 = Ranked("`east/west`='W'", "winningPercentage","ASC");
+    	ArrayList<TeamVO> teamVOs3 = getTeamPlayer("`east/west`='W'", "winningPercentage","ASC");
     	for (int i = 0; i < teamVOs3.size(); i++) {
 			for (int j = 0; j < teamVOs.size(); j++) {
 				if (teamVOs.get(j).equals(teamVOs3.get(i))) {
@@ -161,6 +161,26 @@ public class TeamRank {
 			e.printStackTrace();
 		}
     	return teamPO;
+    }
+    
+    public ArrayList<TeamPO> getAllTeamdata(String key,String order){
+    	ArrayList<TeamPO> teamPOs = null;
+    	GetTeamdataDataService g;
+    	try {
+			g = (GetTeamdataDataService) Naming.lookup("rmi://"+rmi+":2015/GetTeamdata");
+			teamPOs = g.getAllTeamdata(key, order);
+		} catch (MalformedURLException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		} catch (RemoteException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		} catch (NotBoundException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+    	return teamPOs;
+    		
     }
 	
 
