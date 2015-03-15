@@ -143,6 +143,25 @@ public class TeamRank {
 		}
     	return teaminfoPO;
     }
+    
+    public TeamPO getTeamData(String teamName){
+    	TeamPO teamPO = null;
+    	GetTeamdataDataService g;
+    	try {
+			g = (GetTeamdataDataService) Naming.lookup("rmi://"+rmi+":2015/GetTeamdata");
+			teamPO = g.getTeamdata(teamName);
+		} catch (MalformedURLException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		} catch (RemoteException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		} catch (NotBoundException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+    	return teamPO;
+    }
 	
 
 }
