@@ -100,7 +100,7 @@ public class PlayerRank {
 		return playerinfoPO;
 	}
 	
-	public ArrayList<PlayerPO> getAllPlayerdata(String key,String order){
+	public ArrayList<PlayerVO> getAllPlayerdata(String key,String order){
 		ArrayList<PlayerPO> playerPOs = null;
 		GetPlayerdataDataService g;
 		try {
@@ -123,27 +123,8 @@ public class PlayerRank {
 				playerPOs.get(i).setTurnOverPercentage(playerPOs.get(i).getTurnOver()/(playerPOs.get(i).getFieldGoalAttempts()-playerPOs.get(i).getThreePointFieldGoalAttempts()+0.44*playerPOs.get(i).getFreeThrowAttempts()+playerPOs.get(i).getTurnOver()));
 				playerPOs.get(i).setUsage((playerPOs.get(i).getFieldGoalAttempts()+0.44*playerPOs.get(i).getFreeThrowAttempts()+playerPOs.get(i).getTurnOver())*(playerPOs.get(i).getTeamMinutes()/5)/playerPOs.get(i).getMinites()/(playerPOs.get(i).getTeamFieldGoalAttempts()+0.44*playerPOs.get(i).getTeamFreeThrowAttempts()+playerPOs.get(i).getTeamTurnOver()));
 			}
-		} catch (MalformedURLException e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
-		} catch (RemoteException e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
-		} catch (NotBoundException e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
-		}
-		
-		
-		return playerPOs;
-	}
-	
-	public ArrayList<PlayerVO> getByEfficiency(ArrayList<PlayerPO> po,String key,String order){
-		ArrayList<PlayerPO> playerPOs2 = null;
-		GetPlayerdataDataService g;
-		try {
-			g = (GetPlayerdataDataService) Naming.lookup("rmi://"+rmi+":2015/GetPlayerdata");
-			playerPOs2 = g.getByEfficiency(getAllPlayerdata(key,order), key, order);
+			
+			ArrayList<PlayerPO> playerPOs2 = g.getByEfficiency(playerPOs, key, order);
 			for (int i = 0; i < playerPOs2.size(); i++) {
 				PlayerVO playerVO = new PlayerVO(playerPOs2.get(i).getPlayerName(), playerPOs2.get(i).getTeam(), playerPOs2.get(i).getAppearance(),
 						playerPOs2.get(i).getFirstPlay(), playerPOs2.get(i).getBackboard(),playerPOs2.get(i).getAssist(),playerPOs2.get(i).getMinites(),
@@ -166,6 +147,7 @@ public class PlayerRank {
 						playerPOs2.get(i).getPreviousAverageScoring(), playerPOs2.get(i).getNearlyFiveAverageScoring());
 				playerVOs.add(playerVO);
 			}
+			
 		} catch (MalformedURLException e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
@@ -178,6 +160,8 @@ public class PlayerRank {
 		}
 		return playerVOs;
 	}
+	
+	
 	
 	
 
