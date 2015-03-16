@@ -13,6 +13,7 @@ import javax.swing.JScrollPane;
 import javax.swing.JTable;
 import javax.swing.table.DefaultTableModel;
 
+import businesslogicservice.teamblservice.TeamRankService;
 import ui.main.Frame;
 import ui.main.MyButton;
 import ui.main.MyPanel;
@@ -214,7 +215,7 @@ public class Ranking extends MyPanel implements ActionListener{
 	}
 	
     public void	initial(){
-    			
+ 
 	}
 	
 	public void actionPerformed(ActionEvent e) {
