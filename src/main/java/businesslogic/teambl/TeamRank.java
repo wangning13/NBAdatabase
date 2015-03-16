@@ -4,6 +4,7 @@ import java.net.MalformedURLException;
 import java.rmi.Naming;
 import java.rmi.NotBoundException;
 import java.rmi.RemoteException;
+import java.text.DecimalFormat;
 import java.util.ArrayList;
 
 import po.TeamPO;
@@ -18,19 +19,23 @@ public class TeamRank implements TeamRankService{
 	
 	ArrayList<TeamVO> teamVOs;
 	
-	private ArrayList<TeamPO> Ranking(String condition, String key,String order) {
+	public  ArrayList<TeamPO> Ranking(String condition, String key,String order) {
 		ArrayList<TeamPO> teamPOs = null;
     	GetTeamdataDataService g;
     	try {
 			g = (GetTeamdataDataService) Naming.lookup("rmi://"+rmi+":2015/GetTeamdata");
 			teamPOs = g.getSomeTeamdata(condition, key, order);
+			DecimalFormat df=new DecimalFormat("#.0");
 			for (int i = 0; i < teamPOs.size(); i++) {
 				//胜率
 				teamPOs.get(i).setWinningPercentage(((double)teamPOs.get(i).getWins())/teamPOs.get(i).getMatches());
+				
 				//投篮命中率
 				teamPOs.get(i).setFieldGoalPercentage(((double)teamPOs.get(i).getFieldGoal())/teamPOs.get(i).getFieldGoalAttempts());
 				//三分命中率
 				teamPOs.get(i).setThreePointShotPercentage(((double)teamPOs.get(i).getThreePointFieldGoal())/teamPOs.get(i).getThreePointFieldGoalAttempts());
+				//罚球命中率
+				teamPOs.get(i).setFreeThrowPercentage(((double)teamPOs.get(i).getFreeThrow())/teamPOs.get(i).getFreeThrowAttempts());
 				//进攻回合
 				teamPOs.get(i).setPossessions(teamPOs.get(i).getFieldGoalAttempts() + 0.4*teamPOs.get(i).getFreeThrowAttempts()
 						- 1.07*(((double)teamPOs.get(i).getOffensiveRebound()/
@@ -49,7 +54,7 @@ public class TeamRank implements TeamRankService{
 				//进攻篮板效率
 				teamPOs.get(i).setOffensivebackboardEfficiency(((double)teamPOs.get(i).getOffensiveRebound())/(teamPOs.get(i).getOffensiveRebound()+teamPOs.get(i).getOpponentDefensiveRebound()));
 				//防守篮板效率
-				teamPOs.get(i).setDefensivebackboardEfficiency(((double)teamPOs.get(i).getDefensiveRebound())/(teamPOs.get(i).getDefensiveRebound()+teamPOs.get(i).getOpponentOffensiveRebound()));
+				teamPOs.get(i).setDefensivebackboardEfficiency(teamPOs.get(i).getDefensiveRebound()/(teamPOs.get(i).getDefensiveRebound()+teamPOs.get(i).getOpponentOffensiveRebound()));
 				//抢断效率
 				teamPOs.get(i).setStealEfficiency(((double)teamPOs.get(i).getSteal())/opponentPossessions*100);
 				//助攻效率
@@ -69,12 +74,12 @@ public class TeamRank implements TeamRankService{
 		return teamPOs;
 	}
 	
-    private ArrayList<TeamVO>  gettingTeamData(String condition, String key,String order) {
+    public ArrayList<TeamVO>  gettingTeamData(String condition, String key,String order) {
     	ArrayList<TeamPO> teamPOs2 = null;
     	GetTeamdataDataService g;
     	try {
 			g = (GetTeamdataDataService) Naming.lookup("rmi://"+rmi+":2015/GetTeamdata");
-			teamPOs2 = g.getByEfficiency(Ranking(condition, key,order), key, order);
+			teamPOs2 = g.getByEfficiency(this.Ranking(condition, key,order), key, order);
 			for (int i = 0; i < teamPOs2.size(); i++) {
 				TeamVO teamVO = new TeamVO(0, teamPOs2.get(i).getFieldGoalPercentage(),
 						teamPOs2.get(i).getThreePointShotPercentage(), teamPOs2.get(i).getFreeThrowPercentage(),
