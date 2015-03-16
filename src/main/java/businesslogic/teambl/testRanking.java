@@ -11,7 +11,7 @@ import po.TeamPO;
 import dataservice.getdatadataservice.GetTeamdataDataService;
 import vo.TeamVO;
 
-public class test{
+public class testRanking{
 	public static void main(String[] args) {
 		TeamRank teamRank = new TeamRank();
 		ArrayList<TeamPO> teamPOs = teamRank.Ranking("`east/west`='E'", "wins", "ASC");
