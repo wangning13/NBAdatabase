@@ -8,13 +8,14 @@ import java.util.ArrayList;
 
 import org.omg.CORBA.PUBLIC_MEMBER;
 
+import businesslogicservice.teamblservice.TeamRankService;
 import dataservice.*;
 import dataservice.getdatadataservice.GetTeamdataDataService;
 import po.TeamPO;
 import po.TeaminfoPO;
 import vo.TeamVO;
 
-public class TeamRank {
+public class TeamRank implements TeamRankService{
 	String rmi = "127.0.0.1";
 	
 	

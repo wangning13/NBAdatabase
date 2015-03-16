@@ -6,13 +6,14 @@ import java.rmi.NotBoundException;
 import java.rmi.RemoteException;
 import java.util.ArrayList;
 
+import businesslogicservice.playerblservice.PlayerRankService;
 import dataservice.getdatadataservice.GetPlayerdataDataService;
 import dataservice.getdatadataservice.GetTeamdataDataService;
 import po.PlayerPO;
 import po.PlayerinfoPO;
 import vo.PlayerVO;
 
-public class PlayerRank {
+public class PlayerRank implements PlayerRankService{
 	String rmi = "127.0.0.1";
 	
 	
