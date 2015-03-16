@@ -6,14 +6,11 @@ import java.rmi.NotBoundException;
 import java.rmi.RemoteException;
 import java.util.ArrayList;
 
-import org.omg.CORBA.PUBLIC_MEMBER;
-
-import businesslogicservice.teamblservice.TeamRankService;
-import dataservice.*;
-import dataservice.getdatadataservice.GetTeamdataDataService;
 import po.TeamPO;
 import po.TeaminfoPO;
 import vo.TeamVO;
+import businesslogicservice.teamblservice.TeamRankService;
+import dataservice.getdatadataservice.GetTeamdataDataService;
 
 public class TeamRank implements TeamRankService{
 	String rmi = "127.0.0.1";
@@ -72,7 +69,7 @@ public class TeamRank implements TeamRankService{
 		return teamPOs;
 	}
 	
-    private ArrayList<TeamVO>  gettingTeamPlayer(String condition, String key,String order) {
+    private ArrayList<TeamVO>  gettingTeamData(String condition, String key,String order) {
     	ArrayList<TeamPO> teamPOs2 = null;
     	GetTeamdataDataService g;
     	try {
@@ -107,7 +104,7 @@ public class TeamRank implements TeamRankService{
 	}
     
     private void getrank(){
-    	ArrayList<TeamVO> teamVOs2 = gettingTeamPlayer("`east/west`='E'", "winningPercentage","ASC");
+    	ArrayList<TeamVO> teamVOs2 = gettingTeamData("`east/west`='E'", "winningPercentage","ASC");
     	for (int i = 0; i < teamVOs2.size(); i++) {
 			for (int j = 0; j < teamVOs.size(); j++) {
 				if (teamVOs.get(j).equals(teamVOs2.get(i))) {
@@ -115,7 +112,7 @@ public class TeamRank implements TeamRankService{
 				}
 			}
 		}
-    	ArrayList<TeamVO> teamVOs3 = gettingTeamPlayer("`east/west`='W'", "winningPercentage","ASC");
+    	ArrayList<TeamVO> teamVOs3 = gettingTeamData("`east/west`='W'", "winningPercentage","ASC");
     	for (int i = 0; i < teamVOs3.size(); i++) {
 			for (int j = 0; j < teamVOs.size(); j++) {
 				if (teamVOs.get(j).equals(teamVOs3.get(i))) {
@@ -125,8 +122,8 @@ public class TeamRank implements TeamRankService{
 		}
     }
     
-    public ArrayList<TeamVO>  getTeamPlayer(String condition, String key,String order){
-    	teamVOs = gettingTeamPlayer(condition, key, order);
+    public ArrayList<TeamVO>  getTeamData(String condition, String key,String order){
+    	teamVOs = gettingTeamData(condition, key, order);
     	getrank();
     	return teamVOs;
     } 
@@ -169,12 +166,28 @@ public class TeamRank implements TeamRankService{
     	return teamPO;
     }
     
-    public ArrayList<TeamPO> getAllTeamdata(String key,String order){
+    public ArrayList<TeamVO> getAllTeamdata(String key,String order){
     	ArrayList<TeamPO> teamPOs = null;
+    	ArrayList<TeamVO> teamVOs = null;
     	GetTeamdataDataService g;
     	try {
 			g = (GetTeamdataDataService) Naming.lookup("rmi://"+rmi+":2015/GetTeamdata");
 			teamPOs = g.getAllTeamdata(key, order);
+			for (int i = 0; i < teamPOs.size(); i++) {
+				TeamVO teamVO = new TeamVO(0, teamPOs.get(i).getFieldGoalPercentage(),
+						teamPOs.get(i).getThreePointShotPercentage(), teamPOs.get(i).getFreeThrowPercentage(),
+						teamPOs.get(i).getWinningPercentage(), teamPOs.get(i).getPossessions(),
+						teamPOs.get(i).getOffensiveEfficiency(), teamPOs.get(i).getDefensiveEfficiency(),
+						teamPOs.get(i).getOffensivebackboardEfficiency(),
+						teamPOs.get(i).getDefensivebackboardEfficiency(), teamPOs.get(i).getStealEfficiency(),
+						teamPOs.get(i).getAssitEfficiency(), teamPOs.get(i).getTeamName(), teamPOs.get(i).getMatches(),
+						teamPOs.get(i).getFieldGoal(), teamPOs.get(i).getFieldGoalAttempts(), teamPOs.get(i).getThreePointFieldGoal(),
+						teamPOs.get(i).getThreePointFieldGoalAttempts(), teamPOs.get(i).getFreeThrow(),
+						teamPOs.get(i).getFreeThrowAttempts(), teamPOs.get(i).getOffensiveRebound(), teamPOs.get(i).getDefensiveRebound(),
+						teamPOs.get(i).getBackboard(), teamPOs.get(i).getAssist(), teamPOs.get(i).getSteal(), teamPOs.get(i).getBlock(), teamPOs.get(i).getTurnOver(),
+						teamPOs.get(i).getFoul(), teamPOs.get(i).getScoring());
+				teamVOs.add(teamVO);
+			}
 		} catch (MalformedURLException e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
@@ -185,7 +198,7 @@ public class TeamRank implements TeamRankService{
 			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
-    	return teamPOs;
+    	return teamVOs;
     }
 	
 
