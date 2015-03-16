@@ -13,6 +13,7 @@ import javax.swing.JScrollPane;
 import javax.swing.JTable;
 import javax.swing.table.DefaultTableModel;
 
+import businesslogic.teambl.TeamRank;
 import businesslogicservice.teamblservice.TeamRankService;
 import ui.main.Frame;
 import ui.main.MyButton;
@@ -22,6 +23,7 @@ import ui.tools.MyTable;
 
 @SuppressWarnings("serial")
 public class Ranking extends MyPanel implements ActionListener{
+	TeamRankService trs = new TeamRank();
 	Frame frame;
 	JScrollPane pane1;
 	MyTable table1;
@@ -215,7 +217,7 @@ public class Ranking extends MyPanel implements ActionListener{
 	}
 	
     public void	initial(){
- 
+
 	}
 	
 	public void actionPerformed(ActionEvent e) {

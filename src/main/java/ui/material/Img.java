@@ -19,6 +19,14 @@ public class Img {
 	public static final ImageIcon BOARD1= new ImageIcon("graphics/player/board.png");
 	public static final Image BACK1 = new ImageIcon("graphics/main/back1.png").getImage();
 	public static final Image BACK2 = new ImageIcon("graphics/main/back2.png").getImage();
+	public static final Image RANKICON1 = new ImageIcon("graphics/main/排名1.png").getImage();
+	public static final Image RANKICON2 = new ImageIcon("graphics/main/排名2.png").getImage();
+	public static final Image STATISTICSICON1 = new ImageIcon("graphics/main/统计1.png").getImage();
+	public static final Image STATISTICSICON2 = new ImageIcon("graphics/main/统计2.png").getImage();
+	public static final Image TEAMICON1 = new ImageIcon("graphics/main/球队1.png").getImage();
+	public static final Image TEAMICON2 = new ImageIcon("graphics/main/球队2.png").getImage();
+	public static final Image PLAYERICON1 = new ImageIcon("graphics/main/球员1.png").getImage();
+	public static final Image PLAYERICON2 = new ImageIcon("graphics/main/球员2.png").getImage();
 	
 	
 	public static final ImageIcon ATL= new ImageIcon("graphics/teams/ATL.png");

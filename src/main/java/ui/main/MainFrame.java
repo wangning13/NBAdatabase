@@ -20,10 +20,10 @@ import ui.team.Ranking;
 public class MainFrame extends MyPanel implements ActionListener{
 	private Frame frame;
 
-	JButton ranking = new JButton("排名");
-	JButton statistics = new JButton("统计");
-	JButton teams = new JButton("球队");
-	JButton players = new JButton("球员");
+	MyButton ranking = new MyButton(Img.RANKICON1,Img.RANKICON2);
+	MyButton statistics = new MyButton(Img.STATISTICSICON1,Img.STATISTICSICON2);
+	MyButton teams = new MyButton(Img.TEAMICON1,Img.TEAMICON2);
+	MyButton players = new MyButton(Img.PLAYERICON1,Img.PLAYERICON2);
 
 	public MainFrame(Frame frame) {
 		super(frame);
@@ -32,22 +32,22 @@ public class MainFrame extends MyPanel implements ActionListener{
 		this.setOpaque(false);
 	    
 	    this.add(ranking);
-	    ranking.setBounds(476, 250, 100, 30);
+	    ranking.setBounds(446, 250, 160, 60);
 	    ranking.addActionListener(this);
 	    ranking.setActionCommand("ranking");
 	    
 	    this.add(statistics);
-	    statistics.setBounds(476, 350, 100, 30);
+	    statistics.setBounds(446, 350, 160, 60);
 	    statistics.addActionListener(this);
 	    statistics.setActionCommand("statistics");
 	    
 	    this.add(teams);
-	    teams.setBounds(476, 450, 100, 30);
+	    teams.setBounds(446, 450, 160, 60);
 	    teams.addActionListener(this);
 	    teams.setActionCommand("teams");
 	    
 	    this.add(players);
-	    players.setBounds(476, 550, 100, 30);
+	    players.setBounds(446, 550, 160, 60);
 	    players.addActionListener(this);
 	    players.setActionCommand("players");
 
