@@ -1,22 +1,15 @@
 package businesslogic.teambl;
 
-import java.net.MalformedURLException;
-import java.rmi.Naming;
-import java.rmi.NotBoundException;
-import java.rmi.RemoteException;
-import java.rmi.dgc.Lease;
 import java.util.ArrayList;
 
-import po.TeamPO;
-import dataservice.getdatadataservice.GetTeamdataDataService;
 import vo.TeamVO;
 
 public class testRanking{
 	public static void main(String[] args) {
 		TeamRank teamRank = new TeamRank();
 		ArrayList<TeamVO> teamVOs = teamRank.getTeamData("`east/west`='E'", "wins", "ASC");
-		System.out.println(teamVOs.size());
 		for (int i = 0; i < teamVOs.size(); i++) {
+			System.out.println(teamVOs.get(i).getRank());
 			System.out.println(teamVOs.get(i).getOpponentFieldGoal());
 			System.out.println(teamVOs.get(i).getOpponentFieldGoalAttempts());
 			System.out.println(teamVOs.get(i).getOpponentTurnOver());

@@ -12,6 +12,7 @@ import dataservice.getdatadataservice.GetTeamdataDataService;
 import po.PlayerPO;
 import po.PlayerinfoPO;
 import vo.PlayerVO;
+import vo.PlayerinfoVO;
 
 public class PlayerRank implements PlayerRankService{
 	String rmi = "127.0.0.1";
@@ -47,9 +48,10 @@ public class PlayerRank implements PlayerRankService{
 		
 	}
 	
-	public PlayerPO getPlayerdata(String playerName){
+	public PlayerVO getPlayerdata(String playerName){
 		GetPlayerdataDataService g ;
 		PlayerPO playerPO = null;
+		PlayerVO playerVO = null;
 		try {
 			g = (GetPlayerdataDataService) Naming.lookup("rmi://"+rmi+":2015/GetPlayerdata");
 			playerPO = g.getPlayerdata(playerName);
@@ -68,6 +70,76 @@ public class PlayerRank implements PlayerRankService{
 			playerPO.setBlockPercentage(((double)playerPO.getBlock()*(playerPO.getTeamMinutes())/5)/playerPO.getMinites()/(playerPO.getOpponentFieldGoalAttempts()-playerPO.getOpponentThreePointFieldGoalAttempts()));
 			playerPO.setTurnOverPercentage(playerPO.getTurnOver()/(playerPO.getFieldGoalAttempts()-playerPO.getThreePointFieldGoalAttempts()+0.44*playerPO.getFreeThrowAttempts()+playerPO.getTurnOver()));
 			playerPO.setUsage((playerPO.getFieldGoalAttempts()+0.44*playerPO.getFreeThrowAttempts()+playerPO.getTurnOver())*(playerPO.getTeamMinutes()/5)/playerPO.getMinites()/(playerPO.getTeamFieldGoalAttempts()+0.44*playerPO.getTeamFreeThrowAttempts()+playerPO.getTeamTurnOver()));
+			playerVO = new PlayerVO(
+					playerPO.getPlayerName(),
+					playerPO.getTeam(), 
+					playerPO.getAppearance(),
+					playerPO.getFirstPlay(),
+					playerPO.getBackboard(),
+					playerPO.getBackboard()/playerPO.getAppearance(),
+					playerPO.getAssist(),
+					playerPO.getAssist()/playerPO.getAppearance(),
+					playerPO.getMinites(),
+					playerPO.getMinites()/playerPO.getAppearance(),
+					playerPO.getFieldGoal(),
+					playerPO.getFieldGoal()/playerPO.getAppearance(),
+					playerPO.getFieldGoalAttempts(), 
+					playerPO.getFieldGoalAttempts()/playerPO.getAppearance(),
+					playerPO.getThreePointFieldGoal(),
+					playerPO.getThreePointFieldGoal()/playerPO.getAppearance(),
+					playerPO.getThreePointFieldGoalAttempts(),
+					playerPO.getThreePointFieldGoalAttempts()/playerPO.getAppearance(),
+					playerPO.getFreeThrow(),
+					playerPO.getFreeThrow()/playerPO.getAppearance(),
+					playerPO.getFreeThrowAttempts(), 
+					playerPO.getFreeThrowAttempts()/playerPO.getAppearance(),
+					playerPO.getOffensiveRebound(), 
+					playerPO.getOffensiveRebound()/playerPO.getAppearance(),
+					playerPO.getDefensiveRebound(),
+					playerPO.getDefensiveRebound()/playerPO.getAppearance(),
+					playerPO.getSteal(),
+					playerPO.getSteal()/playerPO.getAppearance(),
+					playerPO.getBlock(),
+					playerPO.getBlock()/playerPO.getAppearance(),
+					playerPO.getTurnOver(), 
+					playerPO.getTurnOver()/playerPO.getAppearance(),
+					playerPO.getFoul(),
+					playerPO.getFoul()/playerPO.getAppearance(),
+					playerPO.getScoring(),
+					playerPO.getScoring()/playerPO.getAppearance(),
+					playerPO.getTeamFieldGoalAttempts(),
+					playerPO.getTeamBackboard(),
+					playerPO.getTeamFieldGoal(),
+					playerPO.getTeamFreeThrow(),
+					playerPO.getTeamOffensiveRebound(),
+					playerPO.getTeamDefensiveRebound(),
+					playerPO.getTeamMinutes(),
+					playerPO.getTeamFreeThrowAttempts(),
+					playerPO.getTeamTurnOver(),
+					playerPO.getOpponentBackBoard(),
+					playerPO.getOpponentOffensiveRebound(),
+					playerPO.getOpponentDefensiveRebound(),
+					playerPO.getOpponentFieldGoalAttempts(),
+					playerPO.getOpponentThreePointFieldGoalAttempts(),
+					playerPO.getThreePointShotPercentage(),
+					playerPO.getFreeThrowPercentage(),
+					playerPO.getEfficiency(),
+					playerPO.getGmScEfficiency(),
+					playerPO.getNearlyFivePercentage(),
+					playerPO.getTrueShootingPercentage(),
+					playerPO.getShootingEfficiency(),
+					playerPO.getBackboardPercentage(),
+					playerPO.getOffensiveReboundPercentage(),
+					playerPO.getDefensiveReboundPercentage(),
+					playerPO.getAssistPercentage(),
+					playerPO.getStealPercentage(), 
+					playerPO.getBlockPercentage(),
+					playerPO.getTurnOverPercentage(), 
+					playerPO.getUsage(),
+					playerPO.getPreviousAverageScoring(),
+					playerPO.getNearlyFiveAverageScoring(),
+					playerPO.getDoubleDouble()
+					);
 		} catch (MalformedURLException e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
@@ -79,15 +151,25 @@ public class PlayerRank implements PlayerRankService{
 			e.printStackTrace();
 		}
 		
-		return playerPO;
+		return playerVO;
 	}
 	
-	public PlayerinfoPO getPlayerinfo(String playerName){
+	public PlayerinfoVO getPlayerinfo(String playerName){
 		GetPlayerdataDataService g;
 		PlayerinfoPO playerinfoPO = null;
+		PlayerinfoVO playerinfoVO = null;
 		try {
 			g = (GetPlayerdataDataService) Naming.lookup("rmi://"+rmi+":2015/GetPlayerdata");
 			playerinfoPO = g.getPlayerinfo(playerName);
+			playerinfoVO = new PlayerinfoVO(playerinfoPO.getName(),
+					playerinfoPO.getNumber(), 
+					playerinfoPO.getPosition(), 
+					playerinfoPO.getHeight(), 
+					playerinfoPO.getWeight(), 
+					playerinfoPO.getBirth(),
+					playerinfoPO.getAge(), 
+					playerinfoPO.getExp(), 
+					playerinfoPO.getSchool());
 		} catch (MalformedURLException e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
@@ -98,11 +180,11 @@ public class PlayerRank implements PlayerRankService{
 			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
-		return playerinfoPO;
+		return playerinfoVO;
 	}
 	
 	public ArrayList<PlayerVO> getAllPlayerdata(String key,String order){
-		ArrayList<PlayerPO> playerPOs = null;
+		ArrayList<PlayerPO> playerPOs = new ArrayList<PlayerPO>();
 		GetPlayerdataDataService g;
 		try {
 			g = (GetPlayerdataDataService) Naming.lookup("rmi://"+rmi+":2015/GetPlayerdata");
@@ -127,25 +209,76 @@ public class PlayerRank implements PlayerRankService{
 			
 			ArrayList<PlayerPO> playerPOs2 = g.getByEfficiency(playerPOs, key, order);
 			for (int i = 0; i < playerPOs2.size(); i++) {
-				PlayerVO playerVO = new PlayerVO(playerPOs2.get(i).getPlayerName(), playerPOs2.get(i).getTeam(), playerPOs2.get(i).getAppearance(),
-						playerPOs2.get(i).getFirstPlay(), playerPOs2.get(i).getBackboard(),playerPOs2.get(i).getAssist(),playerPOs2.get(i).getMinites(),
-						playerPOs2.get(i).getFieldGoal(), playerPOs2.get(i).getFieldGoalAttempts(), playerPOs2.get(i).getThreePointFieldGoal(),
-						playerPOs2.get(i).getThreePointFieldGoalAttempts(), playerPOs2.get(i).getFreeThrow(),
-						playerPOs2.get(i).getFreeThrowAttempts(), playerPOs2.get(i).getOffensiveRebound(), playerPOs2.get(i).getDefensiveRebound(),
-						playerPOs2.get(i).getSteal(),playerPOs2.get(i).getBlock(),playerPOs2.get(i).getTurnOver(), playerPOs2.get(i).getFoul(),playerPOs2.get(i).getScoring(),
-						playerPOs2.get(i).getTeamFieldGoal(),playerPOs2.get(i).getTeamBackboard(),playerPOs2.get(i).getTeamMinutes(),
-						playerPOs2.get(i).getTeamFreeThrowAttempts(),playerPOs2.get(i).getTeamTurnOver(),playerPOs2.get(i).getOpponentBackBoard(),
+				PlayerVO playerVO = new PlayerVO(
+						playerPOs2.get(i).getPlayerName(),
+						playerPOs2.get(i).getTeam(), 
+						playerPOs2.get(i).getAppearance(),
+						playerPOs2.get(i).getFirstPlay(),
+						playerPOs2.get(i).getBackboard(),
+						playerPOs2.get(i).getBackboard()/playerPOs2.get(i).getAppearance(),
+						playerPOs2.get(i).getAssist(),
+						playerPOs2.get(i).getAssist()/playerPOs2.get(i).getAppearance(),
+						playerPOs2.get(i).getMinites(),
+						playerPOs2.get(i).getMinites()/playerPOs2.get(i).getAppearance(),
+						playerPOs2.get(i).getFieldGoal(),
+						playerPOs2.get(i).getFieldGoal()/playerPOs2.get(i).getAppearance(),
+						playerPOs2.get(i).getFieldGoalAttempts(), 
+						playerPOs2.get(i).getFieldGoalAttempts()/playerPOs2.get(i).getAppearance(),
+						playerPOs2.get(i).getThreePointFieldGoal(),
+						playerPOs2.get(i).getThreePointFieldGoal()/playerPOs2.get(i).getAppearance(),
+						playerPOs2.get(i).getThreePointFieldGoalAttempts(),
+						playerPOs2.get(i).getThreePointFieldGoalAttempts()/playerPOs2.get(i).getAppearance(),
+						playerPOs2.get(i).getFreeThrow(),
+						playerPOs2.get(i).getFreeThrow()/playerPOs2.get(i).getAppearance(),
+						playerPOs2.get(i).getFreeThrowAttempts(), 
+						playerPOs2.get(i).getFreeThrowAttempts()/playerPOs2.get(i).getAppearance(),
+						playerPOs2.get(i).getOffensiveRebound(), 
+						playerPOs2.get(i).getOffensiveRebound()/playerPOs2.get(i).getAppearance(),
+						playerPOs2.get(i).getDefensiveRebound(),
+						playerPOs2.get(i).getDefensiveRebound()/playerPOs2.get(i).getAppearance(),
+						playerPOs2.get(i).getSteal(),
+						playerPOs2.get(i).getSteal()/playerPOs2.get(i).getAppearance(),
+						playerPOs2.get(i).getBlock(),
+						playerPOs2.get(i).getBlock()/playerPOs2.get(i).getAppearance(),
+						playerPOs2.get(i).getTurnOver(), 
+						playerPOs2.get(i).getTurnOver()/playerPOs2.get(i).getAppearance(),
+						playerPOs2.get(i).getFoul(),
+						playerPOs2.get(i).getFoul()/playerPOs2.get(i).getAppearance(),
+						playerPOs2.get(i).getScoring(),
+						playerPOs2.get(i).getScoring()/playerPOs2.get(i).getAppearance(),
+						playerPOs2.get(i).getTeamFieldGoalAttempts(),
+						playerPOs2.get(i).getTeamBackboard(),
+						playerPOs2.get(i).getTeamFieldGoal(),
+						playerPOs2.get(i).getTeamFreeThrow(),
+						playerPOs2.get(i).getTeamOffensiveRebound(),
+						playerPOs2.get(i).getTeamDefensiveRebound(),
+						playerPOs2.get(i).getTeamMinutes(),
+						playerPOs2.get(i).getTeamFreeThrowAttempts(),
+						playerPOs2.get(i).getTeamTurnOver(),
+						playerPOs2.get(i).getOpponentBackBoard(),
+						playerPOs2.get(i).getOpponentOffensiveRebound(),
+						playerPOs2.get(i).getOpponentDefensiveRebound(),
 						playerPOs2.get(i).getOpponentFieldGoalAttempts(),
 						playerPOs2.get(i).getOpponentThreePointFieldGoalAttempts(),
-						playerPOs2.get(i).getThreePointShotPercentage(),playerPOs2.get(i).getFreeThrowPercentage(),
-						playerPOs2.get(i).getEfficiency(),playerPOs2.get(i).getGmScEfficiency(),
-						playerPOs2.get(i).getNearlyFivePercentage(),playerPOs2.get(i).getTrueShootingPercentage(),
-						playerPOs2.get(i).getShootingEfficiency(),playerPOs2.get(i).getBackboardPercentage(),
+						playerPOs2.get(i).getThreePointShotPercentage(),
+						playerPOs2.get(i).getFreeThrowPercentage(),
+						playerPOs2.get(i).getEfficiency(),
+						playerPOs2.get(i).getGmScEfficiency(),
+						playerPOs2.get(i).getNearlyFivePercentage(),
+						playerPOs2.get(i).getTrueShootingPercentage(),
+						playerPOs2.get(i).getShootingEfficiency(),
+						playerPOs2.get(i).getBackboardPercentage(),
 						playerPOs2.get(i).getOffensiveReboundPercentage(),
-						playerPOs2.get(i).getDefensiveReboundPercentage(),playerPOs2.get(i).getAssistPercentage(),
-						playerPOs2.get(i).getStealPercentage(), playerPOs2.get(i).getBlockPercentage(),
-						playerPOs2.get(i).getTurnOverPercentage(), playerPOs2.get(i).getUsage(),
-						playerPOs2.get(i).getPreviousAverageScoring(), playerPOs2.get(i).getNearlyFiveAverageScoring());
+						playerPOs2.get(i).getDefensiveReboundPercentage(),
+						playerPOs2.get(i).getAssistPercentage(),
+						playerPOs2.get(i).getStealPercentage(), 
+						playerPOs2.get(i).getBlockPercentage(),
+						playerPOs2.get(i).getTurnOverPercentage(), 
+						playerPOs2.get(i).getUsage(),
+						playerPOs2.get(i).getPreviousAverageScoring(),
+						playerPOs2.get(i).getNearlyFiveAverageScoring(),
+						playerPOs2.get(i).getDoubleDouble()
+						);
 				playerVOs.add(playerVO);
 			}
 			
@@ -162,7 +295,116 @@ public class PlayerRank implements PlayerRankService{
 		return playerVOs;
 	}
 	
-	
+	//筛选前50名
+	public ArrayList<PlayerVO> getFirstFifty(String position,String partition,String key){
+		ArrayList<PlayerPO> playerPOs2 = new ArrayList<PlayerPO>();
+		ArrayList<PlayerVO> playerVOs = new ArrayList<PlayerVO>();
+		GetPlayerdataDataService g;
+		try {
+			g = (GetPlayerdataDataService) Naming.lookup("rmi://"+rmi+":2015/GetPlayerdata");
+			if (key.equals("weightAverage")) {
+				playerPOs2 = g.getSomePlayerdata(position, partition, "wins", "DESC");
+				for (int i = 0; i < playerPOs2.size()-1; i++) {
+					for (int j = 0; j < playerPOs2.size()-i-1; j++) {
+						if (playerPOs2.get(i).getScoring()+playerPOs2.get(i).getBackboard()+playerPOs2.get(i).getAssist() < playerPOs2.get(i+1).getScoring()+playerPOs2.get(i+1).getBackboard()+playerPOs2.get(i+1).getAssist()) {
+							PlayerPO tempPlayerPO = playerPOs2.get(i);
+							playerPOs2.set(i, playerPOs2.get(i+1));
+							playerPOs2.set(i+1, tempPlayerPO);
+						}
+					}
+				}
+				
+			}else {
+				playerPOs2 = g.getSomePlayerdata(position, partition, key, "DESC");
+			}
+			for (int i = 0; i < 50; i++) {
+				PlayerVO playerVO = new PlayerVO(
+						playerPOs2.get(i).getPlayerName(),
+						playerPOs2.get(i).getTeam(), 
+						playerPOs2.get(i).getAppearance(),
+						playerPOs2.get(i).getFirstPlay(),
+						playerPOs2.get(i).getBackboard(),
+						playerPOs2.get(i).getBackboard()/playerPOs2.get(i).getAppearance(),
+						playerPOs2.get(i).getAssist(),
+						playerPOs2.get(i).getAssist()/playerPOs2.get(i).getAppearance(),
+						playerPOs2.get(i).getMinites(),
+						playerPOs2.get(i).getMinites()/playerPOs2.get(i).getAppearance(),
+						playerPOs2.get(i).getFieldGoal(),
+						playerPOs2.get(i).getFieldGoal()/playerPOs2.get(i).getAppearance(),
+						playerPOs2.get(i).getFieldGoalAttempts(), 
+						playerPOs2.get(i).getFieldGoalAttempts()/playerPOs2.get(i).getAppearance(),
+						playerPOs2.get(i).getThreePointFieldGoal(),
+						playerPOs2.get(i).getThreePointFieldGoal()/playerPOs2.get(i).getAppearance(),
+						playerPOs2.get(i).getThreePointFieldGoalAttempts(),
+						playerPOs2.get(i).getThreePointFieldGoalAttempts()/playerPOs2.get(i).getAppearance(),
+						playerPOs2.get(i).getFreeThrow(),
+						playerPOs2.get(i).getFreeThrow()/playerPOs2.get(i).getAppearance(),
+						playerPOs2.get(i).getFreeThrowAttempts(), 
+						playerPOs2.get(i).getFreeThrowAttempts()/playerPOs2.get(i).getAppearance(),
+						playerPOs2.get(i).getOffensiveRebound(), 
+						playerPOs2.get(i).getOffensiveRebound()/playerPOs2.get(i).getAppearance(),
+						playerPOs2.get(i).getDefensiveRebound(),
+						playerPOs2.get(i).getDefensiveRebound()/playerPOs2.get(i).getAppearance(),
+						playerPOs2.get(i).getSteal(),
+						playerPOs2.get(i).getSteal()/playerPOs2.get(i).getAppearance(),
+						playerPOs2.get(i).getBlock(),
+						playerPOs2.get(i).getBlock()/playerPOs2.get(i).getAppearance(),
+						playerPOs2.get(i).getTurnOver(), 
+						playerPOs2.get(i).getTurnOver()/playerPOs2.get(i).getAppearance(),
+						playerPOs2.get(i).getFoul(),
+						playerPOs2.get(i).getFoul()/playerPOs2.get(i).getAppearance(),
+						playerPOs2.get(i).getScoring(),
+						playerPOs2.get(i).getScoring()/playerPOs2.get(i).getAppearance(),
+						playerPOs2.get(i).getTeamFieldGoalAttempts(),
+						playerPOs2.get(i).getTeamBackboard(),
+						playerPOs2.get(i).getTeamFieldGoal(),
+						playerPOs2.get(i).getTeamFreeThrow(),
+						playerPOs2.get(i).getTeamOffensiveRebound(),
+						playerPOs2.get(i).getTeamDefensiveRebound(),
+						playerPOs2.get(i).getTeamMinutes(),
+						playerPOs2.get(i).getTeamFreeThrowAttempts(),
+						playerPOs2.get(i).getTeamTurnOver(),
+						playerPOs2.get(i).getOpponentBackBoard(),
+						playerPOs2.get(i).getOpponentOffensiveRebound(),
+						playerPOs2.get(i).getOpponentDefensiveRebound(),
+						playerPOs2.get(i).getOpponentFieldGoalAttempts(),
+						playerPOs2.get(i).getOpponentThreePointFieldGoalAttempts(),
+						playerPOs2.get(i).getThreePointShotPercentage(),
+						playerPOs2.get(i).getFreeThrowPercentage(),
+						playerPOs2.get(i).getEfficiency(),
+						playerPOs2.get(i).getGmScEfficiency(),
+						playerPOs2.get(i).getNearlyFivePercentage(),
+						playerPOs2.get(i).getTrueShootingPercentage(),
+						playerPOs2.get(i).getShootingEfficiency(),
+						playerPOs2.get(i).getBackboardPercentage(),
+						playerPOs2.get(i).getOffensiveReboundPercentage(),
+						playerPOs2.get(i).getDefensiveReboundPercentage(),
+						playerPOs2.get(i).getAssistPercentage(),
+						playerPOs2.get(i).getStealPercentage(), 
+						playerPOs2.get(i).getBlockPercentage(),
+						playerPOs2.get(i).getTurnOverPercentage(), 
+						playerPOs2.get(i).getUsage(),
+						playerPOs2.get(i).getPreviousAverageScoring(),
+						playerPOs2.get(i).getNearlyFiveAverageScoring(),
+						playerPOs2.get(i).getDoubleDouble());
+				playerVOs.add(playerVO);
+			}
+			
+			
+			
+		} catch (MalformedURLException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		} catch (RemoteException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		} catch (NotBoundException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+		return playerVOs;
+		
+	}
 	
 	
 
