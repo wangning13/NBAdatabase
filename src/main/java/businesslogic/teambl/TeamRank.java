@@ -54,7 +54,7 @@ public class TeamRank implements TeamRankService{
 				//进攻篮板效率
 				teamPOs.get(i).setOffensivebackboardEfficiency(((double)teamPOs.get(i).getOffensiveRebound())/(teamPOs.get(i).getOffensiveRebound()+teamPOs.get(i).getOpponentDefensiveRebound()));
 				//防守篮板效率
-				teamPOs.get(i).setDefensivebackboardEfficiency(teamPOs.get(i).getDefensiveRebound()/(teamPOs.get(i).getDefensiveRebound()+teamPOs.get(i).getOpponentOffensiveRebound()));
+				teamPOs.get(i).setDefensivebackboardEfficiency(((double)teamPOs.get(i).getDefensiveRebound())/(teamPOs.get(i).getDefensiveRebound()+teamPOs.get(i).getOpponentOffensiveRebound()));
 				//抢断效率
 				teamPOs.get(i).setStealEfficiency(((double)teamPOs.get(i).getSteal())/opponentPossessions*100);
 				//助攻效率
