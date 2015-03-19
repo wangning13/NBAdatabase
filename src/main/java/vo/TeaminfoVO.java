@@ -21,6 +21,9 @@ public class TeaminfoVO{
 		this.court = court;
 		this.year = year;
 	}
+	public TeaminfoVO() {
+		// TODO Auto-generated constructor stub
+	}
 	public String getName() {
 		return name;
 	}

@@ -22,6 +22,9 @@ public class TeaminfoPO implements Serializable{
 		this.court = court;
 		this.year = year;
 	}
+	public TeaminfoPO() {
+		// TODO Auto-generated constructor stub
+	}
 	public String getName() {
 		return name;
 	}

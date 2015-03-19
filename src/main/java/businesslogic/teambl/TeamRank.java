@@ -18,15 +18,14 @@ public class TeamRank implements TeamRankService{
 	String rmi = "127.0.0.1";
 	
 	
-	ArrayList<TeamVO> teamVOs = new ArrayList<TeamVO>();
 	
-	public  ArrayList<TeamPO> Ranking(String condition, String key,String order) {
-		ArrayList<TeamPO> teamPOs = null;
+	
+	public  ArrayList<TeamPO> Ranking(String condition,String order) {
+		ArrayList<TeamPO> teamPOs = new ArrayList<TeamPO>();
     	GetTeamdataDataService g;
     	try {
 			g = (GetTeamdataDataService) Naming.lookup("rmi://"+rmi+":2015/GetTeamdata");
-			teamPOs = g.getSomeTeamdata(condition, key, order);
-			DecimalFormat df=new DecimalFormat("#.0");
+			teamPOs = g.getSomeTeamdata(condition, "wins", order);
 			for (int i = 0; i < teamPOs.size(); i++) {
 				//胜率
 				teamPOs.get(i).setWinningPercentage(((double)teamPOs.get(i).getWins())/teamPOs.get(i).getMatches());
@@ -76,11 +75,12 @@ public class TeamRank implements TeamRankService{
 	}
 	
     public ArrayList<TeamVO>  gettingTeamData(String condition, String key,String order) {
+    	ArrayList<TeamVO> teamVOs = new ArrayList<TeamVO>();
     	ArrayList<TeamPO> teamPOs2 = null;
     	GetTeamdataDataService g;
     	try {
 			g = (GetTeamdataDataService) Naming.lookup("rmi://"+rmi+":2015/GetTeamdata");
-			teamPOs2 = g.getByEfficiency(this.Ranking(condition, key,order), key, order);
+			teamPOs2 = g.getByEfficiency(this.Ranking(condition,order), key, order);
 			for (int i = 0; i < teamPOs2.size(); i++) {
 				TeamVO teamVO = new TeamVO(0,
 				teamPOs2.get(i).getOpponentFieldGoal(),
@@ -151,7 +151,7 @@ public class TeamRank implements TeamRankService{
 		return teamVOs;
 	}
     
-    private void getrank(){
+    private void getrank(ArrayList<TeamVO> teamVOs){
     	ArrayList<TeamVO> teamVOs2 = gettingTeamData("`east/west`='E'", "winningPercentage","ASC");
     	for (int i = 0; i < teamVOs2.size(); i++) {
 			for (int j = 0; j < teamVOs.size(); j++) {
@@ -171,8 +171,8 @@ public class TeamRank implements TeamRankService{
     }
     
     public ArrayList<TeamVO>  getTeamData(String condition, String key,String order){
-    	teamVOs = gettingTeamData(condition, key, order);
-    	getrank();
+    	ArrayList<TeamVO> teamVOs = gettingTeamData(condition, key, order);
+    	getrank(teamVOs);
     	return teamVOs;
     } 
     
@@ -199,7 +199,8 @@ public class TeamRank implements TeamRankService{
     }
     
     public TeamVO getTeamData(String teamName){
-    	getrank();
+    	ArrayList<TeamVO> teamVOs = getAllTeamdata("wins", "DESC");
+    	getrank(teamVOs);
     	int teamRank = 0;
     	TeamVO teamVO = null;
     	GetTeamdataDataService g;
