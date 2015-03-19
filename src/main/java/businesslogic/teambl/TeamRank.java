@@ -202,7 +202,7 @@ public class TeamRank implements TeamRankService{
     	ArrayList<TeamVO> teamVOs = getAllTeamdata("wins", "DESC");
     	getrank(teamVOs);
     	int teamRank = 0;
-    	TeamVO teamVO = null;
+    	TeamVO teamVO = new TeamVO();
     	GetTeamdataDataService g;
     	try {
 			g = (GetTeamdataDataService) Naming.lookup("rmi://"+rmi+":2015/GetTeamdata");
@@ -280,80 +280,80 @@ public class TeamRank implements TeamRankService{
     }
     
     public ArrayList<TeamVO> getAllTeamdata(String key,String order){
-    	ArrayList<TeamPO> teamPOs = null;
-    	ArrayList<TeamVO> teamVOs = null;
-    	GetTeamdataDataService g;
-    	try {
-			g = (GetTeamdataDataService) Naming.lookup("rmi://"+rmi+":2015/GetTeamdata");
-			teamPOs = g.getAllTeamdata(key, order);
-			for (int i = 0; i < teamPOs.size(); i++) {
-				TeamVO teamVO = new TeamVO(0,
-						teamPOs.get(i).getOpponentFieldGoal(),
-						teamPOs.get(i).getOpponentFieldGoalAttempts(),
-						teamPOs.get(i).getOpponentTurnOver(),
-						teamPOs.get(i).getOpponentFreeThrowAttempts(),
-						teamPOs.get(i).getOppenentScoring(),
-						teamPOs.get(i).getTeamName(),
-						teamPOs.get(i).getMatches(),
-						teamPOs.get(i).getWins(),
-						teamPOs.get(i).getFieldGoal(),
-						teamPOs.get(i).getFieldGoal()/teamPOs.get(i).getMatches(),
-						teamPOs.get(i).getFieldGoalAttempts(),
-						((double)teamPOs.get(i).getFieldGoalAttempts())/teamPOs.get(i).getMatches(),
-						teamPOs.get(i).getThreePointFieldGoal(),
-						((double)teamPOs.get(i).getThreePointFieldGoal())/teamPOs.get(i).getMatches(),
-						teamPOs.get(i).getThreePointFieldGoalAttempts(),
-						((double)teamPOs.get(i).getThreePointFieldGoalAttempts())/teamPOs.get(i).getMatches(),
-						teamPOs.get(i).getFreeThrow(),
-						((double)teamPOs.get(i).getFreeThrow())/teamPOs.get(i).getMatches(),
-						teamPOs.get(i).getFreeThrowAttempts(),
-						((double)teamPOs.get(i).getFreeThrowAttempts())/teamPOs.get(i).getMatches(),
-						teamPOs.get(i).getOffensiveRebound(),
-						((double)teamPOs.get(i).getOffensiveRebound())/teamPOs.get(i).getMatches(),
-						teamPOs.get(i).getDefensiveRebound(),
-						((double)teamPOs.get(i).getDefensiveRebound())/teamPOs.get(i).getMatches(),
-						teamPOs.get(i).getOpponentOffensiveRebound(),
-						((double)teamPOs.get(i).getOpponentOffensiveRebound())/teamPOs.get(i).getMatches(),
-						teamPOs.get(i).getOpponentDefensiveRebound(),
-						((double)teamPOs.get(i).getOpponentDefensiveRebound())/teamPOs.get(i).getMatches(),
-						teamPOs.get(i).getBackboard(),
-						((double)teamPOs.get(i).getBackboard())/teamPOs.get(i).getMatches(),
-						teamPOs.get(i).getAssist(),
-						((double)teamPOs.get(i).getAssist())/teamPOs.get(i).getMatches(),
-						teamPOs.get(i).getSteal(),
-						((double)teamPOs.get(i).getSteal())/teamPOs.get(i).getMatches(),
-						teamPOs.get(i).getBlock(),
-						((double)teamPOs.get(i).getBlock())/teamPOs.get(i).getMatches(),
-						teamPOs.get(i).getTurnOver(),
-						((double)teamPOs.get(i).getTurnOver())/teamPOs.get(i).getMatches(),
-						teamPOs.get(i).getFoul(),
-						((double)teamPOs.get(i).getFoul())/teamPOs.get(i).getMatches(),
-						teamPOs.get(i).getScoring(),
-						((double)teamPOs.get(i).getScoring())/teamPOs.get(i).getMatches(),
-						teamPOs.get(i).getFieldGoalPercentage(),
-						teamPOs.get(i).getThreePointShotPercentage(),
-						teamPOs.get(i).getFreeThrowPercentage(),
-						teamPOs.get(i).getWinningPercentage(),
-						teamPOs.get(i).getPossessions(),
-						teamPOs.get(i).getOffensiveEfficiency(),
-						teamPOs.get(i).getDefensiveEfficiency(),
-						teamPOs.get(i).getOffensivebackboardEfficiency(),
-						teamPOs.get(i).getDefensivebackboardEfficiency(),
-						teamPOs.get(i).getStealEfficiency(),
-						teamPOs.get(i).getAssitEfficiency());
-						teamVOs.add(teamVO);
-			}
-		} catch (MalformedURLException e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
-		} catch (RemoteException e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
-		} catch (NotBoundException e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
-		}
-    	return teamVOs;
+//    	ArrayList<TeamPO> teamPOs = new ArrayList<TeamPO>();
+//    	ArrayList<TeamVO> teamVOs = new ArrayList<TeamVO>();
+//    	GetTeamdataDataService g;
+//    	try {
+//			g = (GetTeamdataDataService) Naming.lookup("rmi://"+rmi+":2015/GetTeamdata");
+//			teamPOs = g.getAllTeamdata(key, order);
+//			for (int i = 0; i < teamPOs.size(); i++) {
+//				TeamVO teamVO = new TeamVO(0,
+//						teamPOs.get(i).getOpponentFieldGoal(),
+//						teamPOs.get(i).getOpponentFieldGoalAttempts(),
+//						teamPOs.get(i).getOpponentTurnOver(),
+//						teamPOs.get(i).getOpponentFreeThrowAttempts(),
+//						teamPOs.get(i).getOppenentScoring(),
+//						teamPOs.get(i).getTeamName(),
+//						teamPOs.get(i).getMatches(),
+//						teamPOs.get(i).getWins(),
+//						teamPOs.get(i).getFieldGoal(),
+//						teamPOs.get(i).getFieldGoal()/teamPOs.get(i).getMatches(),
+//						teamPOs.get(i).getFieldGoalAttempts(),
+//						((double)teamPOs.get(i).getFieldGoalAttempts())/teamPOs.get(i).getMatches(),
+//						teamPOs.get(i).getThreePointFieldGoal(),
+//						((double)teamPOs.get(i).getThreePointFieldGoal())/teamPOs.get(i).getMatches(),
+//						teamPOs.get(i).getThreePointFieldGoalAttempts(),
+//						((double)teamPOs.get(i).getThreePointFieldGoalAttempts())/teamPOs.get(i).getMatches(),
+//						teamPOs.get(i).getFreeThrow(),
+//						((double)teamPOs.get(i).getFreeThrow())/teamPOs.get(i).getMatches(),
+//						teamPOs.get(i).getFreeThrowAttempts(),
+//						((double)teamPOs.get(i).getFreeThrowAttempts())/teamPOs.get(i).getMatches(),
+//						teamPOs.get(i).getOffensiveRebound(),
+//						((double)teamPOs.get(i).getOffensiveRebound())/teamPOs.get(i).getMatches(),
+//						teamPOs.get(i).getDefensiveRebound(),
+//						((double)teamPOs.get(i).getDefensiveRebound())/teamPOs.get(i).getMatches(),
+//						teamPOs.get(i).getOpponentOffensiveRebound(),
+//						((double)teamPOs.get(i).getOpponentOffensiveRebound())/teamPOs.get(i).getMatches(),
+//						teamPOs.get(i).getOpponentDefensiveRebound(),
+//						((double)teamPOs.get(i).getOpponentDefensiveRebound())/teamPOs.get(i).getMatches(),
+//						teamPOs.get(i).getBackboard(),
+//						((double)teamPOs.get(i).getBackboard())/teamPOs.get(i).getMatches(),
+//						teamPOs.get(i).getAssist(),
+//						((double)teamPOs.get(i).getAssist())/teamPOs.get(i).getMatches(),
+//						teamPOs.get(i).getSteal(),
+//						((double)teamPOs.get(i).getSteal())/teamPOs.get(i).getMatches(),
+//						teamPOs.get(i).getBlock(),
+//						((double)teamPOs.get(i).getBlock())/teamPOs.get(i).getMatches(),
+//						teamPOs.get(i).getTurnOver(),
+//						((double)teamPOs.get(i).getTurnOver())/teamPOs.get(i).getMatches(),
+//						teamPOs.get(i).getFoul(),
+//						((double)teamPOs.get(i).getFoul())/teamPOs.get(i).getMatches(),
+//						teamPOs.get(i).getScoring(),
+//						((double)teamPOs.get(i).getScoring())/teamPOs.get(i).getMatches(),
+//						teamPOs.get(i).getFieldGoalPercentage(),
+//						teamPOs.get(i).getThreePointShotPercentage(),
+//						teamPOs.get(i).getFreeThrowPercentage(),
+//						teamPOs.get(i).getWinningPercentage(),
+//						teamPOs.get(i).getPossessions(),
+//						teamPOs.get(i).getOffensiveEfficiency(),
+//						teamPOs.get(i).getDefensiveEfficiency(),
+//						teamPOs.get(i).getOffensivebackboardEfficiency(),
+//						teamPOs.get(i).getDefensivebackboardEfficiency(),
+//						teamPOs.get(i).getStealEfficiency(),
+//						teamPOs.get(i).getAssitEfficiency());
+//						teamVOs.add(teamVO);
+//			}
+//		} catch (MalformedURLException e) {
+//			// TODO Auto-generated catch block
+//			e.printStackTrace();
+//		} catch (RemoteException e) {
+//			// TODO Auto-generated catch block
+//			e.printStackTrace();
+//		} catch (NotBoundException e) {
+//			// TODO Auto-generated catch block
+//			e.printStackTrace();
+//		}
+    	return this.getTeamData("1", key, order);
     }
 	
 

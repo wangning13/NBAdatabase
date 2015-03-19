@@ -137,6 +137,9 @@ public class TeamVO {
 		this.stealEfficiency = stealEfficiency;
 		this.assitEfficiency = assitEfficiency;
 	}
+	public TeamVO() {
+		// TODO Auto-generated constructor stub
+	}
 	public int getRank() {
 		return rank;
 	}
