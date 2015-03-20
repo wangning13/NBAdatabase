@@ -20,18 +20,30 @@ public class testPlayerRank {
 //		System.out.println(playerVO.getAppearance());
 //		System.out.println(playerVO.getFirstPlay());
 //		System.out.println(playerVO.getOpponentOffensiveRebound());
+//		System.out.println(playerVO.getOpponentBackBoard());
+//		System.out.println(playerVO.getOpponentDefensiveRebound());
+//		System.out.println(playerVO.getOpponentFieldGoalAttempts());
+//		System.out.println(playerVO.getOpponentThreePointFieldGoalAttempts());
+//		System.out.println(playerVO.getSteal());
 //		System.out.println(playerVO.getStealPercentage());
 		
-		PlayerinfoVO playerinfoVO = playerRank.getPlayerinfo("Brandon Knight");
-		System.out.println(playerinfoVO.getAge());
-		System.out.print(playerinfoVO.getBirth());
-		System.out.println(playerinfoVO.getExp());
-		System.out.println(playerinfoVO.getHeight());
-		System.out.println(playerinfoVO.getName());
-		System.out.println(playerinfoVO.getNumber());
-		System.out.println(playerinfoVO.getPosition());
-		System.out.println(playerinfoVO.getSchool());
-		System.out.println(playerinfoVO.getWeight());
+//		PlayerinfoVO playerinfoVO = playerRank.getPlayerinfo("Brandon Knight");
+//		System.out.println(playerinfoVO.getAge());
+//		System.out.print(playerinfoVO.getBirth());
+//		System.out.println(playerinfoVO.getExp());
+//		System.out.println(playerinfoVO.getHeight());
+//		System.out.println(playerinfoVO.getName());
+//		System.out.println(playerinfoVO.getNumber());
+//		System.out.println(playerinfoVO.getPosition());
+//		System.out.println(playerinfoVO.getSchool());
+//		System.out.println(playerinfoVO.getWeight());
+		
+		ArrayList<PlayerVO> playerVOs = playerRank.getAllPlayerdata("wins", "DESC");
+		System.out.println();
+		for (int i = 0; i < playerVOs.size(); i++) {
+			System.out.println("sd");
+			System.out.println(playerVOs.get(i).getAppearance());
+		}
 		
 	}
 

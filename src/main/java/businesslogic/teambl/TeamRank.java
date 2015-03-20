@@ -152,19 +152,25 @@ public class TeamRank implements TeamRankService{
 	}
     
     private void getrank(ArrayList<TeamVO> teamVOs){
-    	ArrayList<TeamVO> teamVOs2 = gettingTeamData("`east/west`='E'", "winningPercentage","ASC");
+    	ArrayList<TeamVO> teamVOs2 = gettingTeamData("`east/west`='E'", "winningPercentage","DESC");
+    	for (int i = 0; i < teamVOs2.size(); i++) {
+			teamVOs2.get(i).setRank(i+1);
+		}
     	for (int i = 0; i < teamVOs2.size(); i++) {
 			for (int j = 0; j < teamVOs.size(); j++) {
-				if (teamVOs.get(j).equals(teamVOs2.get(i))) {
-					teamVOs.get(i).setRank(i+1);
+				if (teamVOs.get(j).getTeamName().equals(teamVOs2.get(i).getTeamName())) {
+					teamVOs.get(i).setRank(teamVOs2.get(i).getRank());
 				}
 			}
 		}
-    	ArrayList<TeamVO> teamVOs3 = gettingTeamData("`east/west`='W'", "winningPercentage","ASC");
+    	ArrayList<TeamVO> teamVOs3 = gettingTeamData("`east/west`='W'", "winningPercentage","DESC");
+    	for (int i = 0; i < teamVOs3.size(); i++) {
+			teamVOs3.get(i).setRank(i+1);
+		}
     	for (int i = 0; i < teamVOs3.size(); i++) {
 			for (int j = 0; j < teamVOs.size(); j++) {
-				if (teamVOs.get(j).equals(teamVOs3.get(i))) {
-					teamVOs.get(i).setRank(i+1);
+				if (teamVOs.get(j).getTeamName().equals(teamVOs3.get(i).getTeamName())) {
+					teamVOs.get(i).setRank(teamVOs3.get(i).getRank());
 				}
 			}
 		}
