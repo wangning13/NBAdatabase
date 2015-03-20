@@ -38,12 +38,15 @@ public class testPlayerRank {
 //		System.out.println(playerinfoVO.getSchool());
 //		System.out.println(playerinfoVO.getWeight());
 		
-		ArrayList<PlayerVO> playerVOs = playerRank.getAllPlayerdata("wins", "DESC");
-		System.out.println();
-		for (int i = 0; i < playerVOs.size(); i++) {
-			System.out.println("sd");
-			System.out.println(playerVOs.get(i).getAppearance());
-		}
+//		ArrayList<PlayerVO> playerVOs = playerRank.getAllPlayerdata("wins", "DESC");
+//		System.out.println();
+//		for (int i = 0; i < playerVOs.size(); i++) {
+//			System.out.println("sd");
+//			System.out.println(playerVOs.get(i).getAppearance());
+//		}
+		
+		ArrayList<PlayerVO> playerVOs = playerRank.getFirstFifty("C", "`east/west`='W'", "wins");
+		
 		
 	}
 

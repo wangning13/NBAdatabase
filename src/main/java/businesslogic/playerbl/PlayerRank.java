@@ -191,6 +191,7 @@ public class PlayerRank implements PlayerRankService{
 		try {
 			g = (GetPlayerdataDataService) Naming.lookup("rmi://"+rmi+":2015/GetPlayerdata");
 			playerPOs = g.getAllPlayerdata(key, order);
+			System.out.println("df");
 			for (int i = 0; i < playerPOs.size(); i++) {
 				playerPOs.get(i).setThreePointShotPercentage(((double)playerPOs.get(i).getThreePointFieldGoal())/playerPOs.get(i).getThreePointFieldGoalAttempts());
 				playerPOs.get(i).setFreeThrowPercentage(((double)playerPOs.get(i).getFreeThrow())/playerPOs.get(i).getFreeThrowAttempts());
