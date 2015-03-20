@@ -11,7 +11,7 @@ public class testRanking{
 	public static void main(String[] args) {
 		TeamRank teamRank = new TeamRank();
 //		teamRank.getrank();
-//		TeamVO teamVO = teamRank.getTeamData("MIA");
+//		TeamVO teamVO = teamRank.getTeamData("ATL");
 //		System.out.println(teamVO.getAssist());
 		ArrayList<TeamVO> teamPOs = teamRank.getAllTeamdata("winningPercentage", "DESC");
 		System.out.println(teamPOs.size());

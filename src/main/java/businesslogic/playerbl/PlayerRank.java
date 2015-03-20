@@ -19,20 +19,22 @@ public class PlayerRank implements PlayerRankService{
 	
 	
 	ArrayList<PlayerVO> playerVOs;
-	String[] allPlayer = new String[15];
-	public String[] getAllPlayer(String teamName){
-		ArrayList<String> teamPlayerList;
+	String[] allPlayer;
+	public ArrayList<String> getAllPlayer(String teamName){
+		ArrayList<String> teamPlayerList1;
+		ArrayList<String> teamPlayerList2 = new ArrayList<String>();
 		GetTeamdataDataService g;
 		try {
 			g = (GetTeamdataDataService) Naming.lookup("rmi://"+rmi+":2015/GetTeamdata");
-			teamPlayerList = g.getTeamPlayer(teamName);
-			for (int i = 0; i < 15; i++) {
-				if (teamPlayerList.get(i)!=null) {
-					allPlayer[i] = teamPlayerList.get(i);
-				}else {
-					allPlayer[i]= null; 
+			teamPlayerList1 = g.getTeamPlayer(teamName);
+			System.out.println(teamPlayerList1.size());
+			for (int i = 0; i < teamPlayerList1.size(); i++) {
+				if (!teamPlayerList1.get(i).equals(null)) {
+					teamPlayerList2.add(teamPlayerList1.get(i));
 				}
 			}
+			System.out.println(teamPlayerList2.size());
+			
 		} catch (MalformedURLException e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
@@ -44,7 +46,7 @@ public class PlayerRank implements PlayerRankService{
 			e.printStackTrace();
 		}
 		
-		return allPlayer;
+		return teamPlayerList2;
 		
 	}
 	
@@ -55,6 +57,7 @@ public class PlayerRank implements PlayerRankService{
 		try {
 			g = (GetPlayerdataDataService) Naming.lookup("rmi://"+rmi+":2015/GetPlayerdata");
 			playerPO = g.getPlayerdata(playerName);
+			System.out.println(playerPO.getAppearance());
 			playerPO.setThreePointShotPercentage(((double)playerPO.getThreePointFieldGoal())/playerPO.getThreePointFieldGoalAttempts());
 			playerPO.setFreeThrowPercentage(((double)playerPO.getFreeThrow())/playerPO.getFreeThrowAttempts());
 			playerPO.setEfficiency((playerPO.getScoring()+playerPO.getBackboard()+playerPO.getAssist()+playerPO.getSteal()+playerPO.getBlock())-(playerPO.getFreeThrowAttempts()-playerPO.getFreeThrow())-playerPO.getTurnOver());
