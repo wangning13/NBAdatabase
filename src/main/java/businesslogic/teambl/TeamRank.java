@@ -125,17 +125,17 @@ public class TeamRank implements TeamRankService{
 				Double.parseDouble(df.format(((double)teamPOs2.get(i).getFoul())/teamPOs2.get(i).getMatches())),
 				teamPOs2.get(i).getScoring(),
 				Double.parseDouble(df.format(((double)teamPOs2.get(i).getScoring())/teamPOs2.get(i).getMatches())),
-				teamPOs2.get(i).getFieldGoalPercentage(),
-				teamPOs2.get(i).getThreePointShotPercentage(),
-				teamPOs2.get(i).getFreeThrowPercentage(),
-				teamPOs2.get(i).getWinningPercentage(),
-				teamPOs2.get(i).getPossessions(),
-				teamPOs2.get(i).getOffensiveEfficiency(),
-				teamPOs2.get(i).getDefensiveEfficiency(),
-				teamPOs2.get(i).getOffensivebackboardEfficiency(),
-				teamPOs2.get(i).getDefensivebackboardEfficiency(),
-				teamPOs2.get(i).getStealEfficiency(),
-				teamPOs2.get(i).getAssitEfficiency());
+				Double.parseDouble(df.format(teamPOs2.get(i).getFieldGoalPercentage())),
+				Double.parseDouble(df.format(teamPOs2.get(i).getThreePointShotPercentage())),
+				Double.parseDouble(df.format(teamPOs2.get(i).getFreeThrowPercentage())),
+				Double.parseDouble(df.format(teamPOs2.get(i).getWinningPercentage())),
+				Double.parseDouble(df.format(teamPOs2.get(i).getPossessions())),
+				Double.parseDouble(df.format(teamPOs2.get(i).getOffensiveEfficiency())),
+				Double.parseDouble(df.format(teamPOs2.get(i).getDefensiveEfficiency())),
+				Double.parseDouble(df.format(teamPOs2.get(i).getOffensivebackboardEfficiency())),
+				Double.parseDouble(df.format(teamPOs2.get(i).getDefensivebackboardEfficiency())),
+				Double.parseDouble(df.format(teamPOs2.get(i).getStealEfficiency())),
+				Double.parseDouble(df.format(teamPOs2.get(i).getAssitEfficiency())));
 				teamVOs.add(teamVO);
 			}
 		} catch (MalformedURLException e) {
@@ -259,17 +259,17 @@ public class TeamRank implements TeamRankService{
 					Double.parseDouble(df.format(((double)teamPO.getFoul())/teamPO.getMatches())),
 					teamPO.getScoring(),
 					Double.parseDouble(df.format(((double)teamPO.getScoring())/teamPO.getMatches())),
-					teamPO.getFieldGoalPercentage(),
-					teamPO.getThreePointShotPercentage(),
-					teamPO.getFreeThrowPercentage(),
-					teamPO.getWinningPercentage(),
-					teamPO.getPossessions(),
-					teamPO.getOffensiveEfficiency(),
-					teamPO.getDefensiveEfficiency(),
-					teamPO.getOffensivebackboardEfficiency(),
-					teamPO.getDefensivebackboardEfficiency(),
-					teamPO.getStealEfficiency(),
-					teamPO.getAssitEfficiency());			
+					Double.parseDouble(df.format(teamPO.getFieldGoalPercentage())),
+					Double.parseDouble(df.format(teamPO.getThreePointShotPercentage())),
+					Double.parseDouble(df.format(teamPO.getFreeThrowPercentage())),
+					Double.parseDouble(df.format(teamPO.getWinningPercentage())),
+					Double.parseDouble(df.format(teamPO.getPossessions())),
+					Double.parseDouble(df.format(teamPO.getOffensiveEfficiency())),
+					Double.parseDouble(df.format(teamPO.getDefensiveEfficiency())),
+					Double.parseDouble(df.format(teamPO.getOffensivebackboardEfficiency())),
+					Double.parseDouble(df.format(teamPO.getDefensivebackboardEfficiency())),
+					Double.parseDouble(df.format(teamPO.getStealEfficiency())),
+					Double.parseDouble(df.format(teamPO.getAssitEfficiency())));			
 		} catch (MalformedURLException e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
