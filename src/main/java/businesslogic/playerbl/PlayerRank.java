@@ -57,11 +57,11 @@ public class PlayerRank implements PlayerRankService{
 		try {
 			g = (GetPlayerdataDataService) Naming.lookup("rmi://"+rmi+":2015/GetPlayerdata");
 			playerPO = g.getPlayerdata(playerName);
-			if (playerPO.getFieldGoalAttempts()==0) {
-				playerPO.setFieldGoalShotPercentage(0);
-			}else {
-				playerPO.setFieldGoalShotPercentage(Double.parseDouble(df.format((double)playerPO.getFieldGoal()/playerPO.getFieldGoalAttempts())));
-			}
+//			if (playerPO.getFieldGoalAttempts()==0) {
+//				playerPO.setFieldGoalShotPercentage(0);
+//			}else {
+//				playerPO.setFieldGoalShotPercentage(Double.parseDouble(df.format((double)playerPO.getFieldGoal()/playerPO.getFieldGoalAttempts())));
+//			}
 			if (playerPO.getThreePointFieldGoalAttempts()==0) {
 				playerPO.setThreePointShotPercentage(0);
 			}else {
