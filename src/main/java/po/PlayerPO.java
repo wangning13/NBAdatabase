@@ -143,6 +143,9 @@ public class PlayerPO implements Serializable{
 		this.doubleDouble=doubleDouble;
 		this.fieldGoalShotPercentage = fieldGoalShotPercentage;
 	}
+	public PlayerPO() {
+		// TODO Auto-generated constructor stub
+	}
 	public String getPlayerName() {
 		return playerName;
 	}

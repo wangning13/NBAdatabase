@@ -174,6 +174,9 @@ public class PlayerVO {
 		this.doubleDouble = doubleDouble;
 		this.fielfGoalShotPercentage = fieldGoalShotPercentage;
 	}
+	public PlayerVO() {
+		// TODO Auto-generated constructor stub
+	}
 	public String getPlayerName() {
 		return playerName;
 	}
