@@ -31,6 +31,9 @@ public class PlayerinfoPO implements Serializable{
 		this.exp = exp;
 		this.school = school;
 	}
+	public PlayerinfoPO() {
+		// TODO Auto-generated constructor stub
+	}
 	public String getName() {
 		return name;
 	}

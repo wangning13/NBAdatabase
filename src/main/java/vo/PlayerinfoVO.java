@@ -24,6 +24,9 @@ public class PlayerinfoVO {
 		this.exp = exp;
 		this.school = school;
 	}
+	public PlayerinfoVO() {
+		// TODO Auto-generated constructor stub
+	}
 	public String getName() {
 		return name;
 	}
