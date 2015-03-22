@@ -280,15 +280,28 @@ public class PlayerRank implements PlayerRankService{
 		try {
 			g = (GetPlayerdataDataService) Naming.lookup("rmi://"+rmi+":2015/GetPlayerdata");
 			playerinfoPO = g.getPlayerinfo(playerName);
-			playerinfoVO = new PlayerinfoVO(playerinfoPO.getName(),
-					playerinfoPO.getNumber(), 
-					playerinfoPO.getPosition(), 
-					playerinfoPO.getHeight(), 
-					playerinfoPO.getWeight(), 
-					playerinfoPO.getBirth(),
-					playerinfoPO.getAge(), 
-					playerinfoPO.getExp(), 
-					playerinfoPO.getSchool());
+			if (playerinfoPO==null) {
+				playerinfoVO = new PlayerinfoVO("",
+						"", 
+						"", 
+						"", 
+						0, 
+						"",
+						0, 
+						"", 
+						"");
+			}else {
+				playerinfoVO = new PlayerinfoVO(playerinfoPO.getName(),
+						playerinfoPO.getNumber(), 
+						playerinfoPO.getPosition(), 
+						playerinfoPO.getHeight(), 
+						playerinfoPO.getWeight(), 
+						playerinfoPO.getBirth(),
+						playerinfoPO.getAge(), 
+						playerinfoPO.getExp(), 
+						playerinfoPO.getSchool());
+			}
+			
 		} catch (MalformedURLException e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
