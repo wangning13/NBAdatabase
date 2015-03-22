@@ -340,6 +340,11 @@ public class PlayerRank implements PlayerRankService{
 					playerPOs.get(i).setUsage(0);
 					
 				}else {
+					if (playerPOs.get(i).getFieldGoalAttempts()==0) {
+						playerPOs.get(i).setFieldGoalShotPercentage(0);
+					}else {
+						playerPOs.get(i).setFieldGoalShotPercentage(Double.parseDouble(df.format((double)playerPOs.get(i).getFieldGoal()/playerPOs.get(i).getFieldGoalAttempts())));
+					}
 					if (playerPOs.get(i).getThreePointFieldGoalAttempts()==0) {
 						playerPOs.get(i).setThreePointShotPercentage(0);
 					}else {
@@ -599,6 +604,11 @@ public class PlayerRank implements PlayerRankService{
 					playerPOs.get(i).setUsage(0);
 					
 				}else {
+					if (playerPOs.get(i).getFieldGoalAttempts()==0) {
+						playerPOs.get(i).setFieldGoalShotPercentage(0);
+					}else {
+						playerPOs.get(i).setFieldGoalShotPercentage(Double.parseDouble(df.format((double)playerPOs.get(i).getFieldGoal()/playerPOs.get(i).getFieldGoalAttempts())));
+					}
 					if (playerPOs.get(i).getThreePointFieldGoalAttempts()==0) {
 						playerPOs.get(i).setThreePointShotPercentage(0);
 					}else {
