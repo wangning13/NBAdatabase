@@ -397,7 +397,6 @@ public class PlayerRank implements PlayerRankService{
 				}
 				
 			}
-			
 			ArrayList<PlayerPO> playerPOs2 = g.getByEfficiency(playerPOs, key, order);
 			for (int i = 0; i < playerPOs2.size(); i++) {
 				if (playerPOs2.get(i).getAppearance()==0) {
