@@ -321,7 +321,7 @@ public class PlayerRank implements PlayerRankService{
 		try {
 			g = (GetPlayerdataDataService) Naming.lookup("rmi://"+rmi+":2015/GetPlayerdata");
 			playerPOs = g.getAllPlayerdata("backboard", order);
-			for (int i = 0; i < 10; i++) {
+			for (int i = 0; i < playerPOs.size(); i++) {
 				if (playerPOs.get(i).getAppearance()==0) {
 					playerPOs.get(i).setThreePointShotPercentage(0);
 					playerPOs.get(i).setFreeThrowPercentage(0);
@@ -468,8 +468,6 @@ public class PlayerRank implements PlayerRankService{
 							playerPOs2.get(i).getDoubleDouble()
 							);
 				}else {
-					System.out.println(playerPOs2.get(i).getAppearance());
-					System.out.println(playerPOs2.get(i).getBackboard());
 					PlayerVO playerVO = new PlayerVO(
 							playerPOs2.get(i).getPlayerName(),
 							playerPOs2.get(i).getTeam(), 
@@ -582,7 +580,7 @@ public class PlayerRank implements PlayerRankService{
 				playerPOs = g.getSomePlayerdata(position, partition, key, "DESC");
 			}
 			
-			for (int i = 0; i < 10; i++) {
+			for (int i = 0; i < 50; i++) {
 				if (playerPOs.get(i).getAppearance()==0) {
 					playerPOs.get(i).setThreePointShotPercentage(0);
 					playerPOs.get(i).setFreeThrowPercentage(0);
@@ -655,7 +653,7 @@ public class PlayerRank implements PlayerRankService{
 			}
 			
 			ArrayList<PlayerPO> playerPOs2 = g.getByEfficiency(playerPOs, key, "DESC");
-			for (int i = 0; i < playerPOs2.size(); i++) {
+			for (int i = 0; i < 50; i++) {
 				if (playerPOs2.get(i).getAppearance()==0) {
 					PlayerVO playerVO = new PlayerVO(
 							playerPOs2.get(i).getPlayerName(),
@@ -729,8 +727,6 @@ public class PlayerRank implements PlayerRankService{
 							playerPOs2.get(i).getDoubleDouble()
 							);
 				}else {
-					System.out.println(playerPOs2.get(i).getAppearance());
-					System.out.println(playerPOs2.get(i).getBackboard());
 					PlayerVO playerVO = new PlayerVO(
 							playerPOs2.get(i).getPlayerName(),
 							playerPOs2.get(i).getTeam(), 
