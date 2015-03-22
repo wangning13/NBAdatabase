@@ -60,6 +60,8 @@ public class PlayerRank implements PlayerRankService{
 			playerPO = g.getPlayerdata(playerName);
 			if (playerPO.getFieldGoalAttempts()==0) {
 				playerPO.setFieldGoalShotPercentage(0);
+			}else {
+				playerPO.setFieldGoalShotPercentage(Double.parseDouble(df.format((double)playerPO.getFieldGoal()/playerPO.getFieldGoalAttempts())));
 			}
 			if (playerPO.getThreePointFieldGoalAttempts()==0) {
 				playerPO.setThreePointShotPercentage(0);
