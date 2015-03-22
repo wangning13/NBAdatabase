@@ -12,7 +12,10 @@ import javax.swing.JLabel;
 import javax.swing.JRadioButton;
 import javax.swing.JScrollPane;
 import javax.swing.JTable;
+import javax.swing.RowSorter;
 import javax.swing.table.DefaultTableModel;
+import javax.swing.table.TableModel;
+import javax.swing.table.TableRowSorter;
 
 import businesslogic.playerbl.PlayerRank;
 import businesslogic.teambl.TeamRank;
@@ -116,9 +119,13 @@ public class Statistics extends MyPanel implements ActionListener{
         
         this.add(descending);
         descending.setBounds(270, 172, 60, 25);
+        descending.addActionListener(this);
+        descending.setActionCommand("descending");
         
         this.add(ascending);
         ascending.setBounds(340, 172, 60, 25);
+        ascending.addActionListener(this);
+        ascending.setActionCommand("ascending");
         
         this.add(jl2);
         jl2.setBounds(510, 175, 180, 20);
@@ -138,14 +145,29 @@ public class Statistics extends MyPanel implements ActionListener{
 
         this.add(filter);
         filter.setBounds(980, 172, 60, 25);
+        filter.addActionListener(this);
+        filter.setActionCommand("filter");
 		
 		this.add(rankingBand);
 		rankingBand.setBounds(0, 150, 1052, 70);
 		
         Object[][] data = getData(prs.getAllPlayerdata("scoring", "DESC"));
-	    model = new DefaultTableModel(new Object[][]{},columnNames);
+	    model =  new DefaultTableModel(new Object[][]{}, columnNames) {  
+	        public Class getColumnClass(int column) {  
+	            Class returnValue;  
+	            if ((column >= 0) && (column < getColumnCount())) {  
+	                returnValue = getValueAt(0, column).getClass();  
+	            } else {  
+	                returnValue = Object.class;  
+	            }  
+	            return returnValue;  
+	        }  
+	    };  
+	    RowSorter<TableModel> sorter = new TableRowSorter<TableModel>(model);  
 	    model.setDataVector(data, columnNames);
+
 	    table = new MyTable(model);
+	    table.setRowSorter(sorter);  
 
 	    //table.setAutoResizeMode(JTable.AUTO_RESIZE_ALL_COLUMNS);
 	    pane = new JScrollPane (table);
