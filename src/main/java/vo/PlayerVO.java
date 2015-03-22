@@ -52,6 +52,7 @@ public class PlayerVO {
 	int opponentFieldGoalAttempts;//对手投篮出手次数
 	int opponentThreePointFieldGoalAttempts;//对手三分出手数
 	
+	double fielfGoalShotPercentage;//投篮命中率
 	double threePointShotPercentage;//三分命中率
 	double freeThrowPercentage;//罚球命中率
 	double efficiency;//效率
@@ -91,6 +92,7 @@ public class PlayerVO {
 			int opponentOffensiveRebound, int opponentDefensiveRebound,
 			int opponentFieldGoalAttempts,
 			int opponentThreePointFieldGoalAttempts,
+			double fieldGoalShotPercentage,
 			double threePointShotPercentage, double freeThrowPercentage,
 			double efficiency, double GmScEfficiency,
 			double nearlyFivePercentage, double trueShootingPercentage,
@@ -170,6 +172,7 @@ public class PlayerVO {
 		this.previousAverageScoring = previousAverageScoring;
 		this.nearlyFiveAverageScoring = nearlyFiveAverageScoring;
 		this.doubleDouble = doubleDouble;
+		this.fielfGoalShotPercentage = fieldGoalShotPercentage;
 	}
 	public String getPlayerName() {
 		return playerName;
@@ -580,6 +583,12 @@ public class PlayerVO {
 	}
 	public void setDoubleDouble(int doubleDouble) {
 		this.doubleDouble = doubleDouble;
+	}
+	public double getFielfGoalShotPercentage() {
+		return fielfGoalShotPercentage;
+	}
+	public void setFielfGoalShotPercentage(double fielfGoalShotPercentage) {
+		this.fielfGoalShotPercentage = fielfGoalShotPercentage;
 	}
 	
 
