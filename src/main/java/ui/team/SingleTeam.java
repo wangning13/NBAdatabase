@@ -5,6 +5,7 @@ import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.awt.event.MouseAdapter;
 import java.awt.event.MouseEvent;
+import java.util.ArrayList;
 
 import javax.swing.ButtonGroup;
 import javax.swing.JButton;
@@ -15,14 +16,24 @@ import javax.swing.JScrollPane;
 import javax.swing.JTable;
 import javax.swing.table.DefaultTableModel;
 
+import po.TeaminfoPO;
+import businesslogic.playerbl.PlayerRank;
+import businesslogic.teambl.TeamRank;
+import businesslogicservice.playerblservice.PlayerRankService;
+import businesslogicservice.teamblservice.TeamRankService;
 import ui.main.Frame;
 import ui.main.MyButton;
 import ui.main.MyPanel;
 import ui.material.Img;
 import ui.tools.MyTable;
+import vo.PlayerVO;
+import vo.TeamVO;
+import vo.TeaminfoVO;
 
 @SuppressWarnings("serial")
 public class SingleTeam extends MyPanel implements ActionListener{
+	TeamRankService trs = new TeamRank();
+	PlayerRankService prs = new PlayerRank();
 	Frame frame;
 	JScrollPane pane1;
 	MyTable table1;
@@ -30,7 +41,7 @@ public class SingleTeam extends MyPanel implements ActionListener{
 	//JScrollPane pane2;
 	//MyTable table2;
 	//DefaultTableModel model2;
-	String[] columnNames1 = {"西南区","西北区","太平洋区","东南区","中区","大西洋区"};
+	String[] columnNames1 = {"球员","参赛场数","先发场数","篮板数","助攻数","在场时间","投篮命中率","三分命中率","罚球命中率","进攻数","防守数","抢断数","盖帽数","失误数","犯规数","得分","效率","GmSc效率值","真实命中率","投篮效率","篮板率","进攻篮板率","防守篮板率","助攻率","抢断率","盖帽率","失误率","使用率"};
 	//String[] columnNames2 = {"队名","缩写","城市","联盟","分区","主场","进入NBA"};
 	//JLabel rankingBand = new JLabel(Img.RANKINGBAND);
     JLabel jl = new JLabel(Img.BOARD);
@@ -86,25 +97,25 @@ public class SingleTeam extends MyPanel implements ActionListener{
 		jl7.setFont(font1);
 		
 		this.add(teamName);
-		teamName.setBounds(100, 370, 100, 30);
+		teamName.setBounds(80, 370, 200, 30);
 		teamName.setFont(font1);
 		this.add(abbreviation);
-		abbreviation.setBounds(100, 410, 100, 30);
+		abbreviation.setBounds(80, 410, 200, 30);
 		abbreviation.setFont(font1);
 		this.add(city);
-		city.setBounds(100, 450, 100, 30);
+		city.setBounds(80, 450, 200, 30);
 		city.setFont(font1);
 		this.add(leagle);
-		leagle.setBounds(100, 490, 100, 30);
+		leagle.setBounds(80, 490, 200, 30);
 		leagle.setFont(font1);
 		this.add(area);
-		area.setBounds(100, 530, 100, 30);
+		area.setBounds(80, 530, 200, 30);
 		area.setFont(font1);
 		this.add(home);
-		home.setBounds(100, 570, 100, 30);
+		home.setBounds(80, 570, 250, 30);
 		home.setFont(font1);
 		this.add(year);
-		year.setBounds(100, 610, 200, 30);
+		year.setBounds(80, 610, 200, 30);
 		year.setFont(font1);
 						
         this.add(jl);
@@ -133,8 +144,29 @@ public class SingleTeam extends MyPanel implements ActionListener{
 	}
 	
 	public void update(String team){
-		changePIC(team);
-		this.repaint();
+		changePIC(team);	
+		TeaminfoVO teamInfo = trs.getTeamInfo(team);
+	    teamName.setText(teamInfo.getName());
+	    abbreviation.setText(teamInfo.getAbbr());
+	    city.setText(teamInfo.getCity());
+	    leagle.setText(teamInfo.getLeague());
+	    area.setText(teamInfo.getPartition());
+	    home.setText(teamInfo.getCourt());
+	    year.setText(String.valueOf(teamInfo.getYear()));
+	    
+	    ArrayList<String> players = prs.getAllPlayer(team);
+
+	    int num = players.size();
+	    Object[][] data = new Object[num][];
+		for(int i = 0;i<num;i++){
+			PlayerVO player = prs.getPlayerdata(players.get(i));
+			Object[] temp = {player.getPlayerName(),player.getAppearance(),player.getFirstPlay(),player.getBackboard(),player.getAssist(),player.getMinites(),player.getFielfGoalShotPercentage(),player.getThreePointShotPercentage(),player.getFreeThrowPercentage(),player.getOffensiveRebound(),player.getDefensiveRebound(),player.getSteal(),player.getBlock(),player.getTurnOver(),player.getFoul(),player.getScoring(),player.getEfficiency(),player.getGmScEfficiency(),player.getTrueShootingPercentage(),player.getShootingEfficiency(),player.getBackboardPercentage(),player.getOffensiveReboundPercentage(),player.getDefensiveReboundPercentage(),player.getAssistPercentage(),player.getStealPercentage(),player.getBlockPercentage(),player.getTurnOverPercentage(),player.getUsage()};
+		    data[i] = temp;
+		};
+		model1.setDataVector(data, columnNames1);
+	    table1.setWidth();
+		table1.updateUI();
+	   
 	}
 	
 	public void changePIC(String team){

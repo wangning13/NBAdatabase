@@ -49,7 +49,8 @@ public class TeamsSelect extends MyPanel implements ActionListener{
 	    model = new DefaultTableModel(data,columnNames);
 	    model.setDataVector(data, columnNames);
 	    table = new MyTable(model);
-
+	    table.setRowHeight(79);
+	    table.setFont(new Font("隶书", 0, 20));
 	    table.setAutoResizeMode(JTable.AUTO_RESIZE_ALL_COLUMNS);
 	    pane = new JScrollPane (table);
 	    this.add(pane);

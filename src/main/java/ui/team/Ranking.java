@@ -3,6 +3,7 @@ package ui.team;
 import java.awt.Font;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.util.ArrayList;
 
 import javax.swing.ButtonGroup;
 import javax.swing.JButton;
@@ -20,6 +21,8 @@ import ui.main.MyButton;
 import ui.main.MyPanel;
 import ui.material.Img;
 import ui.tools.MyTable;
+import ui.tools.Translate;
+import vo.TeamVO;
 
 @SuppressWarnings("serial")
 public class Ranking extends MyPanel implements ActionListener{
@@ -28,35 +31,39 @@ public class Ranking extends MyPanel implements ActionListener{
 	JScrollPane pane1;
 	MyTable table1;
 	DefaultTableModel model1;
-	String[] columnNames1 = {"西部排名","球队名称","场次","投篮命中数","投篮出手数","三分命中数","三分出手数","罚球命中数","罚球出手数","进攻篮板数","防守篮板数","篮板数","助攻数","抢断数","盖帽数","失误数","犯规数","比赛得分","投篮命中率","三分命中率","罚球命中率","胜率","进攻回合","进攻效率","防守效率","篮板效率","抢断效率","助攻效率"};
+	String[] columnNames1 = {"西部","场次","投篮命中数","投篮出手数","三分命中数","三分出手数","罚球命中数","罚球出手数","进攻篮板数","防守篮板数","篮板数","助攻数","抢断数","盖帽数","失误数","犯规数","比赛得分","投篮命中率","三分命中率","罚球命中率","胜率","进攻回合","进攻效率","防守效率","进攻篮板效率","防守篮板效率","抢断效率","助攻效率","场均投篮命中数","场均投篮出手数","场均三分命中数","场均三分出手数","场均罚球命中数","场均罚球出手数","场均进攻篮板数","场均防守篮板数","场均篮板数","场均助攻数","场均抢断数","场均盖帽数","场均失误数","场均犯规数","场均得分"};
 	JScrollPane pane2;
 	MyTable table2;
 	DefaultTableModel model2;
-	String[] columnNames2 = {"东部排名","球队名称","场次","投篮命中数","投篮出手数","三分命中数","三分出手数","罚球命中数","罚球出手数","进攻篮板数","防守篮板数","篮板数","助攻数","抢断数","盖帽数","失误数","犯规数","比赛得分","投篮命中率","三分命中率","罚球命中率","胜率","进攻回合","进攻效率","防守效率","篮板效率","抢断效率","助攻效率"};
+	String[] columnNames2 = {"东部","场次","投篮命中数","投篮出手数","三分命中数","三分出手数","罚球命中数","罚球出手数","进攻篮板数","防守篮板数","篮板数","助攻数","抢断数","盖帽数","失误数","犯规数","比赛得分","投篮命中率","三分命中率","罚球命中率","胜率","进攻回合","进攻效率","防守效率","进攻篮板效率","防守篮板效率","抢断效率","助攻效率","场均投篮命中数","场均投篮出手数","场均三分命中数","场均三分出手数","场均罚球命中数","场均罚球出手数","场均进攻篮板数","场均防守篮板数","场均篮板数","场均助攻数","场均抢断数","场均盖帽数","场均失误数","场均犯规数","场均得分"};
 	JScrollPane pane3;
 	MyTable table3;
 	DefaultTableModel model3;
-	String[] columnNames3 = {"东南区排名","球队名称","场次","投篮命中数","投篮出手数","三分命中数","三分出手数","罚球命中数","罚球出手数","进攻篮板数","防守篮板数","篮板数","助攻数","抢断数","盖帽数","失误数","犯规数","比赛得分","投篮命中率","三分命中率","罚球命中率","胜率","进攻回合","进攻效率","防守效率","篮板效率","抢断效率","助攻效率"};
+	String[] columnNames3 = {"东南区","场次","投篮命中数","投篮出手数","三分命中数","三分出手数","罚球命中数","罚球出手数","进攻篮板数","防守篮板数","篮板数","助攻数","抢断数","盖帽数","失误数","犯规数","比赛得分","投篮命中率","三分命中率","罚球命中率","胜率","进攻回合","进攻效率","防守效率","进攻篮板效率","防守篮板效率","抢断效率","助攻效率","场均投篮命中数","场均投篮出手数","场均三分命中数","场均三分出手数","场均罚球命中数","场均罚球出手数","场均进攻篮板数","场均防守篮板数","场均篮板数","场均助攻数","场均抢断数","场均盖帽数","场均失误数","场均犯规数","场均得分"};
 	JScrollPane pane4;
 	MyTable table4;
 	DefaultTableModel model4;
-	String[] columnNames4 = {"大西洋区排名","球队名称","场次","投篮命中数","投篮出手数","三分命中数","三分出手数","罚球命中数","罚球出手数","进攻篮板数","防守篮板数","篮板数","助攻数","抢断数","盖帽数","失误数","犯规数","比赛得分","投篮命中率","三分命中率","罚球命中率","胜率","进攻回合","进攻效率","防守效率","篮板效率","抢断效率","助攻效率"};
+	String[] columnNames4 = {"大西洋区","场次","投篮命中数","投篮出手数","三分命中数","三分出手数","罚球命中数","罚球出手数","进攻篮板数","防守篮板数","篮板数","助攻数","抢断数","盖帽数","失误数","犯规数","比赛得分","投篮命中率","三分命中率","罚球命中率","胜率","进攻回合","进攻效率","防守效率","进攻篮板效率","防守篮板效率","抢断效率","助攻效率","场均投篮命中数","场均投篮出手数","场均三分命中数","场均三分出手数","场均罚球命中数","场均罚球出手数","场均进攻篮板数","场均防守篮板数","场均篮板数","场均助攻数","场均抢断数","场均盖帽数","场均失误数","场均犯规数","场均得分"};
 	JScrollPane pane5;
 	MyTable table5;
 	DefaultTableModel model5;
-	String[] columnNames5 = {"中部区排名","球队名称","场次","投篮命中数","投篮出手数","三分命中数","三分出手数","罚球命中数","罚球出手数","进攻篮板数","防守篮板数","篮板数","助攻数","抢断数","盖帽数","失误数","犯规数","比赛得分","投篮命中率","三分命中率","罚球命中率","胜率","进攻回合","进攻效率","防守效率","篮板效率","抢断效率","助攻效率"};
+	String[] columnNames5 = {"中部区","场次","投篮命中数","投篮出手数","三分命中数","三分出手数","罚球命中数","罚球出手数","进攻篮板数","防守篮板数","篮板数","助攻数","抢断数","盖帽数","失误数","犯规数","比赛得分","投篮命中率","三分命中率","罚球命中率","胜率","进攻回合","进攻效率","防守效率","进攻篮板效率","防守篮板效率","抢断效率","助攻效率","场均投篮命中数","场均投篮出手数","场均三分命中数","场均三分出手数","场均罚球命中数","场均罚球出手数","场均进攻篮板数","场均防守篮板数","场均篮板数","场均助攻数","场均抢断数","场均盖帽数","场均失误数","场均犯规数","场均得分"};
 	JScrollPane pane6;
 	MyTable table6;
 	DefaultTableModel model6;
-	String[] columnNames6 = {"西南区排名","球队名称","场次","投篮命中数","投篮出手数","三分命中数","三分出手数","罚球命中数","罚球出手数","进攻篮板数","防守篮板数","篮板数","助攻数","抢断数","盖帽数","失误数","犯规数","比赛得分","投篮命中率","三分命中率","罚球命中率","胜率","进攻回合","进攻效率","防守效率","篮板效率","抢断效率","助攻效率"};
+	String[] columnNames6 = {"西南区","场次","投篮命中数","投篮出手数","三分命中数","三分出手数","罚球命中数","罚球出手数","进攻篮板数","防守篮板数","篮板数","助攻数","抢断数","盖帽数","失误数","犯规数","比赛得分","投篮命中率","三分命中率","罚球命中率","胜率","进攻回合","进攻效率","防守效率","进攻篮板效率","防守篮板效率","抢断效率","助攻效率","场均投篮命中数","场均投篮出手数","场均三分命中数","场均三分出手数","场均罚球命中数","场均罚球出手数","场均进攻篮板数","场均防守篮板数","场均篮板数","场均助攻数","场均抢断数","场均盖帽数","场均失误数","场均犯规数","场均得分"};
 	JScrollPane pane7;
 	MyTable table7;
 	DefaultTableModel model7;
-	String[] columnNames7 = {"西北区排名","球队名称","场次","投篮命中数","投篮出手数","三分命中数","三分出手数","罚球命中数","罚球出手数","进攻篮板数","防守篮板数","篮板数","助攻数","抢断数","盖帽数","失误数","犯规数","比赛得分","投篮命中率","三分命中率","罚球命中率","胜率","进攻回合","进攻效率","防守效率","篮板效率","抢断效率","助攻效率"};
+	String[] columnNames7 = {"西北区","球队名称","场次","投篮命中数","投篮出手数","三分命中数","三分出手数","罚球命中数","罚球出手数","进攻篮板数","防守篮板数","篮板数","助攻数","抢断数","盖帽数","失误数","犯规数","比赛得分","投篮命中率","三分命中率","罚球命中率","胜率","进攻回合","进攻效率","防守效率","进攻篮板效率","防守篮板效率","抢断效率","助攻效率","场均投篮命中数","场均投篮出手数","场均三分命中数","场均三分出手数","场均罚球命中数","场均罚球出手数","场均进攻篮板数","场均防守篮板数","场均篮板数","场均助攻数","场均抢断数","场均盖帽数","场均失误数","场均犯规数","场均得分"};
 	JScrollPane pane8;
 	MyTable table8;
 	DefaultTableModel model8;
-	String[] columnNames8 = {"太平洋区排名","球队名称","场次","投篮命中数","投篮出手数","三分命中数","三分出手数","罚球命中数","罚球出手数","进攻篮板数","防守篮板数","篮板数","助攻数","抢断数","盖帽数","失误数","犯规数","比赛得分","投篮命中率","三分命中率","罚球命中率","胜率","进攻回合","进攻效率","防守效率","篮板效率","抢断效率","助攻效率"};
+	String[] columnNames8 = {"太平洋区","场次","投篮命中数","投篮出手数","三分命中数","三分出手数","罚球命中数","罚球出手数","进攻篮板数","防守篮板数","篮板数","助攻数","抢断数","盖帽数","失误数","犯规数","比赛得分","投篮命中率","三分命中率","罚球命中率","胜率","进攻回合","进攻效率","防守效率","进攻篮板效率","防守篮板效率","抢断效率","助攻效率","场均投篮命中数","场均投篮出手数","场均三分命中数","场均三分出手数","场均罚球命中数","场均罚球出手数","场均进攻篮板数","场均防守篮板数","场均篮板数","场均助攻数","场均抢断数","场均盖帽数","场均失误数","场均犯规数","场均得分"};
+	JScrollPane pane9;
+	MyTable table9;
+	DefaultTableModel model9;
+	String[] columnNames9 = {"球队名称","场次","投篮命中数","投篮出手数","三分命中数","三分出手数","罚球命中数","罚球出手数","进攻篮板数","防守篮板数","篮板数","助攻数","抢断数","盖帽数","失误数","犯规数","比赛得分","投篮命中率","三分命中率","罚球命中率","胜率","进攻回合","进攻效率","防守效率","进攻篮板效率","防守篮板效率","抢断效率","助攻效率","场均投篮命中数","场均投篮出手数","场均三分命中数","场均三分出手数","场均罚球命中数","场均罚球出手数","场均进攻篮板数","场均防守篮板数","场均篮板数","场均助攻数","场均抢断数","场均盖帽数","场均失误数","场均犯规数","场均得分"};
 
 	JLabel rankingBand = new JLabel(Img.RANKINGBAND);
 	JRadioButton jrb1 = new JRadioButton("联盟排名");
@@ -113,7 +120,8 @@ public class Ranking extends MyPanel implements ActionListener{
         type.addItem("进攻回合");
         type.addItem("进攻效率");
         type.addItem("防守效率");
-        type.addItem("篮板效率");
+        type.addItem("进攻篮板效率");
+        type.addItem("防守篮板效率");
         type.addItem("抢断效率");
         type.addItem("助攻效率");
         this.add(type);
@@ -134,7 +142,7 @@ public class Ranking extends MyPanel implements ActionListener{
 		rankingBand.setBounds(0, 150, 1052, 70);
 		
 		
-        Object[][] data = null;
+        Object[][] data = getData(trs.getTeamData("`east/west`='W'", "wins", "DESC"));
 	    model1 = new DefaultTableModel(new Object[][]{},columnNames1);
 	    model1.setDataVector(data, columnNames1);
 	    table1 = new MyTable(model1);
@@ -144,7 +152,7 @@ public class Ranking extends MyPanel implements ActionListener{
 	    this.add(pane1);
 	    pane1.setBounds(0, 220, 1052, 215);
 	    
-        Object[][] data2 = null;
+        Object[][] data2 = getData(trs.getTeamData("`east/west`='E'", "wins", "DESC"));
 	    model2 = new DefaultTableModel(new Object[][]{},columnNames2);
 	    model2.setDataVector(data2, columnNames2);
 	    table2 = new MyTable(model2);
@@ -154,7 +162,7 @@ public class Ranking extends MyPanel implements ActionListener{
 	    this.add(pane2);
 	    pane2.setBounds(0, 435, 1052, 215);
 	    
-        Object[][] data3 = null;
+        Object[][] data3 = getData(trs.getTeamData("`partition`='Southeast'", "wins", "DESC"));
 	    model3 = new DefaultTableModel(new Object[][]{},columnNames3);
 	    model3.setDataVector(data3, columnNames3);
 	    table3 = new MyTable(model3);
@@ -164,7 +172,7 @@ public class Ranking extends MyPanel implements ActionListener{
 	    this.add(pane3);
 	    pane3.setBounds(0, 220, 526, 143);
 	    
-        Object[][] data4 = null;
+        Object[][] data4 = getData(trs.getTeamData("`partition`='Atlantic'", "wins", "DESC"));
 	    model4 = new DefaultTableModel(new Object[][]{},columnNames4);
 	    model4.setDataVector(data4, columnNames4);
 	    table4 = new MyTable(model4);
@@ -174,7 +182,7 @@ public class Ranking extends MyPanel implements ActionListener{
 	    this.add(pane4);
 	    pane4.setBounds(0, 363, 526, 143);
 	    
-        Object[][] data5 = null;
+        Object[][] data5 = getData(trs.getTeamData("`partition`='Central'", "wins", "DESC"));
 	    model5 = new DefaultTableModel(new Object[][]{},columnNames5);
 	    model5.setDataVector(data5, columnNames5);
 	    table5 = new MyTable(model5);
@@ -184,7 +192,7 @@ public class Ranking extends MyPanel implements ActionListener{
 	    this.add(pane5);
 	    pane5.setBounds(0, 506, 526, 144);
 	    
-        Object[][] data6 = null;
+        Object[][] data6 = getData(trs.getTeamData("`partition`='Southwest'", "wins", "DESC"));
 	    model6 = new DefaultTableModel(new Object[][]{},columnNames6);
 	    model6.setDataVector(data6, columnNames6);
 	    table6 = new MyTable(model6);
@@ -194,7 +202,7 @@ public class Ranking extends MyPanel implements ActionListener{
 	    this.add(pane6);
 	    pane6.setBounds(526, 220, 526, 143);
 	    
-        Object[][] data7 = null;
+        Object[][] data7 = getData(trs.getTeamData("`partition`='Northwest'", "wins", "DESC"));
 	    model7 = new DefaultTableModel(new Object[][]{},columnNames7);
 	    model7.setDataVector(data7, columnNames7);
 	    table7 = new MyTable(model7);
@@ -204,7 +212,7 @@ public class Ranking extends MyPanel implements ActionListener{
 	    this.add(pane7);
 	    pane7.setBounds(526, 363, 526, 143);
 	    
-        Object[][] data8 = null;
+        Object[][] data8 = getData(trs.getTeamData("`partition`='Pacific'", "wins", "DESC"));
 	    model8 = new DefaultTableModel(new Object[][]{},columnNames8);
 	    model8.setDataVector(data8, columnNames8);
 	    table8 = new MyTable(model8);
@@ -213,12 +221,28 @@ public class Ranking extends MyPanel implements ActionListener{
 	    pane8 = new JScrollPane (table8);
 	    this.add(pane8);
 	    pane8.setBounds(526, 506, 526, 144);
+	    
+        Object[][] data9 = null;
+	    model9 = new DefaultTableModel(new Object[][]{},columnNames9);
+	    model9.setDataVector(data9, columnNames9);
+	    table9 = new MyTable(model9);
 
+	    //table.setAutoResizeMode(JTable.AUTO_RESIZE_ALL_COLUMNS);
+	    pane9 = new JScrollPane (table9);
+	    this.add(pane9);
+	    pane9.setBounds(0, 220, 1052, 430);
 	}
-	
-    public void	initial(){
 
-	}
+    public Object[][] getData(ArrayList<TeamVO> teams){
+    	int num = teams.size();
+    	Object[][] data = new Object[num][];
+		for(int i = 0;i<num;i++){
+			Object[] temp = {teams.get(i).getTeamName(),teams.get(i).getMatches(),teams.get(i).getFieldGoal(),teams.get(i).getFieldGoalAttempts(),teams.get(i).getThreePointFieldGoal(),teams.get(i).getThreePointFieldGoalAttempts(),teams.get(i).getFreeThrow(),teams.get(i).getFreeThrowAttempts(),teams.get(i).getOffensiveRebound(),teams.get(i).getDefensiveRebound(),teams.get(i).getBackboard(),teams.get(i).getAssist(),teams.get(i).getSteal(),teams.get(i).getBlock(),teams.get(i).getTurnOver(),teams.get(i).getFoul(),teams.get(i).getScoring(),teams.get(i).getFieldGoalPercentage(),teams.get(i).getThreePointShotPercentage(),teams.get(i).getFreeThrowPercentage(),teams.get(i).getWinningPercentage(),teams.get(i).getPossessions(),teams.get(i).getOffensiveEfficiency(),teams.get(i).getDefensiveEfficiency(),teams.get(i).getOffensivebackboardEfficiency(),teams.get(i).getDefensivebackboardEfficiency(),teams.get(i).getStealEfficiency(),teams.get(i).getAssitEfficiency(),teams.get(i).getAverageFieldGoal(),teams.get(i).getAverageFieldGoalAttempts(),teams.get(i).getAverageThreePointFieldGoal(),teams.get(i).getAverageThreePointFieldGoalAttempts(),teams.get(i).getAverageFreeThrow(),teams.get(i).getAverageFreeThrowAttempts(),teams.get(i).getAverageOffensiveRebound(),teams.get(i).getAverageDefensiveRebound(),teams.get(i).getAverageBackboard(),teams.get(i).getAverageAsist(),teams.get(i).getAverageSteal(),teams.get(i).getAverageBlock(),teams.get(i).getAverageTurnOver(),teams.get(i).getAverageFoul(),teams.get(i).getAverageScoring()};
+		    data[i] = temp;
+		}
+		return data;
+    }
+    
 	
 	public void actionPerformed(ActionEvent e) {
 		// TODO Auto-generated method stub
@@ -229,15 +253,47 @@ public class Ranking extends MyPanel implements ActionListener{
 		if(e.getActionCommand().equals("area")){
 			pane1.setVisible(false);
 			pane2.setVisible(false);
+			pane3.setVisible(true);
+			pane4.setVisible(true);
+			pane5.setVisible(true);
+			pane6.setVisible(true);
+			pane7.setVisible(true);
+			pane8.setVisible(true);
 		}
 		if(e.getActionCommand().equals("home")||e.getActionCommand().equals("back")){
 			frame.change(this, frame.mainFrame);
 		}
 		if(e.getActionCommand().equals("descending")){
-
+			pane1.setVisible(false);
+			pane2.setVisible(false);
+			pane3.setVisible(false);
+			pane4.setVisible(false);
+			pane5.setVisible(false);
+			pane6.setVisible(false);
+			pane7.setVisible(false);
+			pane8.setVisible(false);
+			jrb1.setSelected(false);
+			jrb2.setSelected(false);
+			Object[][] data = getData(trs.getAllTeamdata(Translate.translate1(type.getSelectedItem().toString()), "DESC"));
+			model9.setDataVector(data, columnNames9);
+		    table9.setWidth();
+			table9.updateUI();
 		}
 		if(e.getActionCommand().equals("ascending")){
-
+			pane1.setVisible(false);
+			pane2.setVisible(false);
+			pane3.setVisible(false);
+			pane4.setVisible(false);
+			pane5.setVisible(false);
+			pane6.setVisible(false);
+			pane7.setVisible(false);
+			pane8.setVisible(false);
+			jrb1.setSelected(false);
+			jrb2.setSelected(false);
+			Object[][] data = getData(trs.getAllTeamdata(Translate.translate1(type.getSelectedItem().toString()), "ASC"));
+			model9.setDataVector(data, columnNames9);
+		    table9.setWidth();
+			table9.updateUI();
 		}
 		
 		

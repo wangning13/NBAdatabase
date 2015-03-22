@@ -3,6 +3,7 @@ package ui.player;
 import java.awt.Font;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.util.ArrayList;
 
 import javax.swing.ButtonGroup;
 import javax.swing.JButton;
@@ -13,18 +14,26 @@ import javax.swing.JScrollPane;
 import javax.swing.JTable;
 import javax.swing.table.DefaultTableModel;
 
+import businesslogic.playerbl.PlayerRank;
+import businesslogic.teambl.TeamRank;
+import businesslogicservice.playerblservice.PlayerRankService;
+import businesslogicservice.teamblservice.TeamRankService;
 import ui.main.Frame;
 import ui.main.MyPanel;
 import ui.material.Img;
 import ui.tools.MyTable;
+import ui.tools.Translate;
+import vo.PlayerVO;
+import vo.TeamVO;
 
 @SuppressWarnings("serial")
 public class Statistics extends MyPanel implements ActionListener{
+	PlayerRankService prs = new PlayerRank();
 	Frame frame;
 	JScrollPane pane;
 	MyTable table;
 	DefaultTableModel model;
-	String[] columnNames = {"球员名称","所属球队","参赛场数","先发场数","篮板数","助攻数","在场时间","投篮命中率","三分命中率","罚球命中率","进攻数","防守数","抢断数","盖帽数","失误数","犯规数","得分","效率","GmSc效率值","真是命中率","投篮效率","篮板率","进攻篮板率","防守篮板率","助攻率","抢断率","盖帽率","失误率","使用率"};
+	String[] columnNames = {"球员名称","所属球队","参赛场数","先发场数","篮板数","助攻数","在场时间","投篮命中率","三分命中率","罚球命中率","进攻数","防守数","抢断数","盖帽数","失误数","犯规数","得分","效率","GmSc效率值","真实命中率","投篮效率","篮板率","进攻篮板率","防守篮板率","助攻率","抢断率","盖帽率","失误率","使用率","场均得分","场均时间","场均篮板","场均助攻","场均投篮命中数","场均投篮出手数","场均三分命中数","场均三分出手数","场均罚球命中数","场均罚球出手数","场均进攻数","场均防守数","场均抢断数","场均盖帽数","场均失误数","场均犯规数"};
 	JLabel rankingBand = new JLabel(Img.RANKINGBAND);
 
 	JComboBox<String> type = new JComboBox<String>();
@@ -61,7 +70,7 @@ public class Statistics extends MyPanel implements ActionListener{
         type.addItem("犯规数");
         type.addItem("效率");
         type.addItem("GmSc效率值");
-        type.addItem("真是命中率");
+        type.addItem("真实命中率");
         type.addItem("投篮效率");
         type.addItem("篮板率");
         type.addItem("进攻篮板率");
@@ -90,7 +99,7 @@ public class Statistics extends MyPanel implements ActionListener{
 		term.addItem("抢断");
 		term.addItem("犯规");
 		term.addItem("失误");
-		term.addItem("分钟");
+		term.addItem("在场时间");
 		term.addItem("效率");
 		term.addItem("投篮");
 		term.addItem("三分");
@@ -133,7 +142,7 @@ public class Statistics extends MyPanel implements ActionListener{
 		this.add(rankingBand);
 		rankingBand.setBounds(0, 150, 1052, 70);
 		
-        Object[][] data = null;
+        Object[][] data = getData(prs.getAllPlayerdata("scoring", "DESC"));
 	    model = new DefaultTableModel(new Object[][]{},columnNames);
 	    model.setDataVector(data, columnNames);
 	    table = new MyTable(model);
@@ -144,12 +153,40 @@ public class Statistics extends MyPanel implements ActionListener{
 	    pane.setBounds(0, 220, 1052, 430);
 	}
 	
+    public Object[][] getData(ArrayList<PlayerVO> players){
+    	int num = players.size();
+    	Object[][] data = new Object[num][];
+		for(int i = 0;i<num;i++){
+			Object[] temp = {players.get(i).getPlayerName(),players.get(i).getTeam(),players.get(i).getAppearance(),players.get(i).getFirstPlay(),players.get(i).getBackboard(),players.get(i).getAssist(),players.get(i).getMinites(),players.get(i).getFielfGoalShotPercentage(),players.get(i).getThreePointShotPercentage(),players.get(i).getFreeThrowPercentage(),players.get(i).getOffensiveRebound(),players.get(i).getDefensiveRebound(),players.get(i).getSteal(),players.get(i).getBlock(),players.get(i).getTurnOver(),players.get(i).getFoul(),players.get(i).getScoring(),players.get(i).getEfficiency(),players.get(i).getGmScEfficiency(),players.get(i).getTrueShootingPercentage(),players.get(i).getShootingEfficiency(),players.get(i).getBackboardPercentage(),players.get(i).getOffensiveReboundPercentage(),players.get(i).getDefensiveReboundPercentage(),players.get(i).getAssistPercentage(),players.get(i).getStealPercentage(),players.get(i).getBlockPercentage(),players.get(i).getTurnOverPercentage(),players.get(i).getUsage(),players.get(i).getAverageScoring(),players.get(i).getAverageMinute(),players.get(i).getAverageBackboard(),players.get(i).getAverageAssist(),players.get(i).getAverageFieldGoal(),players.get(i).getAverageFieldGoalAttempts(),players.get(i).getAverageThreePointFieldGoal(),players.get(i).getAverageThreePointFieldGoalAttempts(),players.get(i).getAverageFreeThrow(),players.get(i).getAverageFreeThrowAttempts(),players.get(i).getAverageOffensiveRebound(),players.get(i).getAverageDefensiveRebound(),players.get(i).getAverageSteal(),players.get(i).getAverageBlock(),players.get(i).getAverageTurn(),players.get(i).getAverageFoul()};
+		    data[i] = temp;
+		}
+		return data;
+    }
+	
 	public void actionPerformed(ActionEvent e) {
 		// TODO Auto-generated method stub
 		if(e.getActionCommand().equals("home")||e.getActionCommand().equals("back")){
 			frame.change(this, frame.mainFrame);
 		}
 		
+		if(e.getActionCommand().equals("descending")){	
+			 Object[][] data = getData(prs.getAllPlayerdata(Translate.translate1(type.getSelectedItem().toString()), "DESC"));
+			 model.setDataVector(data, columnNames);
+		     table.setWidth();
+			 table.updateUI();
+		}
+		if(e.getActionCommand().equals("ascending")){
+			 Object[][] data = getData(prs.getAllPlayerdata(Translate.translate1(type.getSelectedItem().toString()), "ASC"));
+			 model.setDataVector(data, columnNames);
+		     table.setWidth();
+			 table.updateUI();
+		}
+		if(e.getActionCommand().equals("filter")){
+			 Object[][] data = getData(prs.getFirstFifty(Translate.translate1(posision.getSelectedItem().toString()),Translate.translate1(area.getSelectedItem().toString()),Translate.translate1(term.getSelectedItem().toString())));
+			 model.setDataVector(data, columnNames);
+		     table.setWidth();
+			 table.updateUI();
+		}
 	}
 
 }
