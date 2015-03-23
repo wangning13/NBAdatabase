@@ -31,8 +31,8 @@ public class Ranking extends MyPanel implements ActionListener{
 	JScrollPane pane1;
 	MyTable table1;
 	DefaultTableModel model1;
-	String[] columnNames1 = {"西部","场次","投篮命中数","投篮出手数","三分命中数","三分出手数","罚球命中数","罚球出手数","进攻篮板数","防守篮板数","篮板数","助攻数","抢断数","盖帽数","失误数","犯规数","比赛得分","投篮命中率","三分命中率","罚球命中率","胜率","进攻回合","进攻效率","防守效率","进攻篮板效率","防守篮板效率","抢断效率","助攻效率","场均投篮命中数","场均投篮出手数","场均三分命中数","场均三分出手数","场均罚球命中数","场均罚球出手数","场均进攻篮板数","场均防守篮板数","场均篮板数","场均助攻数","场均抢断数","场均盖帽数","场均失误数","场均犯规数","场均得分"};
-	JScrollPane pane2;
+	String[] columnNames1 = {"球队名称","场次","投篮命中数","投篮出手数","三分命中数","三分出手数","罚球命中数","罚球出手数","进攻篮板数","防守篮板数","篮板数","助攻数","抢断数","盖帽数","失误数","犯规数","比赛得分","投篮命中率","三分命中率","罚球命中率","胜率","进攻回合","进攻效率","防守效率","进攻篮板效率","防守篮板效率","抢断效率","助攻效率","场均投篮命中数","场均投篮出手数","场均三分命中数","场均三分出手数","场均罚球命中数","场均罚球出手数","场均进攻篮板数","场均防守篮板数","场均篮板数","场均助攻数","场均抢断数","场均盖帽数","场均失误数","场均犯规数","场均得分"};
+	/*JScrollPane pane2;
 	MyTable table2;
 	DefaultTableModel model2;
 	String[] columnNames2 = {"东部","场次","投篮命中数","投篮出手数","三分命中数","三分出手数","罚球命中数","罚球出手数","进攻篮板数","防守篮板数","篮板数","助攻数","抢断数","盖帽数","失误数","犯规数","比赛得分","投篮命中率","三分命中率","罚球命中率","胜率","进攻回合","进攻效率","防守效率","进攻篮板效率","防守篮板效率","抢断效率","助攻效率","场均投篮命中数","场均投篮出手数","场均三分命中数","场均三分出手数","场均罚球命中数","场均罚球出手数","场均进攻篮板数","场均防守篮板数","场均篮板数","场均助攻数","场均抢断数","场均盖帽数","场均失误数","场均犯规数","场均得分"};
@@ -64,10 +64,16 @@ public class Ranking extends MyPanel implements ActionListener{
 	MyTable table9;
 	DefaultTableModel model9;
 	String[] columnNames9 = {"球队名称","场次","投篮命中数","投篮出手数","三分命中数","三分出手数","罚球命中数","罚球出手数","进攻篮板数","防守篮板数","篮板数","助攻数","抢断数","盖帽数","失误数","犯规数","比赛得分","投篮命中率","三分命中率","罚球命中率","胜率","进攻回合","进攻效率","防守效率","进攻篮板效率","防守篮板效率","抢断效率","助攻效率","场均投篮命中数","场均投篮出手数","场均三分命中数","场均三分出手数","场均罚球命中数","场均罚球出手数","场均进攻篮板数","场均防守篮板数","场均篮板数","场均助攻数","场均抢断数","场均盖帽数","场均失误数","场均犯规数","场均得分"};
-
+*/
 	JLabel rankingBand = new JLabel(Img.RANKINGBAND);
-	JRadioButton jrb1 = new JRadioButton("联盟排名");
-	JRadioButton jrb2 = new JRadioButton("分区排名");
+	JRadioButton jrb1 = new JRadioButton("西部");
+	JRadioButton jrb2 = new JRadioButton("东部");
+	JRadioButton jrb3 = new JRadioButton("西南区");
+	JRadioButton jrb4 = new JRadioButton("西北区");
+	JRadioButton jrb5 = new JRadioButton("太平洋区");
+	JRadioButton jrb6 = new JRadioButton("东南区");
+	JRadioButton jrb7 = new JRadioButton("中部区");
+	JRadioButton jrb8 = new JRadioButton("大西洋区");
 	ButtonGroup group = new ButtonGroup();
 	JComboBox<String> type = new JComboBox<String>();
 	JButton descending = new JButton("降序");
@@ -81,19 +87,53 @@ public class Ranking extends MyPanel implements ActionListener{
 
 		
 		this.add(jrb1);
-		jrb1.setBounds(30, 175, 95, 20);
+		jrb1.setBounds(30, 165, 90, 20);
 		jrb1.setFont(font1);
-		jrb1.setSelected(true);
         jrb1.addActionListener(this);
-        jrb1.setActionCommand("league");
+        jrb1.setActionCommand("west");
 		this.add(jrb2);
-		jrb2.setBounds(150, 175, 95, 20);
+		jrb2.setBounds(30, 185, 90, 20);
 		jrb2.setFont(font1);
         jrb2.addActionListener(this);
-        jrb2.setActionCommand("area");
+        jrb2.setActionCommand("east");
+		this.add(jrb3);
+		jrb3.setBounds(120, 165, 90, 20);
+		jrb3.setFont(font1);
+		jrb3.addActionListener(this);
+		jrb3.setActionCommand("southwest");
+		this.add(jrb4);
+		jrb4.setBounds(210, 165, 90, 20);
+		jrb4.setFont(font1);
+		jrb4.addActionListener(this);
+		jrb4.setActionCommand("northwest");
+		this.add(jrb5);
+		jrb5.setBounds(300, 165, 95, 20);
+		jrb5.setFont(font1);
+		jrb5.addActionListener(this);
+		jrb5.setActionCommand("pacific");
+		this.add(jrb6);
+		jrb6.setBounds(120, 185, 90, 20);
+		jrb6.setFont(font1);
+		jrb6.addActionListener(this);
+		jrb6.setActionCommand("southeast");
+		this.add(jrb7);
+		jrb7.setBounds(210, 185, 90, 20);
+		jrb7.setFont(font1);
+		jrb7.addActionListener(this);
+		jrb7.setActionCommand("central");
+		this.add(jrb8);
+		jrb8.setBounds(300, 185, 95, 20);
+		jrb8.setFont(font1);
+		jrb8.addActionListener(this);
+		jrb8.setActionCommand("atlantic");
 		group.add(jrb1);
 		group.add(jrb2);
-		
+		group.add(jrb3);
+		group.add(jrb4);
+		group.add(jrb5);
+		group.add(jrb6);
+		group.add(jrb7);
+		group.add(jrb8);
 
 		
         type.addItem("胜率");
@@ -142,7 +182,7 @@ public class Ranking extends MyPanel implements ActionListener{
 		rankingBand.setBounds(0, 150, 1052, 70);
 		
 		
-        Object[][] data = getData(trs.getTeamData("`east/west`='W'", "wins", "DESC"));
+        Object[][] data = getData(trs.getAllTeamdata( "wins", "DESC"));
 	    model1 = new DefaultTableModel(new Object[][]{},columnNames1);
 	    model1.setDataVector(data, columnNames1);
 	    table1 = new MyTable(model1);
@@ -150,9 +190,9 @@ public class Ranking extends MyPanel implements ActionListener{
 	    //table.setAutoResizeMode(JTable.AUTO_RESIZE_ALL_COLUMNS);
 	    pane1 = new JScrollPane (table1);
 	    this.add(pane1);
-	    pane1.setBounds(0, 220, 1052, 215);
+	    pane1.setBounds(0, 220, 1052, 430);
 	    
-        Object[][] data2 = getData(trs.getTeamData("`east/west`='E'", "wins", "DESC"));
+    /*    Object[][] data2 = getData(trs.getTeamData("`east/west`='E'", "wins", "DESC"));
 	    model2 = new DefaultTableModel(new Object[][]{},columnNames2);
 	    model2.setDataVector(data2, columnNames2);
 	    table2 = new MyTable(model2);
@@ -230,7 +270,7 @@ public class Ranking extends MyPanel implements ActionListener{
 	    //table.setAutoResizeMode(JTable.AUTO_RESIZE_ALL_COLUMNS);
 	    pane9 = new JScrollPane (table9);
 	    this.add(pane9);
-	    pane9.setBounds(0, 220, 1052, 430);
+	    pane9.setBounds(0, 220, 1052, 430);*/
 	}
 
     public Object[][] getData(ArrayList<TeamVO> teams){
@@ -246,25 +286,69 @@ public class Ranking extends MyPanel implements ActionListener{
 	
 	public void actionPerformed(ActionEvent e) {
 		// TODO Auto-generated method stub
-		if(e.getActionCommand().equals("league")){
-			pane1.setVisible(true);
-			pane2.setVisible(true);
+		if(e.getActionCommand().equals("west")){
+			/*pane1.setVisible(true);
+			pane2.setVisible(true);*/
+			Object[][] data = getData(trs.getTeamData("`east/west`='W'", "wins", "DESC"));
+			model1.setDataVector(data, columnNames1);
+		    table1.setWidth();
+			table1.updateUI();
 		}
-		if(e.getActionCommand().equals("area")){
-			pane1.setVisible(false);
+		if(e.getActionCommand().equals("east")){
+		/*	pane1.setVisible(false);
 			pane2.setVisible(false);
 			pane3.setVisible(true);
 			pane4.setVisible(true);
 			pane5.setVisible(true);
 			pane6.setVisible(true);
 			pane7.setVisible(true);
-			pane8.setVisible(true);
+			pane8.setVisible(true);*/
+			Object[][] data = getData(trs.getTeamData("`east/west`='E'", "wins", "DESC"));
+			model1.setDataVector(data, columnNames1);
+		    table1.setWidth();
+			table1.updateUI();
+		}
+		if(e.getActionCommand().equals("southwest")){
+			Object[][] data = getData(trs.getTeamData("`partition`='Southwest'", "wins", "DESC"));
+			model1.setDataVector(data, columnNames1);
+		    table1.setWidth();
+			table1.updateUI();
+		}
+		if(e.getActionCommand().equals("northwest")){
+			Object[][] data = getData(trs.getTeamData("`partition`='Northwest'", "wins", "DESC"));
+			model1.setDataVector(data, columnNames1);
+		    table1.setWidth();
+			table1.updateUI();
+		}
+		if(e.getActionCommand().equals("pacific")){
+			Object[][] data = getData(trs.getTeamData("`partition`='Pacific'", "wins", "DESC"));
+			model1.setDataVector(data, columnNames1);
+		    table1.setWidth();
+			table1.updateUI();
+		}
+		if(e.getActionCommand().equals("southeast")){
+			Object[][] data = getData(trs.getTeamData("`partition`='Southeast'", "wins", "DESC"));
+			model1.setDataVector(data, columnNames1);
+		    table1.setWidth();
+			table1.updateUI();
+		}
+		if(e.getActionCommand().equals("central")){
+			Object[][] data = getData(trs.getTeamData("`partition`='Central'", "wins", "DESC"));
+			model1.setDataVector(data, columnNames1);
+		    table1.setWidth();
+			table1.updateUI();
+		}
+		if(e.getActionCommand().equals("atlantic")){
+			Object[][] data = getData(trs.getTeamData("`partition`='Atlantic'", "wins", "DESC"));
+			model1.setDataVector(data, columnNames1);
+		    table1.setWidth();
+			table1.updateUI();
 		}
 		if(e.getActionCommand().equals("home")||e.getActionCommand().equals("back")){
 			frame.change(this, frame.mainFrame);
 		}
 		if(e.getActionCommand().equals("descending")){
-			pane1.setVisible(false);
+			/*pane1.setVisible(false);
 			pane2.setVisible(false);
 			pane3.setVisible(false);
 			pane4.setVisible(false);
@@ -273,14 +357,14 @@ public class Ranking extends MyPanel implements ActionListener{
 			pane7.setVisible(false);
 			pane8.setVisible(false);
 			jrb1.setSelected(false);
-			jrb2.setSelected(false);
+			jrb2.setSelected(false);*/
 			Object[][] data = getData(trs.getAllTeamdata(Translate.translate1(type.getSelectedItem().toString()), "DESC"));
-			model9.setDataVector(data, columnNames9);
-		    table9.setWidth();
-			table9.updateUI();
+			model1.setDataVector(data, columnNames1);
+		    table1.setWidth();
+			table1.updateUI();
 		}
 		if(e.getActionCommand().equals("ascending")){
-			pane1.setVisible(false);
+			/*pane1.setVisible(false);
 			pane2.setVisible(false);
 			pane3.setVisible(false);
 			pane4.setVisible(false);
@@ -289,11 +373,11 @@ public class Ranking extends MyPanel implements ActionListener{
 			pane7.setVisible(false);
 			pane8.setVisible(false);
 			jrb1.setSelected(false);
-			jrb2.setSelected(false);
+			jrb2.setSelected(false);*/
 			Object[][] data = getData(trs.getAllTeamdata(Translate.translate1(type.getSelectedItem().toString()), "ASC"));
-			model9.setDataVector(data, columnNames9);
-		    table9.setWidth();
-			table9.updateUI();
+			model1.setDataVector(data, columnNames1);
+		    table1.setWidth();
+			table1.updateUI();
 		}
 		
 		
