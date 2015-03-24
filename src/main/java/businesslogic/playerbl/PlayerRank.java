@@ -33,7 +33,6 @@ public class PlayerRank implements PlayerRankService{
 					teamPlayerList2.add(teamPlayerList1.get(i));
 				}
 			}
-			System.out.println(teamPlayerList2.size());
 			
 		} catch (MalformedURLException e) {
 			// TODO Auto-generated catch block
@@ -333,9 +332,7 @@ public class PlayerRank implements PlayerRankService{
 					}else {
 						
 						playerPOs.get(i).setFieldGoalShotPercentage(Double.parseDouble(df.format(((double)playerPOs.get(i).getFieldGoal())/playerPOs.get(i).getFieldGoalAttempts())));
-						System.out.println(playerPOs.get(i).getFieldGoalAttempts());
-						System.out.println(playerPOs.get(i).getFieldGoal());
-						System.out.println(Double.parseDouble(df.format(((double)playerPOs.get(i).getFieldGoal())/playerPOs.get(i).getFieldGoalAttempts())));
+						
 					}
 					if (playerPOs.get(i).getThreePointFieldGoalAttempts()==0) {
 						playerPOs.get(i).setThreePointShotPercentage(0);
