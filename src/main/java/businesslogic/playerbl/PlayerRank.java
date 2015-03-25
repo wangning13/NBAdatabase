@@ -577,7 +577,7 @@ public class PlayerRank implements PlayerRankService{
 				playerPOs = g.getSomePlayerdata(position, partition, key, "DESC");
 			}
 			
-			for (int i = 0; i < 50; i++) {
+			for (int i = 0; i < Math.min(50, playerPOs.size()); i++) {
 				
 					if (playerPOs.get(i).getFieldGoalAttempts()==0) {
 						playerPOs.get(i).setFieldGoalShotPercentage(0);
@@ -642,7 +642,7 @@ public class PlayerRank implements PlayerRankService{
 			
 			
 			ArrayList<PlayerPO> playerPOs2 = g.getByEfficiency(playerPOs, key, "DESC");
-			for (int i = 0; i < 50; i++) {
+			for (int i = 0; i < Math.min(50, playerPOs2.size()); i++) {
 				if (playerPOs2.get(i).getAppearance()==0) {
 					PlayerVO playerVO = new PlayerVO(
 							playerPOs2.get(i).getPlayerName(),
