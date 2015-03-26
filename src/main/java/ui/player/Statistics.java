@@ -83,9 +83,11 @@ public class Statistics extends MyPanel implements ActionListener{
         type.addItem("盖帽率");
         type.addItem("失误率");
         type.addItem("使用率");
+        type.setUI(new MyComboBoxUI());
         posision.addItem("前锋");
         posision.addItem("中锋");
         posision.addItem("后卫");
+        posision.setUI(new MyComboBoxUI());
         area.addItem("东部");
         area.addItem("西部");
         area.addItem("东南区");
@@ -94,6 +96,7 @@ public class Statistics extends MyPanel implements ActionListener{
         area.addItem("西南区");
         area.addItem("西北区");
         area.addItem("太平洋区");
+        area.setUI(new MyComboBoxUI());
 		term.addItem("得分");
 		term.addItem("篮板");
 		term.addItem("助攻");
@@ -108,6 +111,7 @@ public class Statistics extends MyPanel implements ActionListener{
 		term.addItem("三分");
 		term.addItem("罚球");
 		term.addItem("两双");
+		term.setUI(new MyComboBoxUI());
 		
         this.add(jl1);
         jl1.setBounds(20, 175, 180, 20);
@@ -121,11 +125,13 @@ public class Statistics extends MyPanel implements ActionListener{
         descending.setBounds(270, 172, 60, 25);
         descending.addActionListener(this);
         descending.setActionCommand("descending");
+        descending.setUI(new MyButtonUI());
         
         this.add(ascending);
         ascending.setBounds(340, 172, 60, 25);
         ascending.addActionListener(this);
         ascending.setActionCommand("ascending");
+        ascending.setUI(new MyButtonUI());
         
         this.add(jl2);
         jl2.setBounds(510, 175, 180, 20);
@@ -147,6 +153,7 @@ public class Statistics extends MyPanel implements ActionListener{
         filter.setBounds(980, 172, 60, 25);
         filter.addActionListener(this);
         filter.setActionCommand("filter");
+        filter.setUI(new MyButtonUI());
 		
 		this.add(rankingBand);
 		rankingBand.setBounds(0, 150, 1052, 70);
