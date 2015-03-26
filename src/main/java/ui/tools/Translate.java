@@ -168,7 +168,7 @@ public class Translate {
         	result = "usage";
         else if(type.equals("两双"))
         	result = "doubleDouble";
-        else if(type.equals("得分/篮板/助攻"))
+        else if(type.equals("得分/助攻/篮板"))
         	result = "weightAverage";
         else if(type.equals("前锋"))
         	result = "F";
