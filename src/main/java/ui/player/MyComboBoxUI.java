@@ -1,5 +1,6 @@
 package ui.player;
 
+import java.awt.Color;
 import java.awt.Graphics;
 import java.awt.Rectangle;
 
@@ -18,21 +19,22 @@ public class MyComboBoxUI extends BasicComboBoxUI{
 
 	@Override
 	public void paint(Graphics g, JComponent c) {
-		// TODO Auto-generated method stub
+		g.setColor(new Color(255,0,0,150));
+		g.fillRoundRect(0, 0, c.getWidth(), c.getHeight(), 10, 10);
 		super.paint(g, c);
 		
 	}
 
 	@Override
 	public void paintCurrentValue(Graphics g, Rectangle bounds, boolean hasFocus) {
-		// TODO Auto-generated method stub
+		g.setColor(Color.red);
 		super.paintCurrentValue(g, bounds, hasFocus);
 	}
 
 	@Override
 	public void paintCurrentValueBackground(Graphics g, Rectangle bounds,
 			boolean hasFocus) {
-		// TODO Auto-generated method stub
+		g.setColor(Color.green);
 		super.paintCurrentValueBackground(g, bounds, hasFocus);
 	}
 	
