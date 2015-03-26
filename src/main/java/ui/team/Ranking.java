@@ -172,11 +172,13 @@ public class Ranking extends MyPanel implements ActionListener{
         descending.setBounds(880, 172, 60, 25);
         descending.addActionListener(this);
         descending.setActionCommand("descending");
+        descending.setUI(new MyButtonUI());
         
         this.add(ascending);
         ascending.setBounds(950, 172, 60, 25);
         ascending.addActionListener(this);
         ascending.setActionCommand("ascending");
+        ascending.setUI(new MyButtonUI());
 		
 		this.add(rankingBand);
 		rankingBand.setBounds(0, 150, 1052, 70);
