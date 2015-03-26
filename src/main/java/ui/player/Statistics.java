@@ -159,22 +159,10 @@ public class Statistics extends MyPanel implements ActionListener{
 		rankingBand.setBounds(0, 150, 1052, 70);
 		
         Object[][] data = getData(prs.getAllPlayerdata("scoring", "DESC"));
-	    model =  new DefaultTableModel(new Object[][]{}, columnNames) {  
-	        public Class getColumnClass(int column) {  
-	            Class returnValue;  
-	            if ((column >= 0) && (column < getColumnCount())) {  
-	                returnValue = getValueAt(0, column).getClass();  
-	            } else {  
-	                returnValue = Object.class;  
-	            }  
-	            return returnValue;  
-	        }  
-	    };  
-	    RowSorter<TableModel> sorter = new TableRowSorter<TableModel>(model);  
+	    model =  new DefaultTableModel(new Object[][]{}, columnNames);   
 	    model.setDataVector(data, columnNames);
 
 	    table = new MyTable(model);
-	    table.setRowSorter(sorter);  
 
 	    //table.setAutoResizeMode(JTable.AUTO_RESIZE_ALL_COLUMNS);
 	    pane = new JScrollPane (table);
