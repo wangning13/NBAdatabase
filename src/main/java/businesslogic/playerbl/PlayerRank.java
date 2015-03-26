@@ -86,8 +86,12 @@ public class PlayerRank implements PlayerRankService{
 			}else {
 				playerPO.setTrueShootingPercentage(Double.parseDouble(df.format(playerPO.getScoring()/(2*(playerPO.getFieldGoalAttempts()+0.44*playerPO.getFreeThrowAttempts())))));
 			}
-			
-			playerPO.setShootingEfficiency(Double.parseDouble(df.format(((double)playerPO.getFieldGoal()/playerPO.getFieldGoalAttempts()))));
+			if (playerPO.getFieldGoalAttempts()==0) {
+				playerPO.setShootingEfficiency(0);
+			}else {
+				playerPO.setShootingEfficiency(Double.parseDouble(df.format(((double)playerPO.getFieldGoal()/playerPO.getFieldGoalAttempts()))));
+
+			}
 			if (playerPO.getMinites()==0) {
 				playerPO.setBackboardPercentage(0);
 			}else {
