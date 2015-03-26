@@ -126,7 +126,7 @@ public class PlayerRank implements PlayerRankService{
 				playerPO.setTurnOverPercentage(Double.parseDouble(df.format(playerPO.getTurnOver()/(playerPO.getFieldGoalAttempts()-playerPO.getThreePointFieldGoalAttempts()+0.44*playerPO.getFreeThrowAttempts()+playerPO.getTurnOver()))));
 
 			}
-			if (playerPO.getMinites()==0) {
+			if (playerPO.getMinites()==0 || (playerPO.getTeamFieldGoalAttempts()+0.44*playerPO.getTeamFreeThrowAttempts()+playerPO.getTeamTurnOver())==0) {
 				playerPO.setUsage(0);
 				
 			}else {
