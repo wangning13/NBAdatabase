@@ -90,7 +90,6 @@ public class PlayerRank implements PlayerRankService{
 				playerPO.setShootingEfficiency(0);
 			}else {
 				playerPO.setShootingEfficiency(Double.parseDouble(df.format(((double)playerPO.getFieldGoal()/playerPO.getFieldGoalAttempts()))));
-
 			}
 			if (playerPO.getMinites()==0) {
 				playerPO.setBackboardPercentage(0);
