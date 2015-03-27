@@ -110,12 +110,45 @@ public class PlayersSelect extends MyPanel implements ActionListener{
         ArrayList<String> NYKPlayers = prs.getAllPlayer("NYK");
         ArrayList<String> BKNPlayers = prs.getAllPlayer("BKN");
         ArrayList<String> TORPlayers = prs.getAllPlayer("TOR");
-		Object[][] data = new Object[19][];
-		for(int i=0;i<14;i++){
+        
+        for(int i=0;i<10;i++){
+            SASPlayers.add("");
+            MEMPlayers.add("");
+            DALPlayers.add("");
+            HOUPlayers.add("");
+            NOPPlayers.add("");
+            MINPlayers.add("");
+            DENPlayers.add("");
+            UTAPlayers.add("");
+            PORPlayers.add("");
+            OKCPlayers.add("");
+            SACPlayers.add("");
+            PHXPlayers.add("");
+            LALPlayers.add("");
+            LACPlayers.add("");
+            GSWPlayers.add("");
+            MIAPlayers.add("");
+            ORLPlayers.add("");
+            ATLPlayers.add("");
+            WASPlayers.add("");
+            CHAPlayers.add("");
+            DETPlayers.add("");
+            INDPlayers.add("");
+            CLEPlayers.add("");
+            CHIPlayers.add("");
+            MILPlayers.add("");
+            BOSPlayers.add("");
+            PHIPlayers.add("");
+            NYKPlayers.add("");
+            BKNPlayers.add("");
+            TORPlayers.add("");
+        }
+		Object[][] data = new Object[18][];
+		for(int i=0;i<18;i++){
         Object temp[] = {SASPlayers.get(i),MEMPlayers.get(i),DALPlayers.get(i),HOUPlayers.get(i),NOPPlayers.get(i),MINPlayers.get(i),DENPlayers.get(i),UTAPlayers.get(i),PORPlayers.get(i),OKCPlayers.get(i),SACPlayers.get(i),PHXPlayers.get(i),LALPlayers.get(i),LACPlayers.get(i),GSWPlayers.get(i),MIAPlayers.get(i),ORLPlayers.get(i),ATLPlayers.get(i),WASPlayers.get(i),CHAPlayers.get(i),DETPlayers.get(i),INDPlayers.get(i),CLEPlayers.get(i),CHIPlayers.get(i),MILPlayers.get(i),BOSPlayers.get(i),PHIPlayers.get(i),NYKPlayers.get(i),BKNPlayers.get(i),TORPlayers.get(i)};
         data[i] = temp;
 		}
-        Object temp1[] = {SASPlayers.get(14),MEMPlayers.get(14),DALPlayers.get(14),HOUPlayers.get(14),NOPPlayers.get(14),MINPlayers.get(14),"",UTAPlayers.get(14),PORPlayers.get(14),OKCPlayers.get(14),SACPlayers.get(14),PHXPlayers.get(14),LALPlayers.get(14),LACPlayers.get(14),"",MIAPlayers.get(14),"",ATLPlayers.get(14),WASPlayers.get(14),CHAPlayers.get(14),"",INDPlayers.get(14),CLEPlayers.get(14),CHIPlayers.get(14),MILPlayers.get(14),BOSPlayers.get(14),PHIPlayers.get(14),NYKPlayers.get(14),BKNPlayers.get(14),TORPlayers.get(14)};
+    /*    Object temp1[] = {SASPlayers.get(14),MEMPlayers.get(14),DALPlayers.get(14),HOUPlayers.get(14),NOPPlayers.get(14),MINPlayers.get(14),"",UTAPlayers.get(14),PORPlayers.get(14),OKCPlayers.get(14),SACPlayers.get(14),PHXPlayers.get(14),LALPlayers.get(14),LACPlayers.get(14),"",MIAPlayers.get(14),"",ATLPlayers.get(14),WASPlayers.get(14),CHAPlayers.get(14),"",INDPlayers.get(14),CLEPlayers.get(14),CHIPlayers.get(14),MILPlayers.get(14),BOSPlayers.get(14),PHIPlayers.get(14),NYKPlayers.get(14),BKNPlayers.get(14),TORPlayers.get(14)};
         data[14] = temp1;
         Object temp2[] = {"",MEMPlayers.get(15),"",HOUPlayers.get(15),NOPPlayers.get(15),MINPlayers.get(15),"",UTAPlayers.get(15),"",OKCPlayers.get(15),SACPlayers.get(15),"",LALPlayers.get(15),LACPlayers.get(15),"",MIAPlayers.get(15),"","","","","","",CLEPlayers.get(15),CHIPlayers.get(15),MILPlayers.get(15),BOSPlayers.get(15),PHIPlayers.get(15),NYKPlayers.get(15),BKNPlayers.get(15),""};
         data[15] = temp2;
@@ -124,7 +157,7 @@ public class PlayersSelect extends MyPanel implements ActionListener{
         Object temp4[] = {"","","","",NOPPlayers.get(17),"","","","",OKCPlayers.get(17),"","",LALPlayers.get(17),LACPlayers.get(17),"","","","","","","","",CLEPlayers.get(17),"","","",PHIPlayers.get(17),"","",""};
         data[17] = temp4;
         Object temp5[] = {"","","","",NOPPlayers.get(18),"","","","","","","","","","","","","","","","","","","","","","","","",""};
-        data[18] = temp5;
+        data[18] = temp5;*/
         return data;
 	}
 	
