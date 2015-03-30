@@ -3,6 +3,7 @@ package businesslogicservice.teamblservice;
 import java.util.ArrayList;
 
 import vo.TeamMatchVO;
+import vo.TeamMonthMatchVO;
 import vo.TeamVO;
 import vo.TeaminfoVO;
 
@@ -20,7 +21,7 @@ public interface TeamRankService {
 	public ArrayList<TeamVO> getAllTeamdata(String key,String order);
 	
 	
-	public ArrayList<TeamMatchVO> getTeamMonthMatch(String month,String team);
+	public ArrayList<TeamMonthMatchVO> getTeamMonthMatch(String month,String team);
 	
 	public TeamMatchVO getTeamMatch(String date,String team);
 	
