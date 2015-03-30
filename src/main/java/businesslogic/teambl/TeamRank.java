@@ -7,8 +7,10 @@ import java.rmi.RemoteException;
 import java.text.DecimalFormat;
 import java.util.ArrayList;
 
+import po.TeamMatchPO;
 import po.TeamPO;
 import po.TeaminfoPO;
+import vo.TeamMatchVO;
 import vo.TeamVO;
 import vo.TeaminfoVO;
 import businesslogicservice.teamblservice.TeamRankService;
@@ -360,6 +362,101 @@ public class TeamRank implements TeamRankService{
     	return this.getTeamData("1", key, order);
     }
 	
+    public ArrayList<TeamMatchVO> getTeamMonthMatch(String month,String team){
+		ArrayList<TeamMatchVO> teamMatchVOs = new ArrayList<TeamMatchVO>();
+		ArrayList<TeamMatchPO> teamMatchPOs = new ArrayList<TeamMatchPO>();
+		GetTeamdataDataService g;
+		try {
+			g = (GetTeamdataDataService) Naming.lookup("rmi://"+rmi+":2015/GetTeamdata");
+			teamMatchPOs = g.getTeamMonthMatch(month, team);
+			for (int i = 0; i < teamMatchPOs.size(); i++) {
+				TeamMatchVO teamMatchVO = new TeamMatchVO(teamMatchPOs.get(i).getDate(), 
+						teamMatchPOs.get(i).getHostGuest(), 
+						teamMatchPOs.get(i).getName(), 
+						teamMatchPOs.get(i).getOpponent(), 
+						teamMatchPOs.get(i).getWinLose(),
+						teamMatchPOs.get(i).getTotal()	,
+						teamMatchPOs.get(i).getFirst(),
+						teamMatchPOs.get(i).getSecond(),
+						teamMatchPOs.get(i).getThird(), 
+						teamMatchPOs.get(i).getFourth());
+				teamMatchVOs.add(teamMatchVO);
+			}
+		} catch (MalformedURLException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		} catch (RemoteException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		} catch (NotBoundException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+		return teamMatchVOs;
+	}
+    
+    public TeamMatchVO getTeamMatch(String date,String team){
+    	TeamMatchVO teamMatchVO = new TeamMatchVO();
+    	TeamMatchPO teamMatchPO = new TeamMatchPO();
+    	GetTeamdataDataService g;
+    	try {
+			g = (GetTeamdataDataService) Naming.lookup("rmi://"+rmi+":2015/GetTeamdata");
+			teamMatchVO = new TeamMatchVO(teamMatchPO.getDate(),
+					teamMatchPO.getHostGuest(), 
+					teamMatchPO.getName(),
+					teamMatchPO.getOpponent(),
+					teamMatchPO.getWinLose(), 
+					teamMatchPO.getTotal(),
+					teamMatchPO.getFirst(), 
+					teamMatchPO.getSecond(), 
+					teamMatchPO.getThird(), 
+					teamMatchPO.getFourth());
+			
+		} catch (MalformedURLException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		} catch (RemoteException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		} catch (NotBoundException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+    	return teamMatchVO;
+    }
+    
+    public ArrayList<TeamMatchVO> getTeamRecentFiveMatch(String team){
+    	ArrayList<TeamMatchPO> teamMatchPOs = new ArrayList<TeamMatchPO>();
+    	ArrayList<TeamMatchVO> teamMatchVOs = new ArrayList<TeamMatchVO>();
+    	GetTeamdataDataService g;
+    	try {
+			g = (GetTeamdataDataService) Naming.lookup("rmi://"+rmi+":2015/GetTeamdata");
+			teamMatchPOs = g.getTeamRecentFiveMatch(team);
+			for (int i = 0; i < teamMatchPOs.size(); i++) {
+				TeamMatchVO teamMatchVO = new TeamMatchVO(teamMatchPOs.get(i).getDate(),
+						teamMatchPOs.get(i).getHostGuest(), 
+						teamMatchPOs.get(i).getName(),
+						teamMatchPOs.get(i).getOpponent(),
+						teamMatchPOs.get(i).getWinLose(), 
+						teamMatchPOs.get(i).getTotal(),
+						teamMatchPOs.get(i).getFirst(), 
+						teamMatchPOs.get(i).getSecond(), 
+						teamMatchPOs.get(i).getThird(), 
+						teamMatchPOs.get(i).getFourth());
+				teamMatchVOs.add(teamMatchVO);
+			}
+		} catch (MalformedURLException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		} catch (RemoteException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		} catch (NotBoundException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+    	return teamMatchVOs;
+    }
 
 }
 

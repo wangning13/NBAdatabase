@@ -2,6 +2,7 @@ package businesslogicservice.teamblservice;
 
 import java.util.ArrayList;
 
+import vo.TeamMatchVO;
 import vo.TeamVO;
 import vo.TeaminfoVO;
 
@@ -17,5 +18,12 @@ public interface TeamRankService {
 	
 	//根据属性条件，正序倒序返回球队数据的数组
 	public ArrayList<TeamVO> getAllTeamdata(String key,String order);
+	
+	
+	public ArrayList<TeamMatchVO> getTeamMonthMatch(String month,String team);
+	
+	public TeamMatchVO getTeamMatch(String date,String team);
+	
+	public ArrayList<TeamMatchVO> getTeamRecentFiveMatch(String team);
 
 }
