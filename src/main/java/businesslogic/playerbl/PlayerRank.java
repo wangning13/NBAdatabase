@@ -130,7 +130,7 @@ public class PlayerRank implements PlayerRankService{
 				playerPO.setTurnOverPercentage(Double.parseDouble(df.format(playerPO.getTurnOver()/(playerPO.getFieldGoalAttempts()+playerPO.getThreePointFieldGoalAttempts()+0.44*playerPO.getFreeThrowAttempts()+playerPO.getTurnOver()))));
 
 			}
-			if ((playerPO.getTeamFieldGoalAttempts()+0.44*playerPO.getTeamFreeThrowAttempts()+playerPO.getTeamTurnOver())==0) {
+			if (playerPO.getMinites()==0||(playerPO.getTeamFieldGoalAttempts()+0.44*playerPO.getTeamFreeThrowAttempts()+playerPO.getTeamTurnOver())==0) {
 				playerPO.setUsage(0);
 				
 			}else {
@@ -380,7 +380,7 @@ public class PlayerRank implements PlayerRankService{
 					if (playerPOs.get(i).getFieldGoalAttempts()==0) {
 						playerPOs.get(i).setShootingEfficiency(0);
 					}else {
-						playerPOs.get(i).setShootingEfficiency(Double.parseDouble(df.format(((double)playerPOs.get(i).getFieldGoal()/playerPOs.get(i).getFieldGoalAttempts()))));
+						playerPOs.get(i).setShootingEfficiency(Double.parseDouble(df.format(((double)playerPOs.get(i).getFieldGoal()+0.5*playerPOs.get(i).getThreePointFieldGoal()/playerPOs.get(i).getFieldGoalAttempts()))));
 					}
 					
 					if (playerPOs.get(i).getMinites()==0) {
@@ -399,7 +399,7 @@ public class PlayerRank implements PlayerRankService{
 						playerPOs.get(i).setTurnOverPercentage(Double.parseDouble(df.format(playerPOs.get(i).getTurnOver()/(playerPOs.get(i).getFieldGoalAttempts()-playerPOs.get(i).getThreePointFieldGoalAttempts()+0.44*playerPOs.get(i).getFreeThrowAttempts()+playerPOs.get(i).getTurnOver()))));
 
 					}
-					if (playerPOs.get(i).getMinites()==0) {
+					if (playerPOs.get(i).getMinites()==0||(playerPOs.get(i).getTeamFieldGoalAttempts()+0.44*playerPOs.get(i).getTeamFreeThrowAttempts()+playerPOs.get(i).getTeamTurnOver())==0) {
 						playerPOs.get(i).setUsage(0);
 						
 					}else {
@@ -630,7 +630,7 @@ public class PlayerRank implements PlayerRankService{
 					if (playerPOs.get(i).getFieldGoalAttempts()==0) {
 						playerPOs.get(i).setShootingEfficiency(0);
 					}else {
-						playerPOs.get(i).setShootingEfficiency(Double.parseDouble(df.format(((double)playerPOs.get(i).getFieldGoal()/playerPOs.get(i).getFieldGoalAttempts()))));
+						playerPOs.get(i).setShootingEfficiency(Double.parseDouble(df.format(((double)playerPOs.get(i).getFieldGoal()+0.5*playerPOs.get(i).getThreePointFieldGoal()/playerPOs.get(i).getFieldGoalAttempts()))));
 					}
 					
 					if (playerPOs.get(i).getMinites()==0) {
