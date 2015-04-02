@@ -9,7 +9,8 @@ import vo.PlayerVO;
 public class GetPlayerVO {
 	DecimalFormat df=new DecimalFormat("#.0000");
 
-	public void getPlayerVO(PlayerPO playerPO,PlayerVO playerVO){
+	public PlayerVO getPlayerVO(PlayerPO playerPO){
+		PlayerVO playerVO = new PlayerVO();
 		if (playerPO.getAppearance()==0) {
 			playerVO = new PlayerVO(
 					playerPO.getPlayerName(),
@@ -155,6 +156,7 @@ public class GetPlayerVO {
 					playerPO.getDoubleDouble()
 					);
 		}
+		return playerVO;
 	}
 
 }

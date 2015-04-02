@@ -59,7 +59,7 @@ public class PlayerRank implements PlayerRankService{
 			calculate.Calculate(playerPO);
 			
 			GetPlayerVO getPlayerVO = new GetPlayerVO();
-			getPlayerVO.getPlayerVO(playerPO, playerVO);
+			playerVO = getPlayerVO.getPlayerVO(playerPO);
 			
 			
 		} catch (MalformedURLException e) {
@@ -136,8 +136,8 @@ public class PlayerRank implements PlayerRankService{
 			ArrayList<PlayerPO> playerPOs2 = g.getByEfficiency(playerPOs, key, order);
 			for (int i = 0; i < playerPOs2.size(); i++) {
 				GetPlayerVO getPlayerVO = new GetPlayerVO();
-				getPlayerVO.getPlayerVO(playerPOs2.get(i), playerVOs.get(i));
-				
+				PlayerVO playerVO = getPlayerVO.getPlayerVO(playerPOs2.get(i));
+				playerVOs.add(playerVO);
 			}
 			
 		} catch (MalformedURLException e) {
@@ -177,7 +177,8 @@ public class PlayerRank implements PlayerRankService{
 				}
 				for (int i = 0; i < Math.min(50, playerPOs.size()); i++){
 					GetPlayerVO getPlayerVO = new GetPlayerVO();
-					getPlayerVO.getPlayerVO(playerPOs.get(i), playerVOs.get(i));
+					PlayerVO playerVO = getPlayerVO.getPlayerVO(playerPOs.get(i));
+					playerVOs.add(playerVO);
 				}
 			}else {
 				playerPOs = g.getSomePlayerdata(season,position, partition, "scoring", "DESC");
@@ -189,7 +190,8 @@ public class PlayerRank implements PlayerRankService{
 				ArrayList<PlayerPO> playerPOs2 = g.getByEfficiency(playerPOs, key, "DESC");
 				for (int i = 0; i < Math.min(50, playerPOs2.size()); i++) {
 					GetPlayerVO getPlayerVO = new GetPlayerVO();
-					getPlayerVO.getPlayerVO(playerPOs2.get(i), playerVOs.get(i));
+					PlayerVO playerVO = getPlayerVO.getPlayerVO(playerPOs2.get(i));
+					playerVOs.add(playerVO);
 				
 				}
 			}
@@ -205,6 +207,22 @@ public class PlayerRank implements PlayerRankService{
 			e.printStackTrace();
 		}
 		return playerVOs;
+		
+	}
+	
+	public ArrayList<PlayerMatchPO> getPlayerMonthMatch(String month,String team){
+		
+	
+	}
+	public ArrayList<PlayerMatchPO> getPlayerRecentFiveMatch(String player){
+		
+	}
+	
+	public ArrayList<PlayerMatchPO> getDayTop(String date,String condition){
+		
+	}
+	
+	public ArrayList<PlayerMatchPO> getSeasonTop(String season,String condition){
 		
 	}
 	
