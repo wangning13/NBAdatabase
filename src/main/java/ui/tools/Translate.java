@@ -137,7 +137,7 @@ public class Translate {
         else if(type.equals("先发场数"))
         	result = "firstPlay";
         else if(type.equals("在场时间"))
-        	result = "minites";
+        	result = "minutes";
         else if(type.equals("进攻数"))
         	result = "offensiveRebound";
         else if(type.equals("防守数"))
