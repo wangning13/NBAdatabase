@@ -10,7 +10,7 @@ import po.TeaminfoPO;
 
 public interface GetTeamdataDataService extends Remote {
 
-public TeamPO getTeamdata(String teamName)throws RemoteException;
+	public TeamPO getTeamdata(String teamName)throws RemoteException;
 	
 	public TeaminfoPO getTeaminfo(String teamName)throws RemoteException;
 	
