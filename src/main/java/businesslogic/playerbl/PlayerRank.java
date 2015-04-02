@@ -91,36 +91,36 @@ public class PlayerRank implements PlayerRankService{
 			}else {
 				playerPO.setShootingEfficiency(Double.parseDouble(df.format(((double)playerPO.getFieldGoal()/playerPO.getFieldGoalAttempts()))));
 			}
-			if (playerPO.getMinites()==0) {
+			if (playerPO.getMinutes()==0) {
 				playerPO.setBackboardPercentage(0);
 			}else {
 				if (playerPO.getTeamBackboard()+playerPO.getOpponentBackBoard()==0) {
 					playerPO.setBackboardPercentage(0);
 				}
 				else {
-					playerPO.setBackboardPercentage(Double.parseDouble(df.format(playerPO.getBackboard()*(playerPO.getTeamMinutes()/5)/playerPO.getMinites()/(playerPO.getTeamBackboard()+playerPO.getOpponentBackBoard()))));
+					playerPO.setBackboardPercentage(Double.parseDouble(df.format(playerPO.getBackboard()*(playerPO.getTeamMinutes()/5)/playerPO.getMinutes()/(playerPO.getTeamBackboard()+playerPO.getOpponentBackBoard()))));
 				}
 				if (playerPO.getTeamOffensiveRebound()+playerPO.getOpponentOffensiveRebound()==0) {
 					playerPO.setOffensiveReboundPercentage(0);
 				}else {
-					playerPO.setOffensiveReboundPercentage(Double.parseDouble(df.format(playerPO.getOffensiveRebound()*(playerPO.getTeamMinutes()/5)/playerPO.getMinites()/(playerPO.getTeamOffensiveRebound()+playerPO.getOpponentOffensiveRebound()))));
+					playerPO.setOffensiveReboundPercentage(Double.parseDouble(df.format(playerPO.getOffensiveRebound()*(playerPO.getTeamMinutes()/5)/playerPO.getMinutes()/(playerPO.getTeamOffensiveRebound()+playerPO.getOpponentOffensiveRebound()))));
 				}
 				if (playerPO.getTeamDefensiveRebound()+playerPO.getOpponentDefensiveRebound()==0) {
 					playerPO.setDefensiveReboundPercentage(0);
 				}else {
-					playerPO.setDefensiveReboundPercentage(Double.parseDouble(df.format(playerPO.getDefensiveRebound()*(playerPO.getTeamMinutes()/5)/playerPO.getMinites()/(playerPO.getTeamDefensiveRebound()+playerPO.getOpponentDefensiveRebound()))));
+					playerPO.setDefensiveReboundPercentage(Double.parseDouble(df.format(playerPO.getDefensiveRebound()*(playerPO.getTeamMinutes()/5)/playerPO.getMinutes()/(playerPO.getTeamDefensiveRebound()+playerPO.getOpponentDefensiveRebound()))));
 				}
 				
-				playerPO.setAssistPercentage(Double.parseDouble(df.format(playerPO.getAssist()/(playerPO.getMinites()/(playerPO.getTeamMinutes()/5)*(playerPO.getTeamFieldGoal()+playerPO.getTeamFreeThrow()-playerPO.getFieldGoal()-playerPO.getFreeThrow())))));
+				playerPO.setAssistPercentage(Double.parseDouble(df.format(playerPO.getAssist()/(playerPO.getMinutes()/(playerPO.getTeamMinutes()/5)*(playerPO.getTeamFieldGoal()+playerPO.getTeamFreeThrow()-playerPO.getFieldGoal()-playerPO.getFreeThrow())))));
 				if (playerPO.getOpponentOffensiveRebound()==0) {
 					playerPO.setStealPercentage(0);
 				}else {
-					playerPO.setStealPercentage(Double.parseDouble(df.format(playerPO.getSteal()*(playerPO.getTeamMinutes()/5)/playerPO.getMinites()/playerPO.getOpponentOffensiveRebound())));
+					playerPO.setStealPercentage(Double.parseDouble(df.format(playerPO.getSteal()*(playerPO.getTeamMinutes()/5)/playerPO.getMinutes()/playerPO.getOpponentOffensiveRebound())));
 				}
 				if (playerPO.getOpponentFieldGoalAttempts()-playerPO.getOpponentThreePointFieldGoalAttempts()==0) {
 					playerPO.setBlockPercentage(0);
 				}else {
-					playerPO.setBlockPercentage(Double.parseDouble(df.format(((double)playerPO.getBlock()*(playerPO.getTeamMinutes())/5)/playerPO.getMinites()/(playerPO.getOpponentFieldGoalAttempts()-playerPO.getOpponentThreePointFieldGoalAttempts()))));
+					playerPO.setBlockPercentage(Double.parseDouble(df.format(((double)playerPO.getBlock()*(playerPO.getTeamMinutes())/5)/playerPO.getMinutes()/(playerPO.getOpponentFieldGoalAttempts()-playerPO.getOpponentThreePointFieldGoalAttempts()))));
 				}
 			}
 			if ((playerPO.getFieldGoalAttempts()-playerPO.getThreePointFieldGoalAttempts()+0.44*playerPO.getFreeThrowAttempts()+playerPO.getTurnOver())==0) {
@@ -134,7 +134,7 @@ public class PlayerRank implements PlayerRankService{
 				playerPO.setUsage(0);
 				
 			}else {
-				playerPO.setUsage(Double.parseDouble(df.format((playerPO.getFieldGoalAttempts()+0.44*playerPO.getFreeThrowAttempts()+playerPO.getTurnOver())*(playerPO.getTeamMinutes()/5)/playerPO.getMinites()/(playerPO.getTeamFieldGoalAttempts()+0.44*playerPO.getTeamFreeThrowAttempts()+playerPO.getTeamTurnOver()))));
+				playerPO.setUsage(Double.parseDouble(df.format((playerPO.getFieldGoalAttempts()+0.44*playerPO.getFreeThrowAttempts()+playerPO.getTurnOver())*(playerPO.getTeamMinutes()/5)/playerPO.getMinutes()/(playerPO.getTeamFieldGoalAttempts()+0.44*playerPO.getTeamFreeThrowAttempts()+playerPO.getTeamTurnOver()))));
 
 			}
 			if (playerPO.getAppearance()==0) {
@@ -147,7 +147,7 @@ public class PlayerRank implements PlayerRankService{
 						0,
 						playerPO.getAssist(),
 						0,
-						Double.parseDouble(df.format(playerPO.getMinites())),
+						Double.parseDouble(df.format(playerPO.getMinutes())),
 						0,
 						playerPO.getFieldGoal(),
 						0,
@@ -219,8 +219,8 @@ public class PlayerRank implements PlayerRankService{
 						Double.parseDouble(df.format(((double)playerPO.getBackboard())/playerPO.getAppearance())),
 						playerPO.getAssist(),
 						Double.parseDouble(df.format(((double)playerPO.getAssist()/playerPO.getAppearance()))),
-						Double.parseDouble(df.format(playerPO.getMinites())),
-						Double.parseDouble(df.format(((double)playerPO.getMinites()/playerPO.getAppearance()))),
+						Double.parseDouble(df.format(playerPO.getMinutes())),
+						Double.parseDouble(df.format(((double)playerPO.getMinutes()/playerPO.getAppearance()))),
 						playerPO.getFieldGoal(),
 						Double.parseDouble(df.format(((double)playerPO.getFieldGoal()/playerPO.getAppearance()))),
 						playerPO.getFieldGoalAttempts(), 
@@ -383,15 +383,15 @@ public class PlayerRank implements PlayerRankService{
 						playerPOs.get(i).setShootingEfficiency(Double.parseDouble(df.format(((double)playerPOs.get(i).getFieldGoal()/playerPOs.get(i).getFieldGoalAttempts()))));
 					}
 					
-					if (playerPOs.get(i).getMinites()==0) {
+					if (playerPOs.get(i).getMinutes()==0) {
 						playerPOs.get(i).setBackboardPercentage(0);
 					}else {
-						playerPOs.get(i).setBackboardPercentage(Double.parseDouble(df.format(playerPOs.get(i).getBackboard()*(playerPOs.get(i).getTeamMinutes()/5)/playerPOs.get(i).getMinites()/(playerPOs.get(i).getTeamBackboard()+playerPOs.get(i).getOpponentBackBoard()))));
-						playerPOs.get(i).setOffensiveReboundPercentage(Double.parseDouble(df.format(playerPOs.get(i).getOffensiveRebound()*(playerPOs.get(i).getTeamMinutes()/5)/playerPOs.get(i).getMinites()/(playerPOs.get(i).getTeamOffensiveRebound()+playerPOs.get(i).getOpponentOffensiveRebound()))));
-						playerPOs.get(i).setDefensiveReboundPercentage(Double.parseDouble(df.format(playerPOs.get(i).getDefensiveRebound()*(playerPOs.get(i).getTeamMinutes()/5)/playerPOs.get(i).getMinites()/(playerPOs.get(i).getTeamDefensiveRebound()+playerPOs.get(i).getOpponentDefensiveRebound()))));
-						playerPOs.get(i).setAssistPercentage(Double.parseDouble(df.format(playerPOs.get(i).getAssist()/(playerPOs.get(i).getMinites()/(playerPOs.get(i).getTeamMinutes()/5)*(playerPOs.get(i).getTeamFieldGoal()+playerPOs.get(i).getTeamFreeThrow()-playerPOs.get(i).getFieldGoal()-playerPOs.get(i).getFreeThrow())))));
-						playerPOs.get(i).setStealPercentage(Double.parseDouble(df.format(playerPOs.get(i).getSteal()*(playerPOs.get(i).getTeamMinutes()/5)/playerPOs.get(i).getMinites()/playerPOs.get(i).getOpponentOffensiveRebound())));
-						playerPOs.get(i).setBlockPercentage(Double.parseDouble(df.format(((double)playerPOs.get(i).getBlock()*(playerPOs.get(i).getTeamMinutes())/5)/playerPOs.get(i).getMinites()/(playerPOs.get(i).getOpponentFieldGoalAttempts()-playerPOs.get(i).getOpponentThreePointFieldGoalAttempts()))));
+						playerPOs.get(i).setBackboardPercentage(Double.parseDouble(df.format(playerPOs.get(i).getBackboard()*(playerPOs.get(i).getTeamMinutes()/5)/playerPOs.get(i).getMinutes()/(playerPOs.get(i).getTeamBackboard()+playerPOs.get(i).getOpponentBackBoard()))));
+						playerPOs.get(i).setOffensiveReboundPercentage(Double.parseDouble(df.format(playerPOs.get(i).getOffensiveRebound()*(playerPOs.get(i).getTeamMinutes()/5)/playerPOs.get(i).getMinutes()/(playerPOs.get(i).getTeamOffensiveRebound()+playerPOs.get(i).getOpponentOffensiveRebound()))));
+						playerPOs.get(i).setDefensiveReboundPercentage(Double.parseDouble(df.format(playerPOs.get(i).getDefensiveRebound()*(playerPOs.get(i).getTeamMinutes()/5)/playerPOs.get(i).getMinutes()/(playerPOs.get(i).getTeamDefensiveRebound()+playerPOs.get(i).getOpponentDefensiveRebound()))));
+						playerPOs.get(i).setAssistPercentage(Double.parseDouble(df.format(playerPOs.get(i).getAssist()/(playerPOs.get(i).getMinutes()/(playerPOs.get(i).getTeamMinutes()/5)*(playerPOs.get(i).getTeamFieldGoal()+playerPOs.get(i).getTeamFreeThrow()-playerPOs.get(i).getFieldGoal()-playerPOs.get(i).getFreeThrow())))));
+						playerPOs.get(i).setStealPercentage(Double.parseDouble(df.format(playerPOs.get(i).getSteal()*(playerPOs.get(i).getTeamMinutes()/5)/playerPOs.get(i).getMinutes()/playerPOs.get(i).getOpponentOffensiveRebound())));
+						playerPOs.get(i).setBlockPercentage(Double.parseDouble(df.format(((double)playerPOs.get(i).getBlock()*(playerPOs.get(i).getTeamMinutes())/5)/playerPOs.get(i).getMinutes()/(playerPOs.get(i).getOpponentFieldGoalAttempts()-playerPOs.get(i).getOpponentThreePointFieldGoalAttempts()))));
 					}
 					if ((playerPOs.get(i).getFieldGoalAttempts()-playerPOs.get(i).getThreePointFieldGoalAttempts()+0.44*playerPOs.get(i).getFreeThrowAttempts()+playerPOs.get(i).getTurnOver())==0) {
 						playerPOs.get(i).setTurnOverPercentage(0);
@@ -399,11 +399,11 @@ public class PlayerRank implements PlayerRankService{
 						playerPOs.get(i).setTurnOverPercentage(Double.parseDouble(df.format(playerPOs.get(i).getTurnOver()/(playerPOs.get(i).getFieldGoalAttempts()-playerPOs.get(i).getThreePointFieldGoalAttempts()+0.44*playerPOs.get(i).getFreeThrowAttempts()+playerPOs.get(i).getTurnOver()))));
 
 					}
-					if (playerPOs.get(i).getMinites()==0) {
+					if (playerPOs.get(i).getMinutes()==0) {
 						playerPOs.get(i).setUsage(0);
 						
 					}else {
-						playerPOs.get(i).setUsage(Double.parseDouble(df.format((playerPOs.get(i).getFieldGoalAttempts()+0.44*playerPOs.get(i).getFreeThrowAttempts()+playerPOs.get(i).getTurnOver())*(playerPOs.get(i).getTeamMinutes()/5)/playerPOs.get(i).getMinites()/(playerPOs.get(i).getTeamFieldGoalAttempts()+0.44*playerPOs.get(i).getTeamFreeThrowAttempts()+playerPOs.get(i).getTeamTurnOver()))));
+						playerPOs.get(i).setUsage(Double.parseDouble(df.format((playerPOs.get(i).getFieldGoalAttempts()+0.44*playerPOs.get(i).getFreeThrowAttempts()+playerPOs.get(i).getTurnOver())*(playerPOs.get(i).getTeamMinutes()/5)/playerPOs.get(i).getMinutes()/(playerPOs.get(i).getTeamFieldGoalAttempts()+0.44*playerPOs.get(i).getTeamFreeThrowAttempts()+playerPOs.get(i).getTeamTurnOver()))));
 
 					}
 					
@@ -422,7 +422,7 @@ public class PlayerRank implements PlayerRankService{
 							0,
 							playerPOs2.get(i).getAssist(),
 							0,
-							Double.parseDouble(df.format(playerPOs2.get(i).getMinites())),
+							Double.parseDouble(df.format(playerPOs2.get(i).getMinutes())),
 							0,
 							playerPOs2.get(i).getFieldGoal(),
 							0,
@@ -494,8 +494,8 @@ public class PlayerRank implements PlayerRankService{
 							Double.parseDouble(df.format(((double)playerPOs2.get(i).getBackboard())/playerPOs2.get(i).getAppearance())),
 							playerPOs2.get(i).getAssist(),
 							Double.parseDouble(df.format((double)playerPOs2.get(i).getAssist()/playerPOs2.get(i).getAppearance())),
-							Double.parseDouble(df.format(playerPOs2.get(i).getMinites())),
-							Double.parseDouble(df.format((double)playerPOs2.get(i).getMinites()/playerPOs2.get(i).getAppearance())),
+							Double.parseDouble(df.format(playerPOs2.get(i).getMinutes())),
+							Double.parseDouble(df.format((double)playerPOs2.get(i).getMinutes()/playerPOs2.get(i).getAppearance())),
 							playerPOs2.get(i).getFieldGoal(),
 							Double.parseDouble(df.format((double)playerPOs2.get(i).getFieldGoal()/playerPOs2.get(i).getAppearance())),
 							playerPOs2.get(i).getFieldGoalAttempts(), 
@@ -628,15 +628,15 @@ public class PlayerRank implements PlayerRankService{
 						playerPOs.get(i).setShootingEfficiency(Double.parseDouble(df.format(((double)playerPOs.get(i).getFieldGoal()/playerPOs.get(i).getFieldGoalAttempts()))));
 					}
 					
-					if (playerPOs.get(i).getMinites()==0) {
+					if (playerPOs.get(i).getMinutes()==0) {
 						playerPOs.get(i).setBackboardPercentage(0);
 					}else {
-						playerPOs.get(i).setBackboardPercentage(Double.parseDouble(df.format(playerPOs.get(i).getBackboard()*(playerPOs.get(i).getTeamMinutes()/5)/playerPOs.get(i).getMinites()/(playerPOs.get(i).getTeamBackboard()+playerPOs.get(i).getOpponentBackBoard()))));
-						playerPOs.get(i).setOffensiveReboundPercentage(Double.parseDouble(df.format(playerPOs.get(i).getOffensiveRebound()*(playerPOs.get(i).getTeamMinutes()/5)/playerPOs.get(i).getMinites()/(playerPOs.get(i).getTeamOffensiveRebound()+playerPOs.get(i).getOpponentOffensiveRebound()))));
-						playerPOs.get(i).setDefensiveReboundPercentage(Double.parseDouble(df.format(playerPOs.get(i).getDefensiveRebound()*(playerPOs.get(i).getTeamMinutes()/5)/playerPOs.get(i).getMinites()/(playerPOs.get(i).getTeamDefensiveRebound()+playerPOs.get(i).getOpponentDefensiveRebound()))));
-						playerPOs.get(i).setAssistPercentage(Double.parseDouble(df.format(playerPOs.get(i).getAssist()/(playerPOs.get(i).getMinites()/(playerPOs.get(i).getTeamMinutes()/5)*(playerPOs.get(i).getTeamFieldGoal()+playerPOs.get(i).getTeamFreeThrow()-playerPOs.get(i).getFieldGoal()-playerPOs.get(i).getFreeThrow())))));
-						playerPOs.get(i).setStealPercentage(Double.parseDouble(df.format(playerPOs.get(i).getSteal()*(playerPOs.get(i).getTeamMinutes()/5)/playerPOs.get(i).getMinites()/playerPOs.get(i).getOpponentOffensiveRebound())));
-						playerPOs.get(i).setBlockPercentage(Double.parseDouble(df.format(((double)playerPOs.get(i).getBlock()*(playerPOs.get(i).getTeamMinutes())/5)/playerPOs.get(i).getMinites()/(playerPOs.get(i).getOpponentFieldGoalAttempts()-playerPOs.get(i).getOpponentThreePointFieldGoalAttempts()))));
+						playerPOs.get(i).setBackboardPercentage(Double.parseDouble(df.format(playerPOs.get(i).getBackboard()*(playerPOs.get(i).getTeamMinutes()/5)/playerPOs.get(i).getMinutes()/(playerPOs.get(i).getTeamBackboard()+playerPOs.get(i).getOpponentBackBoard()))));
+						playerPOs.get(i).setOffensiveReboundPercentage(Double.parseDouble(df.format(playerPOs.get(i).getOffensiveRebound()*(playerPOs.get(i).getTeamMinutes()/5)/playerPOs.get(i).getMinutes()/(playerPOs.get(i).getTeamOffensiveRebound()+playerPOs.get(i).getOpponentOffensiveRebound()))));
+						playerPOs.get(i).setDefensiveReboundPercentage(Double.parseDouble(df.format(playerPOs.get(i).getDefensiveRebound()*(playerPOs.get(i).getTeamMinutes()/5)/playerPOs.get(i).getMinutes()/(playerPOs.get(i).getTeamDefensiveRebound()+playerPOs.get(i).getOpponentDefensiveRebound()))));
+						playerPOs.get(i).setAssistPercentage(Double.parseDouble(df.format(playerPOs.get(i).getAssist()/(playerPOs.get(i).getMinutes()/(playerPOs.get(i).getTeamMinutes()/5)*(playerPOs.get(i).getTeamFieldGoal()+playerPOs.get(i).getTeamFreeThrow()-playerPOs.get(i).getFieldGoal()-playerPOs.get(i).getFreeThrow())))));
+						playerPOs.get(i).setStealPercentage(Double.parseDouble(df.format(playerPOs.get(i).getSteal()*(playerPOs.get(i).getTeamMinutes()/5)/playerPOs.get(i).getMinutes()/playerPOs.get(i).getOpponentOffensiveRebound())));
+						playerPOs.get(i).setBlockPercentage(Double.parseDouble(df.format(((double)playerPOs.get(i).getBlock()*(playerPOs.get(i).getTeamMinutes())/5)/playerPOs.get(i).getMinutes()/(playerPOs.get(i).getOpponentFieldGoalAttempts()-playerPOs.get(i).getOpponentThreePointFieldGoalAttempts()))));
 					}
 					if ((playerPOs.get(i).getFieldGoalAttempts()-playerPOs.get(i).getThreePointFieldGoalAttempts()+0.44*playerPOs.get(i).getFreeThrowAttempts()+playerPOs.get(i).getTurnOver())==0) {
 						playerPOs.get(i).setTurnOverPercentage(0);
@@ -644,11 +644,11 @@ public class PlayerRank implements PlayerRankService{
 						playerPOs.get(i).setTurnOverPercentage(Double.parseDouble(df.format(playerPOs.get(i).getTurnOver()/(playerPOs.get(i).getFieldGoalAttempts()-playerPOs.get(i).getThreePointFieldGoalAttempts()+0.44*playerPOs.get(i).getFreeThrowAttempts()+playerPOs.get(i).getTurnOver()))));
 
 					}
-					if (playerPOs.get(i).getMinites()==0) {
+					if (playerPOs.get(i).getMinutes()==0) {
 						playerPOs.get(i).setUsage(0);
 						
 					}else {
-						playerPOs.get(i).setUsage(Double.parseDouble(df.format((playerPOs.get(i).getFieldGoalAttempts()+0.44*playerPOs.get(i).getFreeThrowAttempts()+playerPOs.get(i).getTurnOver())*(playerPOs.get(i).getTeamMinutes()/5)/playerPOs.get(i).getMinites()/(playerPOs.get(i).getTeamFieldGoalAttempts()+0.44*playerPOs.get(i).getTeamFreeThrowAttempts()+playerPOs.get(i).getTeamTurnOver()))));
+						playerPOs.get(i).setUsage(Double.parseDouble(df.format((playerPOs.get(i).getFieldGoalAttempts()+0.44*playerPOs.get(i).getFreeThrowAttempts()+playerPOs.get(i).getTurnOver())*(playerPOs.get(i).getTeamMinutes()/5)/playerPOs.get(i).getMinutes()/(playerPOs.get(i).getTeamFieldGoalAttempts()+0.44*playerPOs.get(i).getTeamFreeThrowAttempts()+playerPOs.get(i).getTeamTurnOver()))));
 
 					}
 					
@@ -663,8 +663,8 @@ public class PlayerRank implements PlayerRankService{
 							Double.parseDouble(df.format(((double)playerPOs.get(i).getBackboard())/playerPOs.get(i).getAppearance())),
 							playerPOs.get(i).getAssist(),
 							Double.parseDouble(df.format((double)playerPOs.get(i).getAssist()/playerPOs.get(i).getAppearance())),
-							Double.parseDouble(df.format(playerPOs.get(i).getMinites())),
-							Double.parseDouble(df.format((double)playerPOs.get(i).getMinites()/playerPOs.get(i).getAppearance())),
+							Double.parseDouble(df.format(playerPOs.get(i).getMinutes())),
+							Double.parseDouble(df.format((double)playerPOs.get(i).getMinutes()/playerPOs.get(i).getAppearance())),
 							playerPOs.get(i).getFieldGoal(),
 							Double.parseDouble(df.format((double)playerPOs.get(i).getFieldGoal()/playerPOs.get(i).getAppearance())),
 							playerPOs.get(i).getFieldGoalAttempts(), 
@@ -765,15 +765,15 @@ public class PlayerRank implements PlayerRankService{
 						playerPOs.get(i).setShootingEfficiency(Double.parseDouble(df.format(((double)playerPOs.get(i).getFieldGoal()/playerPOs.get(i).getFieldGoalAttempts()))));
 					}
 					
-					if (playerPOs.get(i).getMinites()==0) {
+					if (playerPOs.get(i).getMinutes()==0) {
 						playerPOs.get(i).setBackboardPercentage(0);
 					}else {
-						playerPOs.get(i).setBackboardPercentage(Double.parseDouble(df.format(playerPOs.get(i).getBackboard()*(playerPOs.get(i).getTeamMinutes()/5)/playerPOs.get(i).getMinites()/(playerPOs.get(i).getTeamBackboard()+playerPOs.get(i).getOpponentBackBoard()))));
-						playerPOs.get(i).setOffensiveReboundPercentage(Double.parseDouble(df.format(playerPOs.get(i).getOffensiveRebound()*(playerPOs.get(i).getTeamMinutes()/5)/playerPOs.get(i).getMinites()/(playerPOs.get(i).getTeamOffensiveRebound()+playerPOs.get(i).getOpponentOffensiveRebound()))));
-						playerPOs.get(i).setDefensiveReboundPercentage(Double.parseDouble(df.format(playerPOs.get(i).getDefensiveRebound()*(playerPOs.get(i).getTeamMinutes()/5)/playerPOs.get(i).getMinites()/(playerPOs.get(i).getTeamDefensiveRebound()+playerPOs.get(i).getOpponentDefensiveRebound()))));
-						playerPOs.get(i).setAssistPercentage(Double.parseDouble(df.format(playerPOs.get(i).getAssist()/(playerPOs.get(i).getMinites()/(playerPOs.get(i).getTeamMinutes()/5)*(playerPOs.get(i).getTeamFieldGoal()+playerPOs.get(i).getTeamFreeThrow()-playerPOs.get(i).getFieldGoal()-playerPOs.get(i).getFreeThrow())))));
-						playerPOs.get(i).setStealPercentage(Double.parseDouble(df.format(playerPOs.get(i).getSteal()*(playerPOs.get(i).getTeamMinutes()/5)/playerPOs.get(i).getMinites()/playerPOs.get(i).getOpponentOffensiveRebound())));
-						playerPOs.get(i).setBlockPercentage(Double.parseDouble(df.format(((double)playerPOs.get(i).getBlock()*(playerPOs.get(i).getTeamMinutes())/5)/playerPOs.get(i).getMinites()/(playerPOs.get(i).getOpponentFieldGoalAttempts()-playerPOs.get(i).getOpponentThreePointFieldGoalAttempts()))));
+						playerPOs.get(i).setBackboardPercentage(Double.parseDouble(df.format(playerPOs.get(i).getBackboard()*(playerPOs.get(i).getTeamMinutes()/5)/playerPOs.get(i).getMinutes()/(playerPOs.get(i).getTeamBackboard()+playerPOs.get(i).getOpponentBackBoard()))));
+						playerPOs.get(i).setOffensiveReboundPercentage(Double.parseDouble(df.format(playerPOs.get(i).getOffensiveRebound()*(playerPOs.get(i).getTeamMinutes()/5)/playerPOs.get(i).getMinutes()/(playerPOs.get(i).getTeamOffensiveRebound()+playerPOs.get(i).getOpponentOffensiveRebound()))));
+						playerPOs.get(i).setDefensiveReboundPercentage(Double.parseDouble(df.format(playerPOs.get(i).getDefensiveRebound()*(playerPOs.get(i).getTeamMinutes()/5)/playerPOs.get(i).getMinutes()/(playerPOs.get(i).getTeamDefensiveRebound()+playerPOs.get(i).getOpponentDefensiveRebound()))));
+						playerPOs.get(i).setAssistPercentage(Double.parseDouble(df.format(playerPOs.get(i).getAssist()/(playerPOs.get(i).getMinutes()/(playerPOs.get(i).getTeamMinutes()/5)*(playerPOs.get(i).getTeamFieldGoal()+playerPOs.get(i).getTeamFreeThrow()-playerPOs.get(i).getFieldGoal()-playerPOs.get(i).getFreeThrow())))));
+						playerPOs.get(i).setStealPercentage(Double.parseDouble(df.format(playerPOs.get(i).getSteal()*(playerPOs.get(i).getTeamMinutes()/5)/playerPOs.get(i).getMinutes()/playerPOs.get(i).getOpponentOffensiveRebound())));
+						playerPOs.get(i).setBlockPercentage(Double.parseDouble(df.format(((double)playerPOs.get(i).getBlock()*(playerPOs.get(i).getTeamMinutes())/5)/playerPOs.get(i).getMinutes()/(playerPOs.get(i).getOpponentFieldGoalAttempts()-playerPOs.get(i).getOpponentThreePointFieldGoalAttempts()))));
 					}
 					if ((playerPOs.get(i).getFieldGoalAttempts()-playerPOs.get(i).getThreePointFieldGoalAttempts()+0.44*playerPOs.get(i).getFreeThrowAttempts()+playerPOs.get(i).getTurnOver())==0) {
 						playerPOs.get(i).setTurnOverPercentage(0);
@@ -781,11 +781,11 @@ public class PlayerRank implements PlayerRankService{
 						playerPOs.get(i).setTurnOverPercentage(Double.parseDouble(df.format(playerPOs.get(i).getTurnOver()/(playerPOs.get(i).getFieldGoalAttempts()-playerPOs.get(i).getThreePointFieldGoalAttempts()+0.44*playerPOs.get(i).getFreeThrowAttempts()+playerPOs.get(i).getTurnOver()))));
 
 					}
-					if (playerPOs.get(i).getMinites()==0) {
+					if (playerPOs.get(i).getMinutes()==0) {
 						playerPOs.get(i).setUsage(0);
 						
 					}else {
-						playerPOs.get(i).setUsage(Double.parseDouble(df.format((playerPOs.get(i).getFieldGoalAttempts()+0.44*playerPOs.get(i).getFreeThrowAttempts()+playerPOs.get(i).getTurnOver())*(playerPOs.get(i).getTeamMinutes()/5)/playerPOs.get(i).getMinites()/(playerPOs.get(i).getTeamFieldGoalAttempts()+0.44*playerPOs.get(i).getTeamFreeThrowAttempts()+playerPOs.get(i).getTeamTurnOver()))));
+						playerPOs.get(i).setUsage(Double.parseDouble(df.format((playerPOs.get(i).getFieldGoalAttempts()+0.44*playerPOs.get(i).getFreeThrowAttempts()+playerPOs.get(i).getTurnOver())*(playerPOs.get(i).getTeamMinutes()/5)/playerPOs.get(i).getMinutes()/(playerPOs.get(i).getTeamFieldGoalAttempts()+0.44*playerPOs.get(i).getTeamFreeThrowAttempts()+playerPOs.get(i).getTeamTurnOver()))));
 
 					}
 					
@@ -805,7 +805,7 @@ public class PlayerRank implements PlayerRankService{
 							0,
 							playerPOs2.get(i).getAssist(),
 							0,
-							Double.parseDouble(df.format(playerPOs2.get(i).getMinites())),
+							Double.parseDouble(df.format(playerPOs2.get(i).getMinutes())),
 							0,
 							playerPOs2.get(i).getFieldGoal(),
 							0,
@@ -877,8 +877,8 @@ public class PlayerRank implements PlayerRankService{
 							Double.parseDouble(df.format(((double)playerPOs2.get(i).getBackboard())/playerPOs2.get(i).getAppearance())),
 							playerPOs2.get(i).getAssist(),
 							Double.parseDouble(df.format((double)playerPOs2.get(i).getAssist()/playerPOs2.get(i).getAppearance())),
-							Double.parseDouble(df.format(playerPOs2.get(i).getMinites())),
-							Double.parseDouble(df.format((double)playerPOs2.get(i).getMinites()/playerPOs2.get(i).getAppearance())),
+							Double.parseDouble(df.format(playerPOs2.get(i).getMinutes())),
+							Double.parseDouble(df.format((double)playerPOs2.get(i).getMinutes()/playerPOs2.get(i).getAppearance())),
 							playerPOs2.get(i).getFieldGoal(),
 							Double.parseDouble(df.format((double)playerPOs2.get(i).getFieldGoal()/playerPOs2.get(i).getAppearance())),
 							playerPOs2.get(i).getFieldGoalAttempts(), 
