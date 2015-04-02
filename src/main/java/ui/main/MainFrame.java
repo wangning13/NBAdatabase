@@ -24,6 +24,7 @@ public class MainFrame extends MyPanel implements ActionListener{
 	MyButton statistics = new MyButton(Img.STATISTICSICON1,Img.STATISTICSICON2);
 	MyButton teams = new MyButton(Img.TEAMICON1,Img.TEAMICON2);
 	MyButton players = new MyButton(Img.PLAYERICON1,Img.PLAYERICON2);
+	MyButton matches = new MyButton(Img.MATCHICON1,Img.MATCHICON2);
 
 	public MainFrame(Frame frame) {
 		super(frame);
@@ -32,24 +33,29 @@ public class MainFrame extends MyPanel implements ActionListener{
 		this.setOpaque(false);
 	    
 	    this.add(ranking);
-	    ranking.setBounds(446, 250, 160, 60);
+	    ranking.setBounds(446, 230, 160, 60);
 	    ranking.addActionListener(this);
 	    ranking.setActionCommand("ranking");
 	    
 	    this.add(statistics);
-	    statistics.setBounds(446, 350, 160, 60);
+	    statistics.setBounds(446, 310, 160, 60);
 	    statistics.addActionListener(this);
 	    statistics.setActionCommand("statistics");
 	    
 	    this.add(teams);
-	    teams.setBounds(446, 450, 160, 60);
+	    teams.setBounds(446, 390, 160, 60);
 	    teams.addActionListener(this);
 	    teams.setActionCommand("teams");
 	    
 	    this.add(players);
-	    players.setBounds(446, 550, 160, 60);
+	    players.setBounds(446, 470, 160, 60);
 	    players.addActionListener(this);
 	    players.setActionCommand("players");
+	    
+	    this.add(matches);
+	    matches.setBounds(446, 550, 160, 60);
+	    matches.addActionListener(this);
+	    matches.setActionCommand("matches");
 
     }
 
@@ -66,6 +72,9 @@ public class MainFrame extends MyPanel implements ActionListener{
 		}
 		else if(e.getActionCommand().equals("players")){
 			frame.change(this, frame.playersSelectPanel);
+		}
+		else if(e.getActionCommand().equals("matches")){
+			frame.change(this, frame.matchesPanel);
 		}
 	}
 

@@ -79,7 +79,6 @@ public class PlayersSelect extends MyPanel implements ActionListener{
 	}
 	
 	public Object[][] getData(){
-		
         ArrayList<String> SASPlayers = prs.getAllPlayer("SAS");
         ArrayList<String> MEMPlayers = prs.getAllPlayer("MEM");
         ArrayList<String> DALPlayers = prs.getAllPlayer("DAL");
@@ -176,7 +175,5 @@ public class PlayersSelect extends MyPanel implements ActionListener{
 		if(e.getActionCommand().equals("home")||e.getActionCommand().equals("back")){
 			frame.change(this, frame.mainFrame);
 		}
-		
 	}
-
 }

@@ -27,6 +27,8 @@ public class Img {
 	public static final Image TEAMICON2 = new ImageIcon("graphics/main/球队2.png").getImage();
 	public static final Image PLAYERICON1 = new ImageIcon("graphics/main/球员1.png").getImage();
 	public static final Image PLAYERICON2 = new ImageIcon("graphics/main/球员2.png").getImage();
+	public static final Image MATCHICON1 = new ImageIcon("graphics/main/比赛1.png").getImage();
+	public static final Image MATCHICON2 = new ImageIcon("graphics/main/比赛2.png").getImage();
 	
 	
 	public static final ImageIcon ATL= new ImageIcon("graphics/teams/ATL.png");

@@ -74,10 +74,13 @@ public class Ranking extends MyPanel implements ActionListener{
 	JRadioButton jrb6 = new JRadioButton("东南区");
 	JRadioButton jrb7 = new JRadioButton("中部区");
 	JRadioButton jrb8 = new JRadioButton("大西洋区");
+	JLabel jl = new JLabel("赛季热点:");
 	ButtonGroup group = new ButtonGroup();
 	JComboBox<String> type = new JComboBox<String>();
+	JComboBox<String> term = new JComboBox<String>();
 	JButton descending = new JButton("降序");
 	JButton ascending = new JButton("升序");
+	JButton search = new JButton("查询");
 	Font font1 = new Font("黑体", Font.BOLD, 16);
 	public Ranking(Frame frame) {
 		super(frame);
@@ -165,21 +168,44 @@ public class Ranking extends MyPanel implements ActionListener{
         type.addItem("抢断效率");
         type.addItem("助攻效率");
         this.add(type);
-        type.setBounds(750, 175, 110, 20);
+        type.setBounds(750, 160, 110, 20);
         type.setFont(font1);
         
         this.add(descending);
-        descending.setBounds(880, 172, 60, 25);
+        descending.setBounds(880, 157, 60, 25);
         descending.addActionListener(this);
         descending.setActionCommand("descending");
         descending.setUI(new MyButtonUI());
         
         this.add(ascending);
-        ascending.setBounds(950, 172, 60, 25);
+        ascending.setBounds(950, 157, 60, 25);
         ascending.addActionListener(this);
         ascending.setActionCommand("ascending");
         ascending.setUI(new MyButtonUI());
 		
+	    term.removeAllItems();			
+		term.addItem("场均得分");
+		term.addItem("场均篮板");
+		term.addItem("场均助攻");
+		term.addItem("场均盖帽");
+	    term.addItem("场均抢断");
+		term.addItem("三分命中率");
+		term.addItem("投篮命中率");
+		term.addItem("罚球命中率");
+		  
+	    this.add(term);
+	    term.setBounds(830, 190, 100, 20);
+	    term.setFont(font1);
+	    this.add(jl);
+	    jl.setBounds(750, 190, 80, 20);
+	    jl.setFont(font1);
+	    
+        this.add(search);
+        search.setBounds(950, 187, 60, 25);
+        search.addActionListener(this);
+        search.setActionCommand("search");
+        search.setUI(new MyButtonUI());
+        
 		this.add(rankingBand);
 		rankingBand.setBounds(0, 150, 1052, 70);
 		

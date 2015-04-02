@@ -48,7 +48,11 @@ public class Statistics extends MyPanel implements ActionListener{
 	JComboBox<String> posision = new JComboBox<String>();
 	JComboBox<String> area = new JComboBox<String>();
 	JComboBox<String> term = new JComboBox<String>();
+	JComboBox<String> hot = new JComboBox<String>();
+	JComboBox<String> term1 = new JComboBox<String>();
+
 	JButton filter = new JButton("筛选");
+	JButton search = new JButton("查询");
 	public Statistics(Frame frame) {
 		super(frame);
 		// TODO Auto-generated constructor stub
@@ -112,7 +116,16 @@ public class Statistics extends MyPanel implements ActionListener{
 		term.addItem("罚球");
 		term.addItem("两双");
 		term.setUI(new MyComboBoxUI());
-		
+		hot.addItem("当日热点");
+		hot.addItem("赛季热点");
+		hot.addItem("进步最快");
+		hot.setUI(new MyComboBoxUI());
+		term1.addItem("得分");
+		term1.addItem("篮板");
+		term1.addItem("助攻");
+		term1.addItem("盖帽");
+		term1.addItem("抢断");
+		term1.setUI(new MyComboBoxUI());
         this.add(jl1);
         jl1.setBounds(20, 175, 180, 20);
         jl1.setFont(font1);
@@ -134,26 +147,69 @@ public class Statistics extends MyPanel implements ActionListener{
         ascending.setUI(new MyButtonUI());
         
         this.add(jl2);
-        jl2.setBounds(510, 175, 180, 20);
+        jl2.setBounds(510, 160, 180, 20);
         jl2.setFont(font1);
         
         this.add(posision);
-        posision.setBounds(660, 175, 70, 20);
+        posision.setBounds(660, 160, 70, 20);
         posision.setFont(font1);
 
         this.add(area);
-        area.setBounds(740, 175, 80, 20);
+        area.setBounds(740, 160, 80, 20);
         area.setFont(font1);
         
         this.add(term);
-        term.setBounds(830, 175, 140, 20);
+        term.setBounds(830, 160, 140, 20);
         term.setFont(font1);
 
+        this.add(hot);
+        hot.setBounds(760, 190, 100, 20);
+        hot.setFont(font1);
+        hot.addActionListener(new ActionListener() {
+		      public void actionPerformed(final ActionEvent e) {
+		    	  if(hot.getSelectedIndex()==0){
+		    		  term1.removeAllItems();		
+		    		  term1.addItem("得分");
+		    		  term1.addItem("篮板");
+		    		  term1.addItem("助攻");
+		    		  term1.addItem("盖帽");
+		    		  term1.addItem("抢断");
+		    	  }
+		    	  else if(hot.getSelectedIndex()==1){
+		    		  term1.removeAllItems();			
+		    		  term1.addItem("场均得分");
+		    		  term1.addItem("场均篮板");
+		    		  term1.addItem("场均助攻");
+		    		  term1.addItem("场均盖帽");
+		    		  term1.addItem("场均抢断");
+		    		  term1.addItem("三分命中率");
+		    		  term1.addItem("投篮命中率");
+		    		  term1.addItem("罚球命中率");
+		    	  }
+		    	  else if(hot.getSelectedIndex()==2){
+		    		  term1.removeAllItems();		
+		    		  term1.addItem("场均得分");
+		    		  term1.addItem("场均篮板");
+		    		  term1.addItem("场均助攻");
+		    	  }
+		      }
+		    });
+        
+        this.add(term1);
+        term1.setBounds(870, 190, 100, 20);
+        term1.setFont(font1);
+        
         this.add(filter);
-        filter.setBounds(980, 172, 60, 25);
+        filter.setBounds(980, 157, 60, 25);
         filter.addActionListener(this);
         filter.setActionCommand("filter");
         filter.setUI(new MyButtonUI());
+        
+        this.add(search);
+        search.setBounds(980, 187, 60, 25);
+        search.addActionListener(this);
+        search.setActionCommand("search");
+        search.setUI(new MyButtonUI());
 		
 		this.add(rankingBand);
 		rankingBand.setBounds(0, 150, 1052, 70);
