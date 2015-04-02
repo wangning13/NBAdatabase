@@ -9,7 +9,7 @@ public class PlayerVO {
 	double averageBackboard;//场均篮板数
 	int assist;//助攻数
 	double averageAssist;//场均助攻数
-	double minites;//在场时间
+	double minutes;//在场时间
 	double averageMinute;//场均在场时间
 	int fieldGoal;//投篮命中数
 	double averageFieldGoal;//场均投篮命中数
@@ -74,7 +74,7 @@ public class PlayerVO {
 	int doubleDouble=0;//两双次数
 	public PlayerVO(String playerName, String team, int appearance,
 			int firstPlay, int backboard, double averageBackboard, int assist,
-			double averageAssist, double minites, double averageMinute,
+			double averageAssist, double minutes, double averageMinute,
 			int fieldGoal, double averageFieldGoal, int fieldGoalAttempts,
 			double averageFieldGoalAttempts, int threePointFieldGoal,
 			double averageThreePointFieldGoal, int threePointFieldGoalAttempts,
@@ -112,7 +112,7 @@ public class PlayerVO {
 		this.averageBackboard = averageBackboard;
 		this.assist = assist;
 		this.averageAssist = averageAssist;
-		this.minites = minites;
+		this.minutes = minutes;
 		this.averageMinute = averageMinute;
 		this.fieldGoal = fieldGoal;
 		this.averageFieldGoal = averageFieldGoal;
@@ -225,11 +225,11 @@ public class PlayerVO {
 	public void setAverageAssist(double averageAssist) {
 		this.averageAssist = averageAssist;
 	}
-	public double getMinites() {
-		return minites;
+	public double getMinutes() {
+		return minutes;
 	}
-	public void setMinites(double minites) {
-		this.minites = minites;
+	public void setMinutes(double minutes) {
+		this.minutes = minutes;
 	}
 	public double getAverageMinute() {
 		return averageMinute;
