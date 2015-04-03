@@ -11,6 +11,7 @@ import po.TeamMatchPO;
 import po.TeamPO;
 import po.TeaminfoPO;
 import vo.TeamMatchVO;
+import vo.TeamMonthMatchVO;
 import vo.TeamVO;
 import vo.TeaminfoVO;
 import businesslogicservice.teamblservice.TeamRankService;
@@ -131,25 +132,46 @@ public class TeamRank implements TeamRankService{
     	return this.getTeamData(season,"1", key, order);
     }
 	
-    public ArrayList<TeamMatchVO> getTeamMonthMatch(String month,String team){
-		ArrayList<TeamMatchVO> teamMatchVOs = new ArrayList<TeamMatchVO>();
+    public ArrayList<TeamMonthMatchVO> getTeamMonthMatch(String month,String team){
+		ArrayList<TeamMonthMatchVO> teamMonthMatchVOs = new ArrayList<TeamMonthMatchVO>();
 		ArrayList<TeamMatchPO> teamMatchPOs = new ArrayList<TeamMatchPO>();
 		GetTeamdataDataService g;
 		try {
 			g = (GetTeamdataDataService) Naming.lookup("rmi://"+rmi+":2015/GetTeamdata");
 			teamMatchPOs = g.getTeamMonthMatch(month, team);
 			for (int i = 0; i < teamMatchPOs.size(); i++) {
-				TeamMatchVO teamMatchVO = new TeamMatchVO(teamMatchPOs.get(i).getDate(), 
-						teamMatchPOs.get(i).getHostGuest(), 
-						teamMatchPOs.get(i).getName(), 
-						teamMatchPOs.get(i).getOpponent(), 
-						teamMatchPOs.get(i).getWinLose(),
-						teamMatchPOs.get(i).getTotal()	,
-						teamMatchPOs.get(i).getFirst(),
-						teamMatchPOs.get(i).getSecond(),
-						teamMatchPOs.get(i).getThird(), 
-						teamMatchPOs.get(i).getFourth());
-				teamMatchVOs.add(teamMatchVO);
+				for (int j = 0; j < teamMatchPOs.size(); j++) {
+					if (teamMatchPOs.get(i).getHostGuest().equals("h")) {
+						if (teamMatchPOs.get(i).getDate().equals(teamMatchPOs.get(j).getDate())) {
+							TeamMonthMatchVO teamMonthMatchVO = new TeamMonthMatchVO(teamMatchPOs.get(j).getDate(), 
+									teamMatchPOs.get(i).getName(), 
+									teamMatchPOs.get(j).getName(), 
+									teamMatchPOs.get(i).getTotal()+"-"+teamMatchPOs.get(j).getTotal(),
+									teamMatchPOs.get(i).getFirst()+"-"+teamMatchPOs.get(j).getFirst(),
+									teamMatchPOs.get(i).getSecond()+"-"+teamMatchPOs.get(j).getSecond(),
+									teamMatchPOs.get(i).getThird()+"-"+teamMatchPOs.get(j).getThird(), 
+									teamMatchPOs.get(i).getFourth()+"-"+teamMatchPOs.get(j).getFourth());
+							teamMonthMatchVOs.add(teamMonthMatchVO);
+							teamMatchPOs.remove(j);
+						}
+					}else {
+						if (teamMatchPOs.get(i).getDate().equals(teamMatchPOs.get(j).getDate())) {
+							TeamMonthMatchVO teamMonthMatchVO = new TeamMonthMatchVO(teamMatchPOs.get(j).getDate(), 
+									teamMatchPOs.get(j).getName(),
+									teamMatchPOs.get(i).getName(), 
+									teamMatchPOs.get(j).getTotal()+"-"+teamMatchPOs.get(i).getTotal(),
+									teamMatchPOs.get(j).getFirst()+"-"+teamMatchPOs.get(i).getFirst(),
+									teamMatchPOs.get(j).getSecond()+"-"+teamMatchPOs.get(i).getSecond(),
+									teamMatchPOs.get(j).getThird()+"-"+teamMatchPOs.get(i).getThird(), 
+									teamMatchPOs.get(j).getFourth()+"-"+teamMatchPOs.get(i).getFourth());
+							teamMonthMatchVOs.add(teamMonthMatchVO);
+							teamMatchPOs.remove(j);
+						}
+					}
+					
+					
+				}
+				
 			}
 		} catch (MalformedURLException e) {
 			// TODO Auto-generated catch block
@@ -161,7 +183,7 @@ public class TeamRank implements TeamRankService{
 			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
-		return teamMatchVOs;
+		return teamMonthMatchVOs;
 	}
     
     public TeamMatchVO getTeamMatch(String date,String team){
