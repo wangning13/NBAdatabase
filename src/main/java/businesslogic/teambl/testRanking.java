@@ -13,17 +13,17 @@ public class testRanking{
 //		teamRank.getrank();
 //		TeamVO teamVO = teamRank.getTeamData("ATL");
 //		System.out.println(teamVO.getAssist());
-		
-		ArrayList<TeamVO> teamPOs = teamRank.getTeamData("1","winningPercentage", "DESC");
-		System.out.println(teamPOs.size());
-		for (int i = 0; i < teamPOs.size(); i++) {
-			System.out.println(teamPOs.get(i).getRank());
+//		
+//		ArrayList<TeamVO> teamPOs = teamRank.getTeamData("1","winningPercentage", "DESC");
+//		System.out.println(teamPOs.size());
+//		for (int i = 0; i < teamPOs.size(); i++) {
+//			System.out.println(teamPOs.get(i).getRank());
 //			System.out.println(teamPOs.get(i).getOpponentFieldGoal());
 //			System.out.println(teamPOs.get(i).getOpponentFieldGoalAttempts());
 //			System.out.println(teamPOs.get(i).getOpponentTurnOver());
 //			System.out.println(teamPOs.get(i).getOpponentFreeThrowAttempts());
 //			System.out.println(teamPOs.get(i).getOppenentScoring());
-			System.out.println(teamPOs.get(i).getTeamName());
+//			System.out.println(teamPOs.get(i).getTeamName());
 //			System.out.println(teamPOs.get(i).getMatches());
 //			System.out.println(teamPOs.get(i).getWins());
 //			System.out.println(teamPOs.get(i).getFieldGoal());
@@ -51,7 +51,7 @@ public class testRanking{
 //			System.out.println(teamPOs.get(i).getPossessions());
 //			System.out.println("*--------------------------------------------------------------------------------*");
 			
-		}
+//		}
 		
 	}
 }

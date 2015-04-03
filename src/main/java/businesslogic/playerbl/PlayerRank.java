@@ -10,8 +10,10 @@ import java.util.ArrayList;
 import businesslogicservice.playerblservice.PlayerRankService;
 import dataservice.getdatadataservice.GetPlayerdataDataService;
 import dataservice.getdatadataservice.GetTeamdataDataService;
+import po.PlayerMatchPO;
 import po.PlayerPO;
 import po.PlayerinfoPO;
+import vo.PlayerMatchVO;
 import vo.PlayerVO;
 import vo.PlayerinfoVO;
 
@@ -20,13 +22,13 @@ public class PlayerRank implements PlayerRankService{
 	DecimalFormat df=new DecimalFormat("#.0000");
 	
 	String[] allPlayer;
-	public ArrayList<String> getAllPlayer(String teamName){
+	public ArrayList<String> getAllPlayer(String season,String teamName){
 		ArrayList<String> teamPlayerList1;
 		ArrayList<String> teamPlayerList2 = new ArrayList<String>();
 		GetTeamdataDataService g;
 		try {
 			g = (GetTeamdataDataService) Naming.lookup("rmi://"+rmi+":2015/GetTeamdata");
-			teamPlayerList1 = g.getTeamPlayer(teamName);
+			teamPlayerList1 = g.getTeamPlayer(season,teamName);
 			for (int i = 0; i < teamPlayerList1.size(); i++) {
 				if (!teamPlayerList1.get(i).equals(null)) {
 					teamPlayerList2.add(teamPlayerList1.get(i));
@@ -211,8 +213,28 @@ public class PlayerRank implements PlayerRankService{
 	}
 	
 	public ArrayList<PlayerMatchPO> getPlayerMonthMatch(String month,String team){
+		ArrayList<PlayerMatchPO> playerMatchPOs = new ArrayList<PlayerMatchPO>();
+		ArrayList<PlayerMatchVO> playerMatchVOs = new ArrayList<PlayerMatchVO>();
+		GetPlayerdataDataService g;
+		try {
+			g = (GetPlayerdataDataService) Naming.lookup("rmi://"+rmi+":2015/GetPlayerdata");
+			playerMatchPOs = g.getPlayerMonthMatch(month, team);
+			
+			
+			
+			
+		} catch (MalformedURLException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		} catch (RemoteException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		} catch (NotBoundException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
 		
-	
+		
 	}
 	public ArrayList<PlayerMatchPO> getPlayerRecentFiveMatch(String player){
 		
