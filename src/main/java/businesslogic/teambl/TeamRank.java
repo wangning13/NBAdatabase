@@ -20,12 +20,12 @@ public class TeamRank implements TeamRankService{
 	String rmi = "127.0.0.1";
 	DecimalFormat df=new DecimalFormat("#.0000");
 	
-	public  ArrayList<TeamPO> Ranking(String condition,String order) {
+	private  ArrayList<TeamPO> Ranking(String season,String condition,String order) {
 		ArrayList<TeamPO> teamPOs = new ArrayList<TeamPO>();
     	GetTeamdataDataService g;
     	try {
 			g = (GetTeamdataDataService) Naming.lookup("rmi://"+rmi+":2015/GetTeamdata");
-			teamPOs = g.getSomeTeamdata(condition, "wins", order);
+			teamPOs = g.getSomeTeamdata(season,condition, "wins", order);
 			for (int i = 0; i < teamPOs.size(); i++) {
 				Calculate calculate = new Calculate();
 				calculate.Calculate(teamPOs.get(i));
@@ -45,13 +45,13 @@ public class TeamRank implements TeamRankService{
 		return teamPOs;
 	}
 	
-    public ArrayList<TeamVO>  gettingTeamData(String condition, String key,String order) {
+    private ArrayList<TeamVO>  gettingTeamData(String season,String condition, String key,String order) {
     	ArrayList<TeamVO> teamVOs = new ArrayList<TeamVO>();
     	ArrayList<TeamPO> teamPOs2 = null;
     	GetTeamdataDataService g;
     	try {
 			g = (GetTeamdataDataService) Naming.lookup("rmi://"+rmi+":2015/GetTeamdata");
-			teamPOs2 = g.getByEfficiency(this.Ranking(condition,order), key, order);
+			teamPOs2 = g.getByEfficiency(this.Ranking(season,condition,order), key, order);
 			for (int i = 0; i < teamPOs2.size(); i++) {
 				GetTeamVO getTeamVO = new GetTeamVO();
 				TeamVO teamVO = getTeamVO.GetTeamVO(teamPOs2.get(i));
@@ -70,8 +70,8 @@ public class TeamRank implements TeamRankService{
 		return teamVOs;
 	}
     
-    public ArrayList<TeamVO>  getTeamData(String condition, String key,String order){
-    	ArrayList<TeamVO> teamVOs = gettingTeamData(condition, key, order);
+    public ArrayList<TeamVO>  getTeamData(String season,String condition, String key,String order){
+    	ArrayList<TeamVO> teamVOs = gettingTeamData(season,condition, key, order);
     	return teamVOs;
     } 
     
@@ -97,14 +97,14 @@ public class TeamRank implements TeamRankService{
     	return teaminfoVO;
     }
     
-    public TeamVO getTeamData(String teamName){
-    	ArrayList<TeamVO> teamVOs = getAllTeamdata("wins", "DESC");
+    public TeamVO getTeamData(String season,String teamName){
+    	ArrayList<TeamVO> teamVOs = getAllTeamdata(season,"wins", "DESC");
     	int teamRank = 0;
     	TeamVO teamVO = new TeamVO();
     	GetTeamdataDataService g;
     	try {
 			g = (GetTeamdataDataService) Naming.lookup("rmi://"+rmi+":2015/GetTeamdata");
-			TeamPO teamPO = g.getTeamdata(teamName);
+			TeamPO teamPO = g.getTeamdata(season,teamName);
 			for (int i = 0; i < teamVOs.size(); i++) {
 				if (teamName.equals(teamVOs.get(i).getTeamName())) {
 					teamRank = teamVOs.get(i).getRank();
@@ -126,9 +126,9 @@ public class TeamRank implements TeamRankService{
     	return teamVO;
     }
     
-    public ArrayList<TeamVO> getAllTeamdata(String key,String order){
+    public ArrayList<TeamVO> getAllTeamdata(String season,String key,String order){
 
-    	return this.getTeamData("1", key, order);
+    	return this.getTeamData(season,"1", key, order);
     }
 	
     public ArrayList<TeamMatchVO> getTeamMonthMatch(String month,String team){
