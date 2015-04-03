@@ -3,20 +3,13 @@ package ui.main;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 
-import javax.swing.JButton;
-import javax.swing.JComboBox;
-import javax.swing.JLabel;
-import javax.swing.JPasswordField;
-import javax.swing.JTextField;
-
 import ui.main.Frame;
 import ui.main.MyButton;
 import ui.main.MyPanel;
 import ui.material.Img;
-import ui.team.Ranking;
 
 
-
+@SuppressWarnings("serial")
 public class MainFrame extends MyPanel implements ActionListener{
 	private Frame frame;
 

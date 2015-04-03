@@ -11,13 +11,11 @@ import javax.swing.JComboBox;
 import javax.swing.JLabel;
 import javax.swing.JRadioButton;
 import javax.swing.JScrollPane;
-import javax.swing.JTable;
 import javax.swing.table.DefaultTableModel;
 
 import businesslogic.teambl.TeamRank;
 import businesslogicservice.teamblservice.TeamRankService;
 import ui.main.Frame;
-import ui.main.MyButton;
 import ui.main.MyPanel;
 import ui.material.Img;
 import ui.tools.MyTable;
@@ -210,7 +208,7 @@ public class Ranking extends MyPanel implements ActionListener{
 		rankingBand.setBounds(0, 150, 1052, 70);
 		
 		
-        Object[][] data = getData(trs.getAllTeamdata( "wins", "DESC"));
+        Object[][] data= getData(trs.getAllTeamdata("13-14","wins", "DESC"));
 	    model1 = new DefaultTableModel(new Object[][]{},columnNames1);
 	    model1.setDataVector(data, columnNames1);
 	    table1 = new MyTable(model1);
@@ -317,7 +315,7 @@ public class Ranking extends MyPanel implements ActionListener{
 		if(e.getActionCommand().equals("west")){
 			/*pane1.setVisible(true);
 			pane2.setVisible(true);*/
-			Object[][] data = getData(trs.getTeamData("`east/west`='W'", "wins", "DESC"));
+			Object[][] data = getData(trs.getTeamData("13-14","`east/west`='W'", "wins", "DESC"));
 			model1.setDataVector(data, columnNames1);
 		    table1.setWidth();
 			table1.updateUI();
@@ -331,43 +329,43 @@ public class Ranking extends MyPanel implements ActionListener{
 			pane6.setVisible(true);
 			pane7.setVisible(true);
 			pane8.setVisible(true);*/
-			Object[][] data = getData(trs.getTeamData("`east/west`='E'", "wins", "DESC"));
+			Object[][] data = getData(trs.getTeamData("13-14","`east/west`='E'", "wins", "DESC"));
 			model1.setDataVector(data, columnNames1);
 		    table1.setWidth();
 			table1.updateUI();
 		}
 		if(e.getActionCommand().equals("southwest")){
-			Object[][] data = getData(trs.getTeamData("`partition`='Southwest'", "wins", "DESC"));
+			Object[][] data = getData(trs.getTeamData("13-14","`partition`='Southwest'", "wins", "DESC"));
 			model1.setDataVector(data, columnNames1);
 		    table1.setWidth();
 			table1.updateUI();
 		}
 		if(e.getActionCommand().equals("northwest")){
-			Object[][] data = getData(trs.getTeamData("`partition`='Northwest'", "wins", "DESC"));
+			Object[][] data = getData(trs.getTeamData("13-14","`partition`='Northwest'", "wins", "DESC"));
 			model1.setDataVector(data, columnNames1);
 		    table1.setWidth();
 			table1.updateUI();
 		}
 		if(e.getActionCommand().equals("pacific")){
-			Object[][] data = getData(trs.getTeamData("`partition`='Pacific'", "wins", "DESC"));
+			Object[][] data = getData(trs.getTeamData("13-14","`partition`='Pacific'", "wins", "DESC"));
 			model1.setDataVector(data, columnNames1);
 		    table1.setWidth();
 			table1.updateUI();
 		}
 		if(e.getActionCommand().equals("southeast")){
-			Object[][] data = getData(trs.getTeamData("`partition`='Southeast'", "wins", "DESC"));
+			Object[][] data = getData(trs.getTeamData("13-14","`partition`='Southeast'", "wins", "DESC"));
 			model1.setDataVector(data, columnNames1);
 		    table1.setWidth();
 			table1.updateUI();
 		}
 		if(e.getActionCommand().equals("central")){
-			Object[][] data = getData(trs.getTeamData("`partition`='Central'", "wins", "DESC"));
+			Object[][] data = getData(trs.getTeamData("13-14","`partition`='Central'", "wins", "DESC"));
 			model1.setDataVector(data, columnNames1);
 		    table1.setWidth();
 			table1.updateUI();
 		}
 		if(e.getActionCommand().equals("atlantic")){
-			Object[][] data = getData(trs.getTeamData("`partition`='Atlantic'", "wins", "DESC"));
+			Object[][] data = getData(trs.getTeamData("13-14","`partition`='Atlantic'", "wins", "DESC"));
 			model1.setDataVector(data, columnNames1);
 		    table1.setWidth();
 			table1.updateUI();
@@ -386,7 +384,7 @@ public class Ranking extends MyPanel implements ActionListener{
 			pane8.setVisible(false);
 			jrb1.setSelected(false);
 			jrb2.setSelected(false);*/
-			Object[][] data = getData(trs.getAllTeamdata(Translate.translate1(type.getSelectedItem().toString()), "DESC"));
+			Object[][] data = getData(trs.getAllTeamdata("13-14",Translate.translate1(type.getSelectedItem().toString()), "DESC"));
 			model1.setDataVector(data, columnNames1);
 		    table1.setWidth();
 			table1.updateUI();
@@ -402,7 +400,7 @@ public class Ranking extends MyPanel implements ActionListener{
 			pane8.setVisible(false);
 			jrb1.setSelected(false);
 			jrb2.setSelected(false);*/
-			Object[][] data = getData(trs.getAllTeamdata(Translate.translate1(type.getSelectedItem().toString()), "ASC"));
+			Object[][] data = getData(trs.getAllTeamdata("13-14",Translate.translate1(type.getSelectedItem().toString()), "ASC"));
 			model1.setDataVector(data, columnNames1);
 		    table1.setWidth();
 			table1.updateUI();

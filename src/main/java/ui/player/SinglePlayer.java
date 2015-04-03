@@ -3,19 +3,13 @@ package ui.player;
 import java.awt.Font;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
-import java.awt.event.MouseAdapter;
-import java.awt.event.MouseEvent;
 
-import javax.swing.ButtonGroup;
 import javax.swing.JButton;
 import javax.swing.JComboBox;
 import javax.swing.JLabel;
-import javax.swing.JRadioButton;
 import javax.swing.JScrollPane;
-import javax.swing.JTable;
 import javax.swing.table.DefaultTableModel;
 
-import po.PlayerinfoPO;
 import businesslogic.playerbl.PlayerRank;
 import businesslogicservice.playerblservice.PlayerRankService;
 import ui.main.Frame;
@@ -211,7 +205,7 @@ public class SinglePlayer extends MyPanel implements ActionListener{
 	    exp.setText(playerInfo.getExp());
 	    school.setText(playerInfo.getSchool());
 	    
-	    PlayerVO player = prs.getPlayerdata(name);
+	    PlayerVO player = prs.getPlayerdata("13-14",name);
 	    Object[][] data1 = new Object[1][];
 		
 		Object[] temp1 = {player.getTeam(),player.getAppearance(),player.getFirstPlay(),player.getBackboard(),player.getAssist(),player.getMinutes(),player.getFielfGoalShotPercentage(),player.getThreePointShotPercentage(),player.getFreeThrowPercentage(),player.getOffensiveRebound(),player.getDefensiveRebound(),player.getSteal(),player.getBlock(),player.getTurnOver(),player.getFoul(),player.getScoring(),player.getEfficiency(),player.getGmScEfficiency(),player.getTrueShootingPercentage(),player.getShootingEfficiency(),player.getBackboardPercentage(),player.getOffensiveReboundPercentage(),player.getDefensiveReboundPercentage(),player.getAssistPercentage(),player.getStealPercentage(),player.getBlockPercentage(),player.getTurnOverPercentage(),player.getUsage(),player.getAverageScoring(),player.getAverageMinute(),player.getAverageBackboard(),player.getAverageAssist(),player.getAverageFieldGoal(),player.getAverageFieldGoalAttempts(),player.getAverageThreePointFieldGoal(),player.getAverageThreePointFieldGoalAttempts(),player.getAverageFreeThrow(),player.getAverageFreeThrowAttempts(),player.getAverageOffensiveRebound(),player.getAverageDefensiveRebound(),player.getAverageSteal(),player.getAverageBlock(),player.getAverageTurn(),player.getAverageFoul()};

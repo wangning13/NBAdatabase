@@ -4,27 +4,25 @@ package ui.match;
 import java.awt.Font;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.awt.event.MouseAdapter;
+import java.awt.event.MouseEvent;
 import java.util.ArrayList;
 
-import javax.swing.ButtonGroup;
 import javax.swing.JButton;
 import javax.swing.JComboBox;
 import javax.swing.JLabel;
-import javax.swing.JRadioButton;
 import javax.swing.JScrollPane;
-import javax.swing.JTable;
 import javax.swing.table.DefaultTableModel;
 
 import businesslogic.teambl.TeamRank;
 import businesslogicservice.teamblservice.TeamRankService;
 import ui.main.Frame;
-import ui.main.MyButton;
 import ui.main.MyPanel;
 import ui.material.Img;
 import ui.tools.MyTable;
 import ui.tools.Translate;
 import vo.TeamMatchVO;
-import vo.TeamVO;
+import vo.TeamMonthMatchVO;
 
 @SuppressWarnings("serial")
 public class Matches extends MyPanel implements ActionListener{
@@ -33,7 +31,7 @@ public class Matches extends MyPanel implements ActionListener{
 	JScrollPane pane1;
 	MyTable table1;
 	DefaultTableModel model1;
-	String[] columnNames1 = {"日期","场次","投篮命中数","投篮出手数","三分命中数","三分出手数"};
+	String[] columnNames1 = {"日期","主队","比分","客队","第一节","第二节","第三节","第四节","查看"};
 
 	JLabel rankingBand = new JLabel(Img.RANKINGBAND);
 
@@ -132,15 +130,31 @@ public class Matches extends MyPanel implements ActionListener{
 	    pane1 = new JScrollPane (table1);
 	    this.add(pane1);
 	    pane1.setBounds(0, 220, 1052, 430);
+	    
+	    table1.addMouseListener(new MouseAdapter() {    //这里使用MouseAdapter代替MouseListener，因为MouseListener要重写的方法太多
+			public void mouseClicked(MouseEvent e) {
+				int row = table1.getSelectedRow();
+				int column = table1.getSelectedColumn();
+				if(column==8)
+					jump();
+			}
+		});
+	  }
 	
-	}
+	
+	
 
-    public Object[][] getData(ArrayList<TeamMatchVO> matches){
+    public void jump(){
+    	frame.change(this, frame.singleMatchPanel);
+    }
+		 
+		 
+    public Object[][] getData(ArrayList<TeamMonthMatchVO> matches){
     	int num = matches.size();
     	Object[][] data = new Object[num][];
 		for(int i = 0;i<num;i++){
-			Object[] temp = {matches.get(i).getDate(),matches.get(i).getName(),matches.get(i).getOpponent(),matches.get(i).getTotal()};
-		    data[i] = temp;
+			Object[] temp = {matches.get(i).getDate(),matches.get(i).getHost(),matches.get(i).getScore(),matches.get(i).getGuest(),matches.get(i).getFirst(),matches.get(i).getSecond(),matches.get(i).getThird(),matches.get(i).getFourth(),"查看"};
+		    data[num-1-i] = temp;
 		}
 		return data;
     }

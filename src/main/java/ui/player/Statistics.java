@@ -5,22 +5,13 @@ import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.util.ArrayList;
 
-import javax.swing.ButtonGroup;
 import javax.swing.JButton;
 import javax.swing.JComboBox;
 import javax.swing.JLabel;
-import javax.swing.JRadioButton;
 import javax.swing.JScrollPane;
-import javax.swing.JTable;
-import javax.swing.RowSorter;
 import javax.swing.table.DefaultTableModel;
-import javax.swing.table.TableModel;
-import javax.swing.table.TableRowSorter;
-
 import businesslogic.playerbl.PlayerRank;
-import businesslogic.teambl.TeamRank;
 import businesslogicservice.playerblservice.PlayerRankService;
-import businesslogicservice.teamblservice.TeamRankService;
 import ui.main.Frame;
 import ui.main.MyPanel;
 import ui.material.Img;
@@ -214,7 +205,7 @@ public class Statistics extends MyPanel implements ActionListener{
 		this.add(rankingBand);
 		rankingBand.setBounds(0, 150, 1052, 70);
 		
-        Object[][] data = getData(prs.getAllPlayerdata("scoring", "DESC"));
+        Object[][] data = getData(prs.getAllPlayerdata("13-14","scoring", "DESC"));
 	    model =  new DefaultTableModel(new Object[][]{}, columnNames);   
 	    model.setDataVector(data, columnNames);
 
@@ -243,19 +234,19 @@ public class Statistics extends MyPanel implements ActionListener{
 		}
 		
 		if(e.getActionCommand().equals("descending")){	
-			 Object[][] data = getData(prs.getAllPlayerdata(Translate.translate1(type.getSelectedItem().toString()), "DESC"));
+			 Object[][] data = getData(prs.getAllPlayerdata("13-14",Translate.translate1(type.getSelectedItem().toString()), "DESC"));
 			 model.setDataVector(data, columnNames);
 		     table.setWidth();
 			 table.updateUI();
 		}
 		if(e.getActionCommand().equals("ascending")){
-			 Object[][] data = getData(prs.getAllPlayerdata(Translate.translate1(type.getSelectedItem().toString()), "ASC"));
+			 Object[][] data = getData(prs.getAllPlayerdata("13-14",Translate.translate1(type.getSelectedItem().toString()), "ASC"));
 			 model.setDataVector(data, columnNames);
 		     table.setWidth();
 			 table.updateUI();
 		}
 		if(e.getActionCommand().equals("filter")){
-			 Object[][] data = getData(prs.getFirstFifty(Translate.translate1(posision.getSelectedItem().toString()),Translate.translate1(area.getSelectedItem().toString()),Translate.translate1(term.getSelectedItem().toString())));
+			 Object[][] data = getData(prs.getFirstFifty("13-14",Translate.translate1(posision.getSelectedItem().toString()),Translate.translate1(area.getSelectedItem().toString()),Translate.translate1(term.getSelectedItem().toString())));
 			 model.setDataVector(data, columnNames);
 		     table.setWidth();
 			 table.updateUI();

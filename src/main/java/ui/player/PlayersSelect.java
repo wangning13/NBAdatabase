@@ -8,18 +8,14 @@ import java.awt.event.MouseEvent;
 import java.util.ArrayList;
 
 import javax.swing.ButtonGroup;
-import javax.swing.JButton;
-import javax.swing.JComboBox;
 import javax.swing.JLabel;
 import javax.swing.JRadioButton;
 import javax.swing.JScrollPane;
-import javax.swing.JTable;
 import javax.swing.table.DefaultTableModel;
 
 import businesslogic.playerbl.PlayerRank;
 import businesslogicservice.playerblservice.PlayerRankService;
 import ui.main.Frame;
-import ui.main.MyButton;
 import ui.main.MyPanel;
 import ui.material.Img;
 import ui.tools.MyTable;
@@ -79,36 +75,36 @@ public class PlayersSelect extends MyPanel implements ActionListener{
 	}
 	
 	public Object[][] getData(){
-        ArrayList<String> SASPlayers = prs.getAllPlayer("SAS");
-        ArrayList<String> MEMPlayers = prs.getAllPlayer("MEM");
-        ArrayList<String> DALPlayers = prs.getAllPlayer("DAL");
-        ArrayList<String> HOUPlayers = prs.getAllPlayer("HOU");
-        ArrayList<String> NOPPlayers = prs.getAllPlayer("NOP");
-        ArrayList<String> MINPlayers = prs.getAllPlayer("MIN");
-        ArrayList<String> DENPlayers = prs.getAllPlayer("DEN");
-        ArrayList<String> UTAPlayers = prs.getAllPlayer("UTA");
-        ArrayList<String> PORPlayers = prs.getAllPlayer("POR");
-        ArrayList<String> OKCPlayers = prs.getAllPlayer("OKC");
-        ArrayList<String> SACPlayers = prs.getAllPlayer("SAC");
-        ArrayList<String> PHXPlayers = prs.getAllPlayer("PHX");
-        ArrayList<String> LALPlayers = prs.getAllPlayer("LAL");
-        ArrayList<String> LACPlayers = prs.getAllPlayer("LAC");
-        ArrayList<String> GSWPlayers = prs.getAllPlayer("GSW");
-        ArrayList<String> MIAPlayers = prs.getAllPlayer("MIA");
-        ArrayList<String> ORLPlayers = prs.getAllPlayer("ORL");
-        ArrayList<String> ATLPlayers = prs.getAllPlayer("ATL");
-        ArrayList<String> WASPlayers = prs.getAllPlayer("WAS");
-        ArrayList<String> CHAPlayers = prs.getAllPlayer("CHA");
-        ArrayList<String> DETPlayers = prs.getAllPlayer("DET");
-        ArrayList<String> INDPlayers = prs.getAllPlayer("IND");
-        ArrayList<String> CLEPlayers = prs.getAllPlayer("CLE");
-        ArrayList<String> CHIPlayers = prs.getAllPlayer("CHI");
-        ArrayList<String> MILPlayers = prs.getAllPlayer("MIL");
-        ArrayList<String> BOSPlayers = prs.getAllPlayer("BOS");
-        ArrayList<String> PHIPlayers = prs.getAllPlayer("PHI");
-        ArrayList<String> NYKPlayers = prs.getAllPlayer("NYK");
-        ArrayList<String> BKNPlayers = prs.getAllPlayer("BKN");
-        ArrayList<String> TORPlayers = prs.getAllPlayer("TOR");
+        ArrayList<String> SASPlayers = prs.getAllPlayer("13-14","SAS");
+        ArrayList<String> MEMPlayers = prs.getAllPlayer("13-14","MEM");
+        ArrayList<String> DALPlayers = prs.getAllPlayer("13-14","DAL");
+        ArrayList<String> HOUPlayers = prs.getAllPlayer("13-14","HOU");
+        ArrayList<String> NOPPlayers = prs.getAllPlayer("13-14","NOP");
+        ArrayList<String> MINPlayers = prs.getAllPlayer("13-14","MIN");
+        ArrayList<String> DENPlayers = prs.getAllPlayer("13-14","DEN");
+        ArrayList<String> UTAPlayers = prs.getAllPlayer("13-14","UTA");
+        ArrayList<String> PORPlayers = prs.getAllPlayer("13-14","POR");
+        ArrayList<String> OKCPlayers = prs.getAllPlayer("13-14","OKC");
+        ArrayList<String> SACPlayers = prs.getAllPlayer("13-14","SAC");
+        ArrayList<String> PHXPlayers = prs.getAllPlayer("13-14","PHX");
+        ArrayList<String> LALPlayers = prs.getAllPlayer("13-14","LAL");
+        ArrayList<String> LACPlayers = prs.getAllPlayer("13-14","LAC");
+        ArrayList<String> GSWPlayers = prs.getAllPlayer("13-14","GSW");
+        ArrayList<String> MIAPlayers = prs.getAllPlayer("13-14","MIA");
+        ArrayList<String> ORLPlayers = prs.getAllPlayer("13-14","ORL");
+        ArrayList<String> ATLPlayers = prs.getAllPlayer("13-14","ATL");
+        ArrayList<String> WASPlayers = prs.getAllPlayer("13-14","WAS");
+        ArrayList<String> CHAPlayers = prs.getAllPlayer("13-14","CHA");
+        ArrayList<String> DETPlayers = prs.getAllPlayer("13-14","DET");
+        ArrayList<String> INDPlayers = prs.getAllPlayer("13-14","IND");
+        ArrayList<String> CLEPlayers = prs.getAllPlayer("13-14","CLE");
+        ArrayList<String> CHIPlayers = prs.getAllPlayer("13-14","CHI");
+        ArrayList<String> MILPlayers = prs.getAllPlayer("13-14","MIL");
+        ArrayList<String> BOSPlayers = prs.getAllPlayer("13-14","BOS");
+        ArrayList<String> PHIPlayers = prs.getAllPlayer("13-14","PHI");
+        ArrayList<String> NYKPlayers = prs.getAllPlayer("13-14","NYK");
+        ArrayList<String> BKNPlayers = prs.getAllPlayer("13-14","BKN");
+        ArrayList<String> TORPlayers = prs.getAllPlayer("13-14","TOR");
         
         for(int i=0;i<10;i++){
             SASPlayers.add("");

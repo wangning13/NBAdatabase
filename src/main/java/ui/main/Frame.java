@@ -5,6 +5,7 @@ import java.awt.CardLayout;
 import javax.swing.*;
 
 import ui.match.Matches;
+import ui.match.SingleMatch;
 import ui.player.PlayersSelect;
 import ui.player.SinglePlayer;
 import ui.player.Statistics;
@@ -25,6 +26,7 @@ public class Frame extends JFrame{
     public SingleTeam singleTeamPanel = new SingleTeam(this);
     public SinglePlayer singlePlayerPanel = new SinglePlayer(this);
     public Matches matchesPanel = new Matches(this);
+    public SingleMatch singleMatchPanel = new SingleMatch(this);
 	public Frame (){
 		super("NBA数据控");
 		this.getContentPane().add(mainFrame);

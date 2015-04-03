@@ -3,31 +3,23 @@ package ui.team;
 import java.awt.Font;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
-import java.awt.event.MouseAdapter;
-import java.awt.event.MouseEvent;
 import java.util.ArrayList;
 
-import javax.swing.ButtonGroup;
 import javax.swing.JButton;
 import javax.swing.JComboBox;
 import javax.swing.JLabel;
-import javax.swing.JRadioButton;
 import javax.swing.JScrollPane;
-import javax.swing.JTable;
 import javax.swing.table.DefaultTableModel;
 
-import po.TeaminfoPO;
 import businesslogic.playerbl.PlayerRank;
 import businesslogic.teambl.TeamRank;
 import businesslogicservice.playerblservice.PlayerRankService;
 import businesslogicservice.teamblservice.TeamRankService;
 import ui.main.Frame;
-import ui.main.MyButton;
 import ui.main.MyPanel;
 import ui.material.Img;
 import ui.tools.MyTable;
 import vo.PlayerVO;
-import vo.TeamVO;
 import vo.TeaminfoVO;
 
 @SuppressWarnings("serial")
@@ -190,13 +182,13 @@ public class SingleTeam extends MyPanel implements ActionListener{
 	    home.setText(teamInfo.getCourt());
 	    year.setText(String.valueOf(teamInfo.getYear()));
 	    
-	    ArrayList<String> players = prs.getAllPlayer(team);
+	    ArrayList<String> players = prs.getAllPlayer("13-14",team);
 
 	    int num = players.size();
 	    Object[][] data = new Object[num][];
 		for(int i = 0;i<num;i++){
 			System.out.println(players.get(i));
-			PlayerVO player = prs.getPlayerdata(players.get(i));
+			PlayerVO player = prs.getPlayerdata("13-14",players.get(i));
 			Object[] temp = {player.getPlayerName(),player.getAppearance(),player.getFirstPlay(),player.getBackboard(),player.getAssist(),player.getMinutes(),player.getFielfGoalShotPercentage(),player.getThreePointShotPercentage(),player.getFreeThrowPercentage(),player.getOffensiveRebound(),player.getDefensiveRebound(),player.getSteal(),player.getBlock(),player.getTurnOver(),player.getFoul(),player.getScoring(),player.getEfficiency(),player.getGmScEfficiency(),player.getTrueShootingPercentage(),player.getShootingEfficiency(),player.getBackboardPercentage(),player.getOffensiveReboundPercentage(),player.getDefensiveReboundPercentage(),player.getAssistPercentage(),player.getStealPercentage(),player.getBlockPercentage(),player.getTurnOverPercentage(),player.getUsage()};
 		    data[i] = temp;
 		};
