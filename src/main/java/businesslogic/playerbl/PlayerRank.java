@@ -219,7 +219,12 @@ public class PlayerRank implements PlayerRankService{
 		try {
 			g = (GetPlayerdataDataService) Naming.lookup("rmi://"+rmi+":2015/GetPlayerdata");
 			playerMatchPOs = g.getPlayerMonthMatch(month, team);
-			
+			for (int i = 0; i < playerMatchPOs.size(); i++) {
+				GetPlayerMatchVO getPlayerMatchVO = new GetPlayerMatchVO();
+				PlayerMatchVO playerMatchVO = getPlayerMatchVO.getPlayerMatchVO(playerMatchPOs.get(i));
+				playerMatchVOs.add(playerMatchVO);
+				
+			}
 			
 			
 			

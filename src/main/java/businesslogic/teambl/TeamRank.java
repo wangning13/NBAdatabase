@@ -142,7 +142,7 @@ public class TeamRank implements TeamRankService{
 			for (int i = 0; i < teamMatchPOs.size(); i++) {
 				for (int j = 0; j < teamMatchPOs.size(); j++) {
 					if (teamMatchPOs.get(i).getHostGuest().equals("h")) {
-						if (teamMatchPOs.get(i).getDate().equals(teamMatchPOs.get(j).getDate())) {
+						if ((!teamMatchPOs.get(i).getName().equals(teamMatchPOs.get(i).getName()))&&teamMatchPOs.get(i).getDate().equals(teamMatchPOs.get(j).getDate())) {
 							TeamMonthMatchVO teamMonthMatchVO = new TeamMonthMatchVO(teamMatchPOs.get(j).getDate(), 
 									teamMatchPOs.get(i).getName(), 
 									teamMatchPOs.get(j).getName(), 
@@ -155,7 +155,7 @@ public class TeamRank implements TeamRankService{
 							teamMatchPOs.remove(j);
 						}
 					}else {
-						if (teamMatchPOs.get(i).getDate().equals(teamMatchPOs.get(j).getDate())) {
+						if ((!teamMatchPOs.get(i).getName().equals(teamMatchPOs.get(i).getName()))&&teamMatchPOs.get(i).getDate().equals(teamMatchPOs.get(j).getDate())) {
 							TeamMonthMatchVO teamMonthMatchVO = new TeamMonthMatchVO(teamMatchPOs.get(j).getDate(), 
 									teamMatchPOs.get(j).getName(),
 									teamMatchPOs.get(i).getName(), 
