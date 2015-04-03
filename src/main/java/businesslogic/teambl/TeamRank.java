@@ -140,6 +140,7 @@ public class TeamRank implements TeamRankService{
 			g = (GetTeamdataDataService) Naming.lookup("rmi://"+rmi+":2015/GetTeamdata");
 			teamMatchPOs = g.getTeamMonthMatch(month, team);
 			for (int i = 0; i < teamMatchPOs.size(); i++) {
+				System.out.println(teamMatchPOs.get(i).getDate());
 				for (int j = 0; j < teamMatchPOs.size(); j++) {
 					if (teamMatchPOs.get(i).getHostGuest().equals("h")) {
 						if ((!teamMatchPOs.get(i).getName().equals(teamMatchPOs.get(j).getName()))&&teamMatchPOs.get(i).getDate().equals(teamMatchPOs.get(j).getDate())) {
