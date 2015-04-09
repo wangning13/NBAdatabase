@@ -172,6 +172,11 @@ public class Matches extends MyPanel implements ActionListener{
 			model1.setDataVector(data, columnNames1);
 		    table1.setWidth();
 			table1.updateUI();
+			
+			{
+			frame.change(this, frame.singleMatchPanel);
+			frame.singleMatchPanel.update();
+			}
 		}
 	}
 }

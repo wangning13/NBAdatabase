@@ -3,6 +3,8 @@ package ui.main;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 
+import javax.swing.JLabel;
+
 import ui.main.Frame;
 import ui.main.MyButton;
 import ui.main.MyPanel;
@@ -18,6 +20,7 @@ public class MainFrame extends MyPanel implements ActionListener{
 	MyButton teams = new MyButton(Img.TEAMICON1,Img.TEAMICON2);
 	MyButton players = new MyButton(Img.PLAYERICON1,Img.PLAYERICON2);
 	MyButton matches = new MyButton(Img.MATCHICON1,Img.MATCHICON2);
+	JLabel copyright = new JLabel(Img.COPYRIGHT);
 
 	public MainFrame(Frame frame) {
 		super(frame);
@@ -49,6 +52,9 @@ public class MainFrame extends MyPanel implements ActionListener{
 	    matches.setBounds(446, 550, 160, 60);
 	    matches.addActionListener(this);
 	    matches.setActionCommand("matches");
+	    
+	    this.add(copyright);
+	    copyright.setBounds(850, 620, 200, 50);
 
     }
 

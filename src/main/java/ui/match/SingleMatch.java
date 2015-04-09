@@ -2,10 +2,12 @@ package ui.match;
 
 
 import java.awt.Font;
+import java.awt.Image;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.util.ArrayList;
 
+import javax.swing.ImageIcon;
 import javax.swing.JButton;
 import javax.swing.JComboBox;
 import javax.swing.JLabel;
@@ -29,13 +31,13 @@ public class SingleMatch extends MyPanel implements ActionListener{
 	JScrollPane pane1;
 	MyTable table1;
 	DefaultTableModel model1;
-	String[] columnNames1 = {"日期","场次","投篮命中数","投篮出手数","三分命中数","三分出手数"};
+	String[] columnNames1 = {"主队","场次","投篮命中数","投篮出手数","三分命中数","三分出手数"};
 	JScrollPane pane2;
 	MyTable table2;
 	DefaultTableModel model2;
-	String[] columnNames2 = {"日期","场次","投篮命中数","投篮出手数","三分命中数","三分出手数"};
+	String[] columnNames2 = {"客队","场次","投篮命中数","投篮出手数","三分命中数","三分出手数"};
 
-	JLabel rankingBand = new JLabel(Img.RANKINGBAND);
+	JLabel rankingBand = new JLabel(Img.MATCHBAND);
 
 	JComboBox<String> team = new JComboBox<String>();
 	JComboBox<String> month = new JComboBox<String>();
@@ -60,6 +62,8 @@ public class SingleMatch extends MyPanel implements ActionListener{
 	JLabel jl4 = new JLabel("第四节");
 	JLabel jl5 = new JLabel("主队");
 	JLabel jl6 = new JLabel("客队");
+	//JLabel jl7 = new JLabel("主队");
+	//JLabel jl8 = new JLabel("客队");
 
 	Font font1 = new Font("黑体", Font.BOLD, 16);
 	public SingleMatch(Frame frame) {
@@ -68,46 +72,57 @@ public class SingleMatch extends MyPanel implements ActionListener{
 		this.frame = frame;
 		
 		this.add(teamIcon1);
-		teamIcon1.setBounds(30, 160, 100, 100);
+		teamIcon1.setBounds(30, 150, 100, 100);
 		this.add(teamIcon2);
-		teamIcon2.setBounds(922, 160, 100, 100);
+		teamIcon2.setBounds(922, 150, 100, 100);
 		this.add(jl5);
-		jl5.setBounds(50, 260, 70, 30);
+		jl5.setBounds(200, 150, 70, 30);
+		jl5.setFont(font1);
 		this.add(jl6);
-		jl6.setBounds(902, 260, 70, 30);
+		jl6.setBounds(850, 150, 70, 30);
+		jl6.setFont(font1);
 		this.add(point1);
-		point1.setBounds(150, 185, 50, 50);
+		point1.setBounds(150, 175, 50, 50);
 		this.add(point2);
-		point2.setBounds(802, 185, 50, 50);
+		point2.setBounds(802, 175, 50, 50);
 		this.add(jl1);
-		jl1.setBounds(300, 165, 100, 30);
+		jl1.setBounds(310, 150, 100, 30);
+		jl1.setFont(font1);
 		this.add(jl2);
-		jl2.setBounds(400, 165, 100, 30);
+		jl2.setBounds(440, 150, 100, 30);
+		jl2.setFont(font1);
 		this.add(jl3);
-		jl3.setBounds(500, 165, 100, 30);
+		jl3.setBounds(570, 150, 100, 30);
+		jl3.setFont(font1);
 		this.add(jl4);
-		jl4.setBounds(600, 165, 100, 30);
+		jl4.setBounds(700, 150, 100, 30);
+		jl4.setFont(font1);
 		
 		this.add(point1_1);
-		point1_1.setBounds(300, 205, 100, 30);
+		point1_1.setBounds(310, 190, 100, 30);
 		this.add(point1_2);
-		point1_2.setBounds(400, 205, 100, 30);
+		point1_2.setBounds(440, 190, 100, 30);
 		this.add(point1_3);
-		point1_3.setBounds(500, 205, 100, 30);
+		point1_3.setBounds(570, 190, 100, 30);
 		this.add(point1_4);
-		point1_4.setBounds(600, 205, 100, 30);
+		point1_4.setBounds(700, 190, 100, 30);
 		
 		this.add(point2_1);
-		point2_1.setBounds(300, 245, 100, 30);
+		point2_1.setBounds(310, 230, 100, 30);
 		this.add(point2_2);
-		point2_2.setBounds(400, 245, 100, 30);
+		point2_2.setBounds(440, 230, 100, 30);
 		this.add(point2_3);
-		point2_3.setBounds(500, 245, 100, 30);
+		point2_3.setBounds(570, 230, 100, 30);
 		this.add(point2_4);
-		point2_4.setBounds(600, 245, 100, 30);
+		point2_4.setBounds(700, 230, 100, 30);
 		
 		this.add(rankingBand);
-		rankingBand.setBounds(0, 150, 1052, 70);
+		rankingBand.setBounds(0, 150, 1052, 100);
+		
+	/*	this.add(jl7);
+		jl7.setBounds(0, 220, 1052, 50);
+		this.add(jl8);
+		jl8.setBounds(0, 435, 1052, 50);*/
 		
 		
         Object[][] data1 = null;
@@ -118,7 +133,7 @@ public class SingleMatch extends MyPanel implements ActionListener{
 	    //table.setAutoResizeMode(JTable.AUTO_RESIZE_ALL_COLUMNS);
 	    pane1 = new JScrollPane (table1);
 	    this.add(pane1);
-	    pane1.setBounds(0, 220, 1052, 215);
+	    pane1.setBounds(0, 250, 1052, 200);
 	    
         Object[][] data2 = null;
 	    model2 = new DefaultTableModel(new Object[][]{},columnNames2);
@@ -128,12 +143,18 @@ public class SingleMatch extends MyPanel implements ActionListener{
 	    //table.setAutoResizeMode(JTable.AUTO_RESIZE_ALL_COLUMNS);
 	    pane2 = new JScrollPane (table2);
 	    this.add(pane2);
-	    pane2.setBounds(0, 435, 1052, 215);
+	    pane2.setBounds(0, 450, 1052, 200);
 	
 	}
 	
 	public void update(){
+		ImageIcon icon = Img.BKN1;
+		icon.setImage(icon.getImage().getScaledInstance(100,100,Image.SCALE_DEFAULT)); 
+		teamIcon1.setIcon(icon);
 		
+		icon = Img.WAS1;
+		icon.setImage(icon.getImage().getScaledInstance(100,100,Image.SCALE_DEFAULT)); 
+		teamIcon2.setIcon(icon);
 	}
 
     public Object[][] getData(ArrayList<TeamMonthMatchVO> matches){
@@ -164,5 +185,6 @@ public class SingleMatch extends MyPanel implements ActionListener{
 			table1.updateUI();
 		}
 	}
+	
 }
 

@@ -13,6 +13,7 @@ public class Img {
 	public static final ImageIcon BAND = new ImageIcon("graphics/main/band.png");
 	public static final ImageIcon TITTLE = new ImageIcon("graphics/main/tittle.png");
 	public static final ImageIcon  RANKINGBAND= new ImageIcon("graphics/ranking/band.png");
+	public static final ImageIcon  MATCHBAND= new ImageIcon("graphics/match/band.png");
 	public static final Image HOME1 = new ImageIcon("graphics/main/home1.png").getImage();
 	public static final Image HOME2 = new ImageIcon("graphics/main/home2.png").getImage();
 	public static final ImageIcon BOARD= new ImageIcon("graphics/team/board.png");
@@ -29,7 +30,7 @@ public class Img {
 	public static final Image PLAYERICON2 = new ImageIcon("graphics/main/球员2.png").getImage();
 	public static final Image MATCHICON1 = new ImageIcon("graphics/main/比赛1.png").getImage();
 	public static final Image MATCHICON2 = new ImageIcon("graphics/main/比赛2.png").getImage();
-	
+	public static final ImageIcon COPYRIGHT= new ImageIcon("graphics/main/copyright.png");
 	
 	public static final ImageIcon ATL= new ImageIcon("graphics/teams/ATL.png");
 	public static final ImageIcon BKN= new ImageIcon("graphics/teams/BKN.png");
@@ -61,6 +62,37 @@ public class Img {
 	public static final ImageIcon TOR= new ImageIcon("graphics/teams/TOR.png");
 	public static final ImageIcon UTA= new ImageIcon("graphics/teams/UTA.png");
 	public static final ImageIcon WAS= new ImageIcon("graphics/teams/WAS.png");
+	
+	public static final ImageIcon ATL1= new ImageIcon("graphics/teams/ATL.png");
+	public static final ImageIcon BKN1= new ImageIcon("graphics/teams/BKN.png");
+	public static final ImageIcon BOS1= new ImageIcon("graphics/teams/BOS.png");
+	public static final ImageIcon CHA1= new ImageIcon("graphics/teams/CHA.png");
+	public static final ImageIcon CHI1= new ImageIcon("graphics/teams/CHI.png");
+	public static final ImageIcon CLE1= new ImageIcon("graphics/teams/CLE.png");
+	public static final ImageIcon DAL1= new ImageIcon("graphics/teams/DAL.png");
+	public static final ImageIcon DEN1= new ImageIcon("graphics/teams/DEN.png");
+	public static final ImageIcon DET1= new ImageIcon("graphics/teams/DET.png");
+	public static final ImageIcon GSW1= new ImageIcon("graphics/teams/GSW.png");
+	public static final ImageIcon HOU1= new ImageIcon("graphics/teams/HOU.png");
+	public static final ImageIcon IND1= new ImageIcon("graphics/teams/IND.png");
+	public static final ImageIcon LAC1= new ImageIcon("graphics/teams/LAC.png");
+	public static final ImageIcon LAL1= new ImageIcon("graphics/teams/LAL.png");
+	public static final ImageIcon MEM1= new ImageIcon("graphics/teams/MEM.png");
+	public static final ImageIcon MIA1= new ImageIcon("graphics/teams/MIA.png");
+	public static final ImageIcon MIL1= new ImageIcon("graphics/teams/MIL.png");
+	public static final ImageIcon MIN1= new ImageIcon("graphics/teams/MIN.png");
+	public static final ImageIcon NOP1= new ImageIcon("graphics/teams/NOP.png");
+	public static final ImageIcon NYK1= new ImageIcon("graphics/teams/NYK.png");
+	public static final ImageIcon OKC1= new ImageIcon("graphics/teams/OKC.png");
+	public static final ImageIcon ORL1= new ImageIcon("graphics/teams/ORL.png");
+	public static final ImageIcon PHI1= new ImageIcon("graphics/teams/PHI.png");
+	public static final ImageIcon PHX1= new ImageIcon("graphics/teams/PHX.png");
+	public static final ImageIcon POR1= new ImageIcon("graphics/teams/POR.png");
+	public static final ImageIcon SAC1= new ImageIcon("graphics/teams/SAC.png");
+	public static final ImageIcon SAS1= new ImageIcon("graphics/teams/SAS.png");
+	public static final ImageIcon TOR1= new ImageIcon("graphics/teams/TOR.png");
+	public static final ImageIcon UTA1= new ImageIcon("graphics/teams/UTA.png");
+	public static final ImageIcon WAS1= new ImageIcon("graphics/teams/WAS.png");
 	
 	public static ImageIcon load(String name){
 		ImageIcon PLAYER = new ImageIcon("graphics/portrait/"+name+".png");

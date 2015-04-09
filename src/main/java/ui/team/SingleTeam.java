@@ -1,10 +1,12 @@
 package ui.team;
 
 import java.awt.Font;
+import java.awt.Image;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.util.ArrayList;
 
+import javax.swing.ImageIcon;
 import javax.swing.JButton;
 import javax.swing.JComboBox;
 import javax.swing.JLabel;
@@ -199,67 +201,102 @@ public class SingleTeam extends MyPanel implements ActionListener{
 	}
 	
 	public void changePIC(String team){
-		if(team.equals("ATL"))
-		    teamIcon.setIcon(Img.ATL);
-		else if(team.equals("BKN"))
-		    teamIcon.setIcon(Img.BKN);
-		else if(team.equals("BOS"))
-		    teamIcon.setIcon(Img.BOS);
-		else if(team.equals("CHA"))
-		    teamIcon.setIcon(Img.CHA);
-		else if(team.equals("CHI"))
-		    teamIcon.setIcon(Img.CHI);
-		else if(team.equals("CLE"))
-		    teamIcon.setIcon(Img.CLE);
-		else if(team.equals("DAL"))
-		    teamIcon.setIcon(Img.DAL);
-		else if(team.equals("DEN"))
-		    teamIcon.setIcon(Img.DEN);
-		else if(team.equals("DET"))
-		    teamIcon.setIcon(Img.DET);
-		else if(team.equals("GSW"))
-		    teamIcon.setIcon(Img.GSW);
-		else if(team.equals("HOU"))
-		    teamIcon.setIcon(Img.HOU);
-		else if(team.equals("IND"))
-		    teamIcon.setIcon(Img.IND);
-		else if(team.equals("LAC"))
-		    teamIcon.setIcon(Img.LAC);
-		else if(team.equals("LAL"))
-		    teamIcon.setIcon(Img.LAL);
-		else if(team.equals("MEM"))
-		    teamIcon.setIcon(Img.MEM);
-		else if(team.equals("MIA"))
-		    teamIcon.setIcon(Img.MIA);
-		else if(team.equals("MIL"))
-		    teamIcon.setIcon(Img.MIL);
-		else if(team.equals("MIN"))
-		    teamIcon.setIcon(Img.MIN);
-		else if(team.equals("NOP"))
-		    teamIcon.setIcon(Img.NOP);
-		else if(team.equals("NYK"))
-		    teamIcon.setIcon(Img.NYK);
-		else if(team.equals("OKC"))
-		    teamIcon.setIcon(Img.OKC);
-		else if(team.equals("ORL"))
-		    teamIcon.setIcon(Img.ORL);
-		else if(team.equals("PHI"))
+		ImageIcon icon = Img.ATL;
+		if(team.equals("ATL")){
+			icon = Img.ATL;
+		}
+		else if(team.equals("BKN")){
+			icon = Img.BKN;
+		}
+		else if(team.equals("BOS")){
+			icon = Img.BOS;
+		}
+		else if(team.equals("CHA")){
+			icon = Img.CHA;
+		}
+		else if(team.equals("CHI")){
+			icon = Img.CHI;
+		}
+		else if(team.equals("CLE")){
+			icon = Img.CLE;
+		}
+		else if(team.equals("DAL")){
+			icon = Img.DAL;
+		}
+		else if(team.equals("DEN")){
+			icon = Img.DEN;
+		}
+		else if(team.equals("DET")){
+			icon = Img.DET;
+		}
+		else if(team.equals("GSW")){
+			icon = Img.GSW;
+		}
+		else if(team.equals("HOU")){
+			icon = Img.HOU;
+		}
+		else if(team.equals("IND")){
+			icon = Img.IND;
+		}
+		else if(team.equals("LAC")){
+			icon = Img.LAC;
+		}
+		else if(team.equals("LAL")){
+			icon = Img.LAL;
+		}
+		else if(team.equals("MEM")){
+			icon = Img.MEM;
+		}
+		else if(team.equals("MIA")){
+			icon = Img.MIA;
+		}
+		else if(team.equals("MIL")){
+			icon = Img.MIL;
+		}
+		else if(team.equals("MIN")){
+			icon = Img.MIN;
+		}
+		else if(team.equals("NOP")){
+			icon = Img.NOP;
+		}
+		else if(team.equals("NYK")){
+			icon = Img.NYK;
+		}
+		else if(team.equals("OKC")){
+			icon = Img.OKC;
+		}
+		else if(team.equals("ORL")){
+			icon = Img.ORL;
+		}
+		else if(team.equals("PHI")){
+			icon = Img.PHI;
 		    teamIcon.setIcon(Img.PHI);
-		else if(team.equals("PHX"))
-		    teamIcon.setIcon(Img.PHX);
-		else if(team.equals("POR"))
-		    teamIcon.setIcon(Img.POR);
-		else if(team.equals("SAC"))
-		    teamIcon.setIcon(Img.SAC);
-		else if(team.equals("SAS"))
-		    teamIcon.setIcon(Img.SAS);
-		else if(team.equals("TOR"))
-		    teamIcon.setIcon(Img.TOR);
-		else if(team.equals("UTA"))
-		    teamIcon.setIcon(Img.UTA);
-		else if(team.equals("WAS"))
-		    teamIcon.setIcon(Img.WAS);
+		}
+		else if(team.equals("PHX")){
+			icon = Img.PHX;
+		}
+		else if(team.equals("POR")){
+			icon = Img.POR;
+		}
+		else if(team.equals("SAC")){
+			icon = Img.SAC;
+		}
+		else if(team.equals("SAS")){
+			icon = Img.SAS;
+		}
+		else if(team.equals("TOR")){
+			icon = Img.TOR;
+		}
+		else if(team.equals("UTA")){
+			icon = Img.UTA;
+		}
+		else if(team.equals("WAS")){
+			icon = Img.WAS;
+		}
+		//icon.setImage(icon.getImage().getScaledInstance(200,200,Image.SCALE_DEFAULT));
+		teamIcon.setIcon(icon);
 	}
+	
 	
 
 	public void actionPerformed(ActionEvent e) {
