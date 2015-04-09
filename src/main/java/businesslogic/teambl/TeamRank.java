@@ -29,7 +29,7 @@ public class TeamRank implements TeamRankService{
 			teamPOs = g.getSomeTeamdata(season,condition, "wins", order);
 			for (int i = 0; i < teamPOs.size(); i++) {
 				Calculate calculate = new Calculate();
-				calculate.Calculate(teamPOs.get(i));
+				teamPOs.set(i, calculate.Calculate(teamPOs.get(i)));
 				
 			}
 		} catch (MalformedURLException e) {
@@ -53,6 +53,7 @@ public class TeamRank implements TeamRankService{
     	try {
 			g = (GetTeamdataDataService) Naming.lookup("rmi://"+rmi+":2015/GetTeamdata");
 			teamPOs2 = g.getByEfficiency(this.Ranking(season,condition,order), key, order);
+			System.out.println("***"+teamPOs2.get(0).getAssistEfficiency());
 			for (int i = 0; i < teamPOs2.size(); i++) {
 				GetTeamVO getTeamVO = new GetTeamVO();
 				TeamVO teamVO = getTeamVO.GetTeamVO(teamPOs2.get(i));

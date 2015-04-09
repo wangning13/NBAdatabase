@@ -7,7 +7,7 @@ import po.TeaminfoPO;
 
 public class Calculate {
 	DecimalFormat df=new DecimalFormat("#.0000");
-	public void Calculate(TeamPO teamPO){
+	public TeamPO Calculate(TeamPO teamPO){
 		//胜率
 		teamPO.setWinningPercentage(((double)teamPO.getWins())/teamPO.getMatches());
 		
@@ -39,8 +39,9 @@ public class Calculate {
 		//抢断效率
 		teamPO.setStealEfficiency(((double)teamPO.getSteal())/opponentPossessions*100);
 		//助攻效率
-		teamPO.setAssitEfficiency(((double)teamPO.getAssist())/possessions*100);
-		
+		teamPO.setAssistEfficiency(((double)teamPO.getAssist())/possessions*100);
+		System.out.println("assitEfficiency:"+teamPO.getAssistEfficiency());
+		return teamPO;
 	}
 
 }

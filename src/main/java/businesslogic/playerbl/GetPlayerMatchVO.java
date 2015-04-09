@@ -19,7 +19,7 @@ public class GetPlayerMatchVO {
 				playerMatchPO.getOffensiveRebound(), 
 				playerMatchPO.getDefensiveRebound(),
 				playerMatchPO.getBackboard(),
-				playerMatchPO.getAssit(), 
+				playerMatchPO.getAssist(), 
 				playerMatchPO.getSteal(),
 				playerMatchPO.getBlock(),
 				playerMatchPO.getTurnOver(),
