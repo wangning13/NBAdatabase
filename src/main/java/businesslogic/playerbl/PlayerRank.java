@@ -58,7 +58,7 @@ public class PlayerRank implements PlayerRankService{
 			g = (GetPlayerdataDataService) Naming.lookup("rmi://"+rmi+":2015/GetPlayerdata");
 			playerPO = g.getPlayerdata(season,playerName);
 			Calculate calculate = new Calculate();
-			calculate.Calculate(playerPO);
+			playerPO = calculate.Calculate(playerPO);
 			
 			GetPlayerVO getPlayerVO = new GetPlayerVO();
 			playerVO = getPlayerVO.getPlayerVO(playerPO);
@@ -129,7 +129,7 @@ public class PlayerRank implements PlayerRankService{
 			playerPOs = g.getAllPlayerdata(season,"backboard", order);
 			for (int i = 0; i < playerPOs.size(); i++) {
 				Calculate calculate = new Calculate();
-				calculate.Calculate(playerPOs.get(i));
+				playerPOs.set(i, calculate.Calculate(playerPOs.get(i)));
 				    
 					
 				}
@@ -175,7 +175,7 @@ public class PlayerRank implements PlayerRankService{
 				}
 				for (int i = 0; i < Math.min(50, playerPOs.size()); i++) {
 					Calculate calculate = new Calculate();
-					calculate.Calculate(playerPOs.get(i));
+					playerPOs.set(i, calculate.Calculate(playerPOs.get(i)));
 				}
 				for (int i = 0; i < Math.min(50, playerPOs.size()); i++){
 					GetPlayerVO getPlayerVO = new GetPlayerVO();
@@ -186,7 +186,7 @@ public class PlayerRank implements PlayerRankService{
 				playerPOs = g.getSomePlayerdata(season,position, partition, "scoring", "DESC");
 				for (int i = 0; i < Math.min(50, playerPOs.size()); i++) {
 					Calculate calculate = new Calculate();
-					calculate.Calculate(playerPOs.get(i));
+					playerPOs.set(i, calculate.Calculate(playerPOs.get(i)));
 				}
 				
 				ArrayList<PlayerPO> playerPOs2 = g.getByEfficiency(playerPOs, key, "DESC");
@@ -220,6 +220,7 @@ public class PlayerRank implements PlayerRankService{
 		try {
 			g = (GetPlayerdataDataService) Naming.lookup("rmi://"+rmi+":2015/GetPlayerdata");
 			playerMatchPOs = g.getPlayerMatchdata(date, team);
+			System.out.println(playerMatchPOs.size());
 			for (int i = 0; i < playerMatchPOs.size(); i++) {
 				GetPlayerMatchVO getPlayerMatchVO = new GetPlayerMatchVO();
 				PlayerMatchVO playerMatchVO = getPlayerMatchVO.getPlayerMatchVO(playerMatchPOs.get(i));
@@ -266,6 +267,7 @@ public class PlayerRank implements PlayerRankService{
 		return playerMatchVOs;
 		
 	}
+	
 	public ArrayList<PlayerMatchVO> getPlayerRecentFiveMatch(String player){
 		ArrayList<PlayerMatchPO> playerMatchPOs = new ArrayList<PlayerMatchPO>();
 		ArrayList<PlayerMatchVO> playerMatchVOs = new ArrayList<PlayerMatchVO>();

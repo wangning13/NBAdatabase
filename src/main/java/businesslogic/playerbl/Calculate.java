@@ -7,7 +7,7 @@ import po.PlayerinfoPO;
 
 public class Calculate {
 	DecimalFormat df=new DecimalFormat("#.0000");
-	public void Calculate(PlayerPO playerPO){
+	public PlayerPO Calculate(PlayerPO playerPO){
 		
 		if (playerPO.getFieldGoalAttempts()==0) {
 			playerPO.setFieldGoalShotPercentage(0);
@@ -98,6 +98,7 @@ public class Calculate {
 			playerPO.setUsage(Double.parseDouble(df.format((playerPO.getFieldGoalAttempts()+0.44*playerPO.getFreeThrowAttempts()+playerPO.getTurnOver())*(playerPO.getTeamMinutes()/5)/playerPO.getMinutes()/(playerPO.getTeamFieldGoalAttempts()+0.44*playerPO.getTeamFreeThrowAttempts()+playerPO.getTeamTurnOver()))));
 
 		}
+		return playerPO;
 	}
 
 }
