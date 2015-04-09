@@ -29,7 +29,7 @@ public class TeamRank implements TeamRankService{
 			teamPOs = g.getSomeTeamdata(season,condition, "wins", order);
 			for (int i = 0; i < teamPOs.size(); i++) {
 				Calculate calculate = new Calculate();
-				calculate.Calculate(teamPOs.get(i));
+				teamPOs.set(i, calculate.Calculate(teamPOs.get(i)));
 				
 			}
 		} catch (MalformedURLException e) {

@@ -55,7 +55,7 @@ public class TeamVO {
 	double offensivebackboardEfficiency;//进攻篮板效率
 	double defensivebackboardEfficiency;//防守篮板效率
 	double stealEfficiency;//抢断效率
-	double assitEfficiency;//助攻效率
+	double assistEfficiency;//助攻效率
 	public TeamVO(int rank, int opponentFieldGoal,
 			int opponentFieldGoalAttempts, int opponentTurnOver,
 			int opponentFreeThrowAttempts, int oppenentScoring,
@@ -80,7 +80,7 @@ public class TeamVO {
 			double offensiveEfficiency, double defensiveEfficiency,
 			double offensivebackboardEfficiency,
 			double defensivebackboardEfficiency, double stealEfficiency,
-			double assitEfficiency) {
+			double assistEfficiency) {
 		super();
 		this.rank = rank;
 		this.opponentFieldGoal = opponentFieldGoal;
@@ -135,7 +135,7 @@ public class TeamVO {
 		this.offensivebackboardEfficiency = offensivebackboardEfficiency;
 		this.defensivebackboardEfficiency = defensivebackboardEfficiency;
 		this.stealEfficiency = stealEfficiency;
-		this.assitEfficiency = assitEfficiency;
+		this.assistEfficiency = assistEfficiency;
 	}
 	public TeamVO() {
 		// TODO Auto-generated constructor stub
@@ -461,11 +461,11 @@ public class TeamVO {
 	public void setStealEfficiency(double stealEfficiency) {
 		this.stealEfficiency = stealEfficiency;
 	}
-	public double getAssitEfficiency() {
-		return assitEfficiency;
+	public double getAssistEfficiency() {
+		return assistEfficiency;
 	}
-	public void setAssitEfficiency(double assitEfficiency) {
-		this.assitEfficiency = assitEfficiency;
+	public void setAssistEfficiency(double assistEfficiency) {
+		this.assistEfficiency = assistEfficiency;
 	}
 	
 
