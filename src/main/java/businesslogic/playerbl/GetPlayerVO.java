@@ -155,7 +155,6 @@ public class GetPlayerVO {
 					Double.parseDouble(df.format(playerPO.getNearlyFiveAverageScoring())),
 					playerPO.getDoubleDouble()
 					);
-			System.out.println(Double.parseDouble(df.format(playerPO.getMinutes())));
 		}
 		return playerVO;
 	}
