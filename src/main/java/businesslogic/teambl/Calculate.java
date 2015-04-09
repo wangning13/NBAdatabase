@@ -40,7 +40,6 @@ public class Calculate {
 		teamPO.setStealEfficiency(((double)teamPO.getSteal())/opponentPossessions*100);
 		//助攻效率
 		teamPO.setAssistEfficiency(((double)teamPO.getAssist())/possessions*100);
-		System.out.println("assitEfficiency:"+teamPO.getAssistEfficiency());
 		return teamPO;
 	}
 
