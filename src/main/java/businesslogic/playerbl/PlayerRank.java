@@ -220,7 +220,6 @@ public class PlayerRank implements PlayerRankService{
 		try {
 			g = (GetPlayerdataDataService) Naming.lookup("rmi://"+rmi+":2015/GetPlayerdata");
 			playerMatchPOs = g.getPlayerMatchdata(date, team);
-			System.out.println(playerMatchPOs.size());
 			for (int i = 0; i < playerMatchPOs.size(); i++) {
 				GetPlayerMatchVO getPlayerMatchVO = new GetPlayerMatchVO();
 				PlayerMatchVO playerMatchVO = getPlayerMatchVO.getPlayerMatchVO(playerMatchPOs.get(i));
@@ -248,6 +247,7 @@ public class PlayerRank implements PlayerRankService{
 		try {
 			g = (GetPlayerdataDataService) Naming.lookup("rmi://"+rmi+":2015/GetPlayerdata");
 			playerMatchPOs = g.getPlayerMonthMatch(month, team);
+//			System.out.println(playerMatchPOs.size());
 			for (int i = 0; i < playerMatchPOs.size(); i++) {
 				GetPlayerMatchVO getPlayerMatchVO = new GetPlayerMatchVO();
 				PlayerMatchVO playerMatchVO = getPlayerMatchVO.getPlayerMatchVO(playerMatchPOs.get(i));
