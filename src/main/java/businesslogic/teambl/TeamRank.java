@@ -193,6 +193,7 @@ public class TeamRank implements TeamRankService{
     	GetTeamdataDataService g;
     	try {
 			g = (GetTeamdataDataService) Naming.lookup("rmi://"+rmi+":2015/GetTeamdata");
+			teamMatchPO = g.getTeamMatch(date, team);
 			teamMatchVO = new TeamMatchVO(teamMatchPO.getDate(),
 					teamMatchPO.getHostGuest(), 
 					teamMatchPO.getName(),
