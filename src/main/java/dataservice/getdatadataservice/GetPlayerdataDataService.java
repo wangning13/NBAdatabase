@@ -22,7 +22,7 @@ public interface GetPlayerdataDataService extends Remote{
 	//一场比赛一个球队所有球员数据
 	public ArrayList<PlayerMatchPO> getPlayerMatchdata(String date,String team)throws RemoteException;
 	
-	public ArrayList<PlayerMatchPO> getPlayerMonthMatch(String month,String team)throws RemoteException;
+	public ArrayList<PlayerMatchPO> getPlayerMonthMatch(String month,String player)throws RemoteException;
 	
 	public ArrayList<PlayerMatchPO> getPlayerRecentFiveMatch(String player)throws RemoteException;
 	

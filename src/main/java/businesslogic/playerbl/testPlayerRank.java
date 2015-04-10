@@ -17,11 +17,11 @@ public class testPlayerRank {
 //			System.out.println(playerMatchVOs.get(i).getScoring());
 //		}
 	
-//		ArrayList<PlayerMatchVO> playerMatchVOs2 = playerRank.getPlayerMonthMatch("13-12", "LAL");
-//		for (int i = 0; i < playerMatchVOs2.size(); i++) {
-//			System.out.println(playerMatchVOs2.get(i).getPlayername());
-//			System.out.println(playerMatchVOs2.get(i).getScoring());
-//		}
+		ArrayList<PlayerMatchVO> playerMatchVOs2 = playerRank.getPlayerMonthMatch("13-10", "LAL");
+		for (int i = 0; i < playerMatchVOs2.size(); i++) {
+			System.out.println(playerMatchVOs2.get(i).getPlayername());
+			System.out.println(playerMatchVOs2.get(i).getScoring());
+		}
 		
 //		ArrayList<PlayerMatchVO> playerMatchVOs = playerRank.getPlayerRecentFiveMatch("Ed Davis");
 //		for (int i = 0; i < playerMatchVOs.size(); i++) {

@@ -240,13 +240,13 @@ public class PlayerRank implements PlayerRankService{
 	}
 	
 	
-	public ArrayList<PlayerMatchVO> getPlayerMonthMatch(String month,String team){
+	public ArrayList<PlayerMatchVO> getPlayerMonthMatch(String month,String player){
 		ArrayList<PlayerMatchPO> playerMatchPOs = new ArrayList<PlayerMatchPO>();
 		ArrayList<PlayerMatchVO> playerMatchVOs = new ArrayList<PlayerMatchVO>();
 		GetPlayerdataDataService g;
 		try {
 			g = (GetPlayerdataDataService) Naming.lookup("rmi://"+rmi+":2015/GetPlayerdata");
-			playerMatchPOs = g.getPlayerMonthMatch(month, team);
+			playerMatchPOs = g.getPlayerMonthMatch(month, player);
 //			System.out.println(playerMatchPOs.size());
 			for (int i = 0; i < playerMatchPOs.size(); i++) {
 				GetPlayerMatchVO getPlayerMatchVO = new GetPlayerMatchVO();
