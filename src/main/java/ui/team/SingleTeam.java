@@ -22,12 +22,14 @@ import ui.main.MyPanel;
 import ui.material.Img;
 import ui.tools.MyTable;
 import vo.PlayerVO;
+import vo.TeamMatchVO;
 import vo.TeaminfoVO;
 
 @SuppressWarnings("serial")
 public class SingleTeam extends MyPanel implements ActionListener{
 	TeamRankService trs = new TeamRank();
 	PlayerRankService prs = new PlayerRank();
+	ArrayList<TeamMatchVO> matches;
 	Frame frame;
 	JScrollPane pane1;
 	MyTable table1;
@@ -57,7 +59,9 @@ public class SingleTeam extends MyPanel implements ActionListener{
     JLabel area = new JLabel("分区");
     JLabel home = new JLabel("主场");
     JLabel year = new JLabel("进入NBA");
+    JLabel jl8 = new JLabel("比赛查询");
     JButton search = new JButton("查询");
+    JButton recent = new JButton("最近五场");
 	Font font1 = new Font("黑体", Font.BOLD, 16);
 	JLabel teamIcon = new JLabel(Img.GSW);
 	public SingleTeam(Frame frame) {
@@ -85,18 +89,29 @@ public class SingleTeam extends MyPanel implements ActionListener{
 		month.addItem("11月");
 		month.addItem("12月");
 		
+       
+		
+        this.add(jl8);
+        jl8.setBounds(630, 175, 70, 20);
+        jl8.setFont(font1);
+		
         this.add(season);
-        season.setBounds(815, 175, 70, 20);
+        season.setBounds(715, 175, 70, 20);
         season.setFont(font1);
         
         this.add(month);
-        month.setBounds(900, 175, 60, 20);
+        month.setBounds(800, 175, 60, 20);
         month.setFont(font1);
-        
+ 
         this.add(search);
-        search.setBounds(980, 172, 60, 25);
+        search.setBounds(880, 172, 60, 25);
         search.addActionListener(this);
         search.setActionCommand("search");
+        
+        this.add(recent);
+        recent.setBounds(950, 172, 90, 25);
+        recent.addActionListener(this);
+        recent.setActionCommand("recent");
         
 		this.add(rankingBand);
 		rankingBand.setBounds(300, 150, 752, 70);
@@ -198,7 +213,11 @@ public class SingleTeam extends MyPanel implements ActionListener{
 	    table1.setWidth();
 		table1.updateUI();
 	   
+		//matches = trs.getTeamRecentFiveMatch(team);
+       	
 	}
+	
+	
 	
 	public void changePIC(String team){
 		ImageIcon icon = Img.ATL;

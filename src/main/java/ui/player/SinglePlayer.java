@@ -3,6 +3,7 @@ package ui.player;
 import java.awt.Font;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.util.ArrayList;
 
 import javax.swing.JButton;
 import javax.swing.JComboBox;
@@ -11,18 +12,24 @@ import javax.swing.JScrollPane;
 import javax.swing.table.DefaultTableModel;
 
 import businesslogic.playerbl.PlayerRank;
+import businesslogic.teambl.TeamRank;
 import businesslogicservice.playerblservice.PlayerRankService;
+import businesslogicservice.teamblservice.TeamRankService;
 import ui.main.Frame;
 import ui.main.MyButton;
 import ui.main.MyPanel;
 import ui.material.Img;
 import ui.tools.MyTable;
+import vo.PlayerMatchVO;
 import vo.PlayerVO;
 import vo.PlayerinfoVO;
 
 @SuppressWarnings("serial")
 public class SinglePlayer extends MyPanel implements ActionListener{
 	PlayerRankService prs = new PlayerRank();
+	TeamRankService trs = new TeamRank();
+	ArrayList<PlayerMatchVO> matches;
+	String playerName;
 	Frame frame;
 	JScrollPane pane1;
 	MyTable table1;
@@ -31,11 +38,14 @@ public class SinglePlayer extends MyPanel implements ActionListener{
 	JScrollPane pane2;
 	MyTable table2;
 	DefaultTableModel model2;
-	String[] columnNames2 = {"场均得分","场均时间","场均篮板","场均助攻","场均投篮命中数","场均投篮出手数","场均三分命中数","场均三分出手数","场均罚球命中数","场均罚球出手数","场均进攻数","场均防守数","场均抢断数","场均盖帽数","场均失误数","场均犯规数"};
+	String[] columnNames2 = {"日期","对手","上场时间","得分","投篮命中数","投篮出手数","三分命中数","三分出手数","罚球命中数","罚球出手数","进攻篮板数","防守篮板数","篮板数","助攻数","盖帽数","犯规数","抢断数","失误数"};
 	JLabel rankingBand = new JLabel(Img.RANKINGBAND);
 	JComboBox<String> month = new JComboBox<String>();
 	JComboBox<String> season = new JComboBox<String>();
+    
+    JLabel jl = new JLabel("比赛查询");
     JButton search = new JButton("查询");
+    JButton recent = new JButton("最近五场");
     JLabel jl1 = new JLabel("姓名");
     JLabel jl2 = new JLabel("号码");
     JLabel jl3 = new JLabel("位置");
@@ -87,18 +97,28 @@ public class SinglePlayer extends MyPanel implements ActionListener{
 		month.addItem("11月");
 		month.addItem("12月");
 		
+        this.add(jl);
+        jl.setBounds(630, 175, 70, 20);
+        jl.setFont(font1);
+		
         this.add(season);
-        season.setBounds(815, 175, 70, 20);
+        season.setBounds(715, 175, 70, 20);
         season.setFont(font1);
         
         this.add(month);
-        month.setBounds(900, 175, 60, 20);
+        month.setBounds(800, 175, 60, 20);
         month.setFont(font1);
         
         this.add(search);
-        search.setBounds(980, 172, 60, 25);
+        search.setBounds(880, 172, 60, 25);
         search.addActionListener(this);
         search.setActionCommand("search");
+        
+        this.add(recent);
+        recent.setBounds(950, 172, 90, 25);
+        recent.addActionListener(this);
+        recent.setActionCommand("recent");
+
         
 		this.add(rankingBand);
 		rankingBand.setBounds(250, 150, 802, 70);
@@ -178,7 +198,7 @@ public class SinglePlayer extends MyPanel implements ActionListener{
 	    //table.setAutoResizeMode(JTable.AUTO_RESIZE_ALL_COLUMNS);
 	    pane1 = new JScrollPane (table1);
 	    this.add(pane1);
-	    pane1.setBounds(250, 435, 802, 215);
+	    pane1.setBounds(250, 580, 802, 70);
 	    
         Object[][] data2 = null;
 	    model2 = new DefaultTableModel(new Object[][]{},columnNames2);
@@ -188,11 +208,12 @@ public class SinglePlayer extends MyPanel implements ActionListener{
 	    //table.setAutoResizeMode(JTable.AUTO_RESIZE_ALL_COLUMNS);
 	    pane2 = new JScrollPane (table2);
 	    this.add(pane2);
-	    pane2.setBounds(250,  220, 802, 215);
+	    pane2.setBounds(250,  220, 802, 360);
 	   
 	}
 	
 	public void update(String name){
+		playerName = name;
 		playerIcon.setIcon(Img.load(name));
 		PlayerinfoVO playerInfo = prs.getPlayerinfo(name);
 	    this.name.setText(name);
@@ -223,6 +244,20 @@ public class SinglePlayer extends MyPanel implements ActionListener{
 		model2.setDataVector(data2, columnNames2);
 	    table2.setWidth();
 		table2.updateUI();*/
+	    matches =  prs.getPlayerRecentFiveMatch(name);
+		model2.setDataVector(getData2(matches), columnNames2);
+	    table2.setWidth();
+		table2.updateUI();
+	}
+	
+	public Object[][] getData2(ArrayList<PlayerMatchVO> matches){
+	    int num = matches.size();
+	    Object[][] data = new Object[num][];
+	    for(int i = 0;i<num;i++){
+	    	Object[] temp = {matches.get(i).getDate(),trs.getTeamMatch(matches.get(i).getDate(), matches.get(i).getTeam()).getOpponent(),matches.get(i).getMinutes(),matches.get(i).getScoring(),matches.get(i).getFieldGoal(),matches.get(i).getFieldGoalAttempts(),matches.get(i).getThreepointFieldGoal(),matches.get(i).getThreepointFieldGoalAttempts(),matches.get(i).getFreeThrow(),matches.get(i).getFreeThrowAttempts(),matches.get(i).getOffensiveRebound(),matches.get(i).getDefensiveRebound(),matches.get(i).getBackboard(),matches.get(i).getAssist(),matches.get(i).getBlock(),matches.get(i).getFoul(),matches.get(i).getSteal(),matches.get(i).getTurnOver()};
+	    	data[i] = temp;
+	    }
+	    return data;
 	}
 
 	public void actionPerformed(ActionEvent e) {
@@ -232,6 +267,18 @@ public class SinglePlayer extends MyPanel implements ActionListener{
 		}
 		else if(e.getActionCommand().equals("back")){
 			frame.change(this, frame.playersSelectPanel);
+		}
+		else if(e.getActionCommand().equals("search")){
+			matches = prs.getPlayerMonthMatch(season.getSelectedItem().toString().substring(2)+"-"+month.getSelectedItem().toString().substring(0,2),playerName);
+			model2.setDataVector(getData2(matches), columnNames2);
+		    table2.setWidth();
+			table2.updateUI();
+		}
+		else if(e.getActionCommand().equals("recent")){
+		    matches =  prs.getPlayerRecentFiveMatch(playerName);
+			model2.setDataVector(getData2(matches), columnNames2);
+		    table2.setWidth();
+			table2.updateUI();
 		}
 		
 	}
