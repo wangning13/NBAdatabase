@@ -209,25 +209,49 @@ public class TeamRank implements TeamRankService{
     	return teamMatchVO;
     }
     
-    public ArrayList<TeamMatchVO> getTeamRecentFiveMatch(String team){
+    public ArrayList<TeamMonthMatchVO> getTeamRecentFiveMatch(String team){
     	ArrayList<TeamMatchPO> teamMatchPOs = new ArrayList<TeamMatchPO>();
-    	ArrayList<TeamMatchVO> teamMatchVOs = new ArrayList<TeamMatchVO>();
+    	ArrayList<TeamMonthMatchVO> teamMonthMatchVOs = new ArrayList<TeamMonthMatchVO>();
     	GetTeamdataDataService g;
     	try {
 			g = (GetTeamdataDataService) Naming.lookup("rmi://"+rmi+":2015/GetTeamdata");
 			teamMatchPOs = g.getTeamRecentFiveMatch(team);
-			for (int i = 0; i < teamMatchPOs.size(); i++) {
-				TeamMatchVO teamMatchVO = new TeamMatchVO(teamMatchPOs.get(i).getDate(),
-						teamMatchPOs.get(i).getHostGuest(), 
-						teamMatchPOs.get(i).getName(),
-						teamMatchPOs.get(i).getOpponent(),
-						teamMatchPOs.get(i).getWinLose(), 
-						teamMatchPOs.get(i).getTotal(),
-						teamMatchPOs.get(i).getFirst(), 
-						teamMatchPOs.get(i).getSecond(), 
-						teamMatchPOs.get(i).getThird(), 
-						teamMatchPOs.get(i).getFourth());
-				teamMatchVOs.add(teamMatchVO);
+			for (int i = 0; i < 5; i++) {
+				String host = "";
+				String guest = "";
+				String score = "";
+				String first = "";
+				String second = "";
+				String third = "";
+				String fourth = "";
+				
+				if (teamMatchPOs.get(i).getHostGuest().equals("h")) {
+					host = team;
+					guest = teamMatchPOs.get(i).getOpponent();
+					score = teamMatchPOs.get(i).getTotal() + "-" + teamMatchPOs.get(i+5).getTotal();
+					first = teamMatchPOs.get(i).getFirst() + "-" + teamMatchPOs.get(i+5).getFirst();
+					second = teamMatchPOs.get(i).getSecond() + "-" + teamMatchPOs.get(i+5).getSecond();
+					third = teamMatchPOs.get(i).getThird() + "-" + teamMatchPOs.get(i+5).getThird();
+					fourth = teamMatchPOs.get(i).getFourth() + "-" + teamMatchPOs.get(i+5).getFourth();
+				}else {
+					host = teamMatchPOs.get(i).getOpponent();
+					guest = team;
+					score = teamMatchPOs.get(i+5).getTotal() + "-" + teamMatchPOs.get(i).getTotal();
+					first = teamMatchPOs.get(i+5).getFirst() + "-" + teamMatchPOs.get(i).getFirst();
+					second = teamMatchPOs.get(i+5).getSecond() + "-" + teamMatchPOs.get(i).getSecond();
+					third = teamMatchPOs.get(i+5).getThird() + "-" + teamMatchPOs.get(i).getThird();
+					fourth = teamMatchPOs.get(i+5).getFourth() + "-" + teamMatchPOs.get(i).getFourth();
+				}
+				TeamMonthMatchVO teamMonthMatchVO = new TeamMonthMatchVO(
+						teamMatchPOs.get(i).getDate(),
+						host,
+						guest,
+						score,
+						first,
+						second,
+						third,
+						fourth);
+				teamMonthMatchVOs.add(teamMonthMatchVO);
 			}
 		} catch (MalformedURLException e) {
 			// TODO Auto-generated catch block
@@ -239,7 +263,7 @@ public class TeamRank implements TeamRankService{
 			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
-    	return teamMatchVOs;
+    	return teamMonthMatchVOs;
     }
     
     public ArrayList<TeamVO> getSeasonTop(String season,String condition){

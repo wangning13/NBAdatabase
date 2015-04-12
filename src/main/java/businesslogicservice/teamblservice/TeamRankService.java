@@ -25,6 +25,8 @@ public interface TeamRankService {
 	
 	public TeamMatchVO getTeamMatch(String date,String team);
 	
-	public ArrayList<TeamMatchVO> getTeamRecentFiveMatch(String team);
+	public ArrayList<TeamMonthMatchVO> getTeamRecentFiveMatch(String team);
+	
+	public ArrayList<TeamVO> getSeasonTop(String season,String condition);
 
 }
