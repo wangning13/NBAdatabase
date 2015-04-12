@@ -14,28 +14,32 @@ import javax.swing.JLabel;
 import javax.swing.JScrollPane;
 import javax.swing.table.DefaultTableModel;
 
+import businesslogic.playerbl.PlayerRank;
 import businesslogic.teambl.TeamRank;
+import businesslogicservice.playerblservice.PlayerRankService;
 import businesslogicservice.teamblservice.TeamRankService;
 import ui.main.Frame;
 import ui.main.MyPanel;
 import ui.material.Img;
 import ui.tools.MyTable;
 import ui.tools.Translate;
+import vo.PlayerMatchVO;
 import vo.TeamMatchVO;
 import vo.TeamMonthMatchVO;
 
 @SuppressWarnings("serial")
 public class SingleMatch extends MyPanel implements ActionListener{
-	TeamRankService trs = new TeamRank();
+	PlayerRankService prs = new PlayerRank();
+	public boolean flag = false;
 	Frame frame;
 	JScrollPane pane1;
 	MyTable table1;
 	DefaultTableModel model1;
-	String[] columnNames1 = {"主队","场次","投篮命中数","投篮出手数","三分命中数","三分出手数"};
+	String[] columnNames1 = {"主队","位置","上场时间","得分","投篮命中数","投篮出手数","三分命中数","三分出手数","罚球命中数","罚球出手数","进攻篮板数","防守篮板数","篮板数","助攻数","盖帽数","犯规数","抢断数","失误数"};
 	JScrollPane pane2;
 	MyTable table2;
 	DefaultTableModel model2;
-	String[] columnNames2 = {"客队","场次","投篮命中数","投篮出手数","三分命中数","三分出手数"};
+	String[] columnNames2 = {"客队","位置","上场时间","得分","投篮命中数","投篮出手数","三分命中数","三分出手数","罚球命中数","罚球出手数","进攻篮板数","防守篮板数","篮板数","助攻数","盖帽数","犯规数","抢断数","失误数"};
 
 	JLabel rankingBand = new JLabel(Img.MATCHBAND);
 
@@ -79,12 +83,14 @@ public class SingleMatch extends MyPanel implements ActionListener{
 		jl5.setBounds(200, 150, 70, 30);
 		jl5.setFont(font1);
 		this.add(jl6);
-		jl6.setBounds(850, 150, 70, 30);
+		jl6.setBounds(820, 150, 70, 30);
 		jl6.setFont(font1);
 		this.add(point1);
-		point1.setBounds(150, 175, 50, 50);
+		point1.setBounds(200, 175, 50, 50);
+		point1.setFont(font1);
 		this.add(point2);
-		point2.setBounds(802, 175, 50, 50);
+		point2.setBounds(825, 175, 50, 50);
+		point2.setFont(font1);
 		this.add(jl1);
 		jl1.setBounds(310, 150, 100, 30);
 		jl1.setFont(font1);
@@ -99,22 +105,30 @@ public class SingleMatch extends MyPanel implements ActionListener{
 		jl4.setFont(font1);
 		
 		this.add(point1_1);
-		point1_1.setBounds(310, 190, 100, 30);
+		point1_1.setBounds(325, 190, 100, 30);
+		point1_1.setFont(font1);
 		this.add(point1_2);
-		point1_2.setBounds(440, 190, 100, 30);
+		point1_2.setBounds(455, 190, 100, 30);
+		point1_2.setFont(font1);
 		this.add(point1_3);
-		point1_3.setBounds(570, 190, 100, 30);
+		point1_3.setBounds(585, 190, 100, 30);
+		point1_3.setFont(font1);
 		this.add(point1_4);
-		point1_4.setBounds(700, 190, 100, 30);
+		point1_4.setBounds(715, 190, 100, 30);
+		point1_4.setFont(font1);
 		
 		this.add(point2_1);
-		point2_1.setBounds(310, 230, 100, 30);
+		point2_1.setBounds(325, 220, 100, 30);
+		point2_1.setFont(font1);
 		this.add(point2_2);
-		point2_2.setBounds(440, 230, 100, 30);
+		point2_2.setBounds(455, 220, 100, 30);
+		point2_2.setFont(font1);
 		this.add(point2_3);
-		point2_3.setBounds(570, 230, 100, 30);
+		point2_3.setBounds(585, 220, 100, 30);
+		point2_3.setFont(font1);
 		this.add(point2_4);
-		point2_4.setBounds(700, 230, 100, 30);
+		point2_4.setBounds(715, 220, 100, 30);
+		point2_4.setFont(font1);
 		
 		this.add(rankingBand);
 		rankingBand.setBounds(0, 150, 1052, 100);
@@ -147,21 +161,53 @@ public class SingleMatch extends MyPanel implements ActionListener{
 	
 	}
 	
-	public void update(){
-		ImageIcon icon = Img.BKN1;
+	public void update(TeamMonthMatchVO temp){
+		ArrayList<PlayerMatchVO> hostPlayers = prs.getPlayerMatchdata(temp.getDate(),temp.getHost());
+		ArrayList<PlayerMatchVO> guestPlayers = prs.getPlayerMatchdata(temp.getDate(),temp.getGuest());
+		ImageIcon icon = Img.loadTeam(temp.getHost());
 		icon.setImage(icon.getImage().getScaledInstance(100,100,Image.SCALE_DEFAULT)); 
 		teamIcon1.setIcon(icon);
 		
-		icon = Img.WAS1;
+		icon = Img.loadTeam(temp.getGuest());
 		icon.setImage(icon.getImage().getScaledInstance(100,100,Image.SCALE_DEFAULT)); 
 		teamIcon2.setIcon(icon);
+		
+		Object[][] data1 = getData(hostPlayers);
+		model1.setDataVector(data1, columnNames1);
+	    table1.setWidth();
+		table1.updateUI();
+		
+		Object[][] data2 = getData(guestPlayers);
+		model2.setDataVector(data2, columnNames2);
+	    table2.setWidth();
+		table2.updateUI();
+		
+		
+		String score[] = temp.getScore().split("-");
+		String first[] = temp.getFirst().split("-");
+		String second[] = temp.getSecond().split("-");
+		String third[] = temp.getThird().split("-");
+		String fourth[] = temp.getFourth().split("-");
+		
+		point1.setText(score[0]);
+		point2.setText(score[1]);
+		point1_1.setText(first[0]);
+		point2_1.setText(first[1]);
+		point1_2.setText(second[0]);
+		point2_2.setText(second[1]);
+		point1_3.setText(third[0]);
+		point2_3.setText(third[1]);
+		point1_4.setText(fourth[0]);
+		point2_4.setText(fourth[1]);
+
+		
 	}
 
-    public Object[][] getData(ArrayList<TeamMonthMatchVO> matches){
+    public Object[][] getData(ArrayList<PlayerMatchVO> matches){
     	int num = matches.size();
     	Object[][] data = new Object[num][];
 		for(int i = 0;i<num;i++){
-			Object[] temp = {matches.get(i).getDate()};
+			Object[] temp = {matches.get(i).getPlayername(),matches.get(i).getPosition(),matches.get(i).getMinutes(),matches.get(i).getScoring(),matches.get(i).getFieldGoal(),matches.get(i).getFieldGoalAttempts(),matches.get(i).getThreepointFieldGoal(),matches.get(i).getThreepointFieldGoalAttempts(),matches.get(i).getFreeThrow(),matches.get(i).getFreeThrowAttempts(),matches.get(i).getOffensiveRebound(),matches.get(i).getDefensiveRebound(),matches.get(i).getBackboard(),matches.get(i).getAssist(),matches.get(i).getBlock(),matches.get(i).getFoul(),matches.get(i).getSteal(),matches.get(i).getTurnOver()};
 		    data[i] = temp;
 		}
 		return data;
@@ -175,15 +221,12 @@ public class SingleMatch extends MyPanel implements ActionListener{
 			frame.change(this, frame.mainFrame);
 		}
 		if(e.getActionCommand().equals("back")){
-			frame.change(this, frame.matchesPanel);
+			if(!flag)
+			    frame.change(this, frame.matchesPanel);
+			else
+				frame.change(this, frame.singleTeamPanel);
 		}
-		if(e.getActionCommand().equals("search")){
 
-			Object[][] data = getData(trs.getTeamMonthMatch(season.getSelectedItem().toString().substring(2)+"-"+month.getSelectedItem().toString().substring(0,2),Translate.translate(team.getSelectedItem().toString())));
-			model1.setDataVector(data, columnNames1);
-		    table1.setWidth();
-			table1.updateUI();
-		}
 	}
 	
 }

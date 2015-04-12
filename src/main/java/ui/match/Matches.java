@@ -27,6 +27,8 @@ import vo.TeamMonthMatchVO;
 @SuppressWarnings("serial")
 public class Matches extends MyPanel implements ActionListener{
 	TeamRankService trs = new TeamRank();
+	ArrayList<TeamMonthMatchVO> matches;
+	String teamName;
 	Frame frame;
 	JScrollPane pane1;
 	MyTable table1;
@@ -136,7 +138,7 @@ public class Matches extends MyPanel implements ActionListener{
 				int row = table1.getSelectedRow();
 				int column = table1.getSelectedColumn();
 				if(column==8)
-					jump();
+					jump(row);
 			}
 		});
 	  }
@@ -144,8 +146,11 @@ public class Matches extends MyPanel implements ActionListener{
 	
 	
 
-    public void jump(){
+    public void jump(int row){
     	frame.change(this, frame.singleMatchPanel);
+    	TeamMonthMatchVO temp = matches.get(matches.size()-row-1);
+    	frame.singleMatchPanel.update(temp);
+    	frame.singleMatchPanel.flag = false;
     }
 		 
 		 
@@ -167,16 +172,12 @@ public class Matches extends MyPanel implements ActionListener{
 			frame.change(this, frame.mainFrame);
 		}
 		if(e.getActionCommand().equals("search")){
-
-			Object[][] data = getData(trs.getTeamMonthMatch(season.getSelectedItem().toString().substring(2)+"-"+month.getSelectedItem().toString().substring(0,2),Translate.translate(team.getSelectedItem().toString())));
+			matches = trs.getTeamMonthMatch(season.getSelectedItem().toString().substring(2)+"-"+month.getSelectedItem().toString().substring(0,2),Translate.translate(team.getSelectedItem().toString()));
+			teamName = team.getSelectedItem().toString();
+			Object[][] data = getData(matches);
 			model1.setDataVector(data, columnNames1);
 		    table1.setWidth();
 			table1.updateUI();
-			
-			{
-			frame.change(this, frame.singleMatchPanel);
-			frame.singleMatchPanel.update();
-			}
 		}
 	}
 }

@@ -98,5 +98,10 @@ public class Img {
 		ImageIcon PLAYER = new ImageIcon("graphics/portrait/"+name+".png");
 		return PLAYER;
 	}
+	
+	public static ImageIcon loadTeam(String name){
+		ImageIcon TEAM = new ImageIcon("graphics/teams/"+name+".png");
+		return TEAM;
+	}
 
 }

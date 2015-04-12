@@ -4,6 +4,8 @@ import java.awt.Font;
 import java.awt.Image;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.awt.event.MouseAdapter;
+import java.awt.event.MouseEvent;
 import java.util.ArrayList;
 
 import javax.swing.ImageIcon;
@@ -21,15 +23,18 @@ import ui.main.Frame;
 import ui.main.MyPanel;
 import ui.material.Img;
 import ui.tools.MyTable;
+import ui.tools.Translate;
 import vo.PlayerVO;
 import vo.TeamMatchVO;
+import vo.TeamMonthMatchVO;
 import vo.TeaminfoVO;
 
 @SuppressWarnings("serial")
 public class SingleTeam extends MyPanel implements ActionListener{
 	TeamRankService trs = new TeamRank();
 	PlayerRankService prs = new PlayerRank();
-	ArrayList<TeamMatchVO> matches;
+	String name;
+	ArrayList<TeamMonthMatchVO> matches;
 	Frame frame;
 	JScrollPane pane1;
 	MyTable table1;
@@ -38,7 +43,7 @@ public class SingleTeam extends MyPanel implements ActionListener{
 	MyTable table2;
 	DefaultTableModel model2;
 	String[] columnNames1 = {"球员","参赛场数","先发场数","篮板数","助攻数","在场时间","投篮命中率","三分命中率","罚球命中率","进攻数","防守数","抢断数","盖帽数","失误数","犯规数","得分","效率","GmSc效率值","真实命中率","投篮效率","篮板率","进攻篮板率","防守篮板率","助攻率","抢断率","盖帽率","失误率","使用率"};
-	String[] columnNames2 = {"队名","缩写","城市","联盟","分区","主场","进入NBA"};
+	String[] columnNames2 = {"日期","主队","比分","客队","第一节","第二节","第三节","第四节","查看"};
 	JLabel rankingBand = new JLabel(Img.RANKINGBAND);
     JLabel jl = new JLabel(Img.BOARD);
     JLabel jl1 = new JLabel("队名");
@@ -189,6 +194,7 @@ public class SingleTeam extends MyPanel implements ActionListener{
 	}
 	
 	public void update(String team){
+		name = team;
 		changePIC(team);	
 		TeaminfoVO teamInfo = trs.getTeamInfo(team);
 	    teamName.setText(teamInfo.getName());
@@ -213,11 +219,40 @@ public class SingleTeam extends MyPanel implements ActionListener{
 	    table1.setWidth();
 		table1.updateUI();
 	   
-		//matches = trs.getTeamRecentFiveMatch(team);
+		matches = trs.getTeamRecentFiveMatch(team);
+		Object[][] data2 = getData(matches);
+		model2.setDataVector(data2, columnNames2);
+	    table2.setWidth();
+		table2.updateUI();
+	    table2.addMouseListener(new MouseAdapter() {    //这里使用MouseAdapter代替MouseListener，因为MouseListener要重写的方法太多
+			public void mouseClicked(MouseEvent e) {
+				int row = table2.getSelectedRow();
+				int column = table2.getSelectedColumn();
+				if(column==8)
+					jump(row);
+			}
+		});
        	
 	}
 	
+    public void jump(int row){
+    	frame.change(this, frame.singleMatchPanel);
+    	TeamMonthMatchVO temp = matches.get(matches.size()-row-1);
+    	frame.singleMatchPanel.update(temp);
+    	frame.singleMatchPanel.flag = true;
+    }
 	
+
+    
+    public Object[][] getData(ArrayList<TeamMonthMatchVO> matches){
+    	int num = matches.size();
+    	Object[][] data = new Object[num][];
+		for(int i = 0;i<num;i++){
+			Object[] temp = {matches.get(i).getDate(),matches.get(i).getHost(),matches.get(i).getScore(),matches.get(i).getGuest(),matches.get(i).getFirst(),matches.get(i).getSecond(),matches.get(i).getThird(),matches.get(i).getFourth(),"查看"};
+		    data[num-1-i] = temp;
+		}
+		return data;
+    }
 	
 	public void changePIC(String team){
 		ImageIcon icon = Img.ATL;
@@ -326,7 +361,21 @@ public class SingleTeam extends MyPanel implements ActionListener{
 		else if(e.getActionCommand().equals("back")){
 			frame.change(this, frame.teamsSelectPanel);
 		}
-		
+		else if(e.getActionCommand().equals("search")){
+            matches = trs.getTeamMonthMatch(season.getSelectedItem().toString().substring(2)+"-"+month.getSelectedItem().toString().substring(0,2),name);
+			Object[][] data2 = getData(matches);
+			model2.setDataVector(data2, columnNames2);
+		    table2.setWidth();
+			table2.updateUI();
+			
+		}
+		else if(e.getActionCommand().equals("recent")){
+			matches = trs.getTeamRecentFiveMatch(name);
+			Object[][] data2 = getData(matches);
+			model2.setDataVector(data2, columnNames2);
+		    table2.setWidth();
+			table2.updateUI();
+		}
 		
 	}
 

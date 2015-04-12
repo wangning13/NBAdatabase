@@ -198,7 +198,7 @@ public class SinglePlayer extends MyPanel implements ActionListener{
 	    //table.setAutoResizeMode(JTable.AUTO_RESIZE_ALL_COLUMNS);
 	    pane1 = new JScrollPane (table1);
 	    this.add(pane1);
-	    pane1.setBounds(250, 580, 802, 70);
+	    pane1.setBounds(250, 510, 802, 140);
 	    
         Object[][] data2 = null;
 	    model2 = new DefaultTableModel(new Object[][]{},columnNames2);
@@ -208,7 +208,7 @@ public class SinglePlayer extends MyPanel implements ActionListener{
 	    //table.setAutoResizeMode(JTable.AUTO_RESIZE_ALL_COLUMNS);
 	    pane2 = new JScrollPane (table2);
 	    this.add(pane2);
-	    pane2.setBounds(250,  220, 802, 360);
+	    pane2.setBounds(250,  220, 802, 290);
 	   
 	}
 	
