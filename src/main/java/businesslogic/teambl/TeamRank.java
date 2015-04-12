@@ -140,40 +140,31 @@ public class TeamRank implements TeamRankService{
 			g = (GetTeamdataDataService) Naming.lookup("rmi://"+rmi+":2015/GetTeamdata");
 			teamMatchPOs = g.getTeamMonthMatch(month, team);
 			for (int i = 0; i < teamMatchPOs.size(); i++) {
-				System.out.println(teamMatchPOs.get(i).getDate());
-				for (int j = 0; j < teamMatchPOs.size(); j++) {
-					if (teamMatchPOs.get(i).getHostGuest().equals("h")) {
-						if ((!teamMatchPOs.get(i).getName().equals(teamMatchPOs.get(j).getName()))&&teamMatchPOs.get(i).getDate().equals(teamMatchPOs.get(j).getDate())) {
-							TeamMonthMatchVO teamMonthMatchVO = new TeamMonthMatchVO(teamMatchPOs.get(j).getDate(), 
-									teamMatchPOs.get(i).getName(), 
-									teamMatchPOs.get(j).getName(), 
-									teamMatchPOs.get(i).getTotal()+"-"+teamMatchPOs.get(j).getTotal(),
-									teamMatchPOs.get(i).getFirst()+"-"+teamMatchPOs.get(j).getFirst(),
-									teamMatchPOs.get(i).getSecond()+"-"+teamMatchPOs.get(j).getSecond(),
-									teamMatchPOs.get(i).getThird()+"-"+teamMatchPOs.get(j).getThird(), 
-									teamMatchPOs.get(i).getFourth()+"-"+teamMatchPOs.get(j).getFourth());
-							teamMonthMatchVOs.add(teamMonthMatchVO);
-							teamMatchPOs.remove(j);
+				ArrayList<TeamMatchPO> teamMatchPOs2 = g.getTeamMonthMatch(month, teamMatchPOs.get(i).getOpponent());
+				for (int j = 0; j < teamMatchPOs2.size(); j++) {
+					if (teamMatchPOs2.get(j).getOpponent().equals(team)) {
+						String data = teamMatchPOs.get(i).getDate();
+						String host = "";
+						String guest = "";
+						if (teamMatchPOs.get(i).getHostGuest().equals("h")) {
+							host = team;
+							guest = teamMatchPOs2.get(j).getName();
+						}else {
+							host = teamMatchPOs2.get(j).getName();
+							guest = team;
 						}
-					}else {
-						if ((!teamMatchPOs.get(i).getName().equals(teamMatchPOs.get(j).getName()))&&teamMatchPOs.get(i).getDate().equals(teamMatchPOs.get(j).getDate())) {
-							TeamMonthMatchVO teamMonthMatchVO = new TeamMonthMatchVO(teamMatchPOs.get(j).getDate(), 
-									teamMatchPOs.get(j).getName(),
-									teamMatchPOs.get(i).getName(), 
-									teamMatchPOs.get(j).getTotal()+"-"+teamMatchPOs.get(i).getTotal(),
-									teamMatchPOs.get(j).getFirst()+"-"+teamMatchPOs.get(i).getFirst(),
-									teamMatchPOs.get(j).getSecond()+"-"+teamMatchPOs.get(i).getSecond(),
-									teamMatchPOs.get(j).getThird()+"-"+teamMatchPOs.get(i).getThird(), 
-									teamMatchPOs.get(j).getFourth()+"-"+teamMatchPOs.get(i).getFourth());
-							teamMonthMatchVOs.add(teamMonthMatchVO);
-							teamMatchPOs.remove(j);
-						}
+						String score = teamMatchPOs.get(i).getTotal() + "-" + teamMatchPOs2.get(j).getTotal();
+						String first = teamMatchPOs.get(i).getFirst() + "-" + teamMatchPOs2.get(j).getFirst();
+						String second = teamMatchPOs.get(i).getSecond() + "-" + teamMatchPOs2.get(j).getSecond();
+						String third = teamMatchPOs.get(i).getThird() + "-" + teamMatchPOs2.get(j).getThird();
+						String fourth = teamMatchPOs.get(i).getFourth() + "-" + teamMatchPOs2.get(j).getFourth();
+						TeamMonthMatchVO teamMonthMatchVO = new TeamMonthMatchVO(data, host, guest, score, first, second, third, fourth);
+						teamMonthMatchVOs.add(teamMonthMatchVO);
 					}
-					
-					
 				}
 				
 			}
+			
 		} catch (MalformedURLException e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
@@ -249,6 +240,36 @@ public class TeamRank implements TeamRankService{
 			e.printStackTrace();
 		}
     	return teamMatchVOs;
+    }
+    
+    public ArrayList<TeamVO> getSeasonTop(String season,String condition){
+    	ArrayList<TeamPO> teamPOs = new ArrayList<TeamPO>();
+    	ArrayList<TeamVO> teamVOs = new ArrayList<TeamVO>();
+    	GetTeamdataDataService g;
+    	try {
+			g = (GetTeamdataDataService) Naming.lookup("rmi://"+rmi+":2015/GetTeamdata");
+			teamPOs = g.getSeasonTop(season, condition);
+			for (int i = 0; i < teamPOs.size(); i++) {
+				
+			}
+			
+			
+		} catch (MalformedURLException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		} catch (RemoteException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		} catch (NotBoundException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+    	
+    	
+    	
+    	
+    	
+    	return teamVOs;
     }
 
 }
