@@ -15,16 +15,22 @@ public class testGetTeamData {
 //			System.out.println(teamVOs.get(i).getAssistEfficiency());
 //		}
 		
-		ArrayList<TeamMonthMatchVO> teamMonthMatchVOs = teamRank.getTeamMonthMatch("13-10", "LAL");
-		for (int i = 0; i < teamMonthMatchVOs.size(); i++) {
-			System.out.println(teamMonthMatchVOs.get(i).getDate());
-			System.out.println(teamMonthMatchVOs.get(i).getHost());
-			System.out.println(teamMonthMatchVOs.get(i).getGuest());
-			System.out.println(teamMonthMatchVOs.get(i).getScore());
-			System.out.println(teamMonthMatchVOs.get(i).getFirst());
-			System.out.println(teamMonthMatchVOs.get(i).getSecond());
-			System.out.println(teamMonthMatchVOs.get(i).getThird());
-			System.out.println(teamMonthMatchVOs.get(i).getFourth());
+//		ArrayList<TeamMonthMatchVO> teamMonthMatchVOs = teamRank.getTeamMonthMatch("13-10", "LAL");
+//		for (int i = 0; i < teamMonthMatchVOs.size(); i++) {
+//			System.out.println(teamMonthMatchVOs.get(i).getDate());
+//			System.out.println(teamMonthMatchVOs.get(i).getHost());
+//			System.out.println(teamMonthMatchVOs.get(i).getGuest());
+//			System.out.println(teamMonthMatchVOs.get(i).getScore());
+//			System.out.println(teamMonthMatchVOs.get(i).getFirst());
+//			System.out.println(teamMonthMatchVOs.get(i).getSecond());
+//			System.out.println(teamMonthMatchVOs.get(i).getThird());
+//			System.out.println(teamMonthMatchVOs.get(i).getFourth());
+//		}
+		
+		ArrayList<TeamVO> teamVOs = teamRank.getSeasonTop("13-14", "backboard");
+		System.out.println(teamVOs.size());
+		for (int i = 0; i < teamVOs.size(); i++) {
+			System.out.println(teamVOs.get(i).getBackboard());
 		}
 		
 		

@@ -250,7 +250,9 @@ public class TeamRank implements TeamRankService{
 			g = (GetTeamdataDataService) Naming.lookup("rmi://"+rmi+":2015/GetTeamdata");
 			teamPOs = g.getSeasonTop(season, condition);
 			for (int i = 0; i < teamPOs.size(); i++) {
-				
+				GetTeamVO getTeamVO = new GetTeamVO();
+				TeamVO teamVO = getTeamVO.GetTeamVO(teamPOs.get(i));
+				teamVOs.add(teamVO);
 			}
 			
 			
@@ -264,11 +266,6 @@ public class TeamRank implements TeamRankService{
 			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
-    	
-    	
-    	
-    	
-    	
     	return teamVOs;
     }
 
