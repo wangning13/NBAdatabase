@@ -268,14 +268,20 @@ public class TeamRank implements TeamRankService{
     
     public ArrayList<TeamVO> getSeasonTop(String season,String condition){
     	ArrayList<TeamPO> teamPOs = new ArrayList<TeamPO>();
+    	ArrayList<TeamPO> teamPOs2 = new ArrayList<TeamPO>();
     	ArrayList<TeamVO> teamVOs = new ArrayList<TeamVO>();
     	GetTeamdataDataService g;
     	try {
 			g = (GetTeamdataDataService) Naming.lookup("rmi://"+rmi+":2015/GetTeamdata");
-			teamPOs = g.getSeasonTop(season, condition);
+			teamPOs = g.getSeasonTop(season, "wins");
 			for (int i = 0; i < teamPOs.size(); i++) {
+				Calculate calculate = new Calculate();
+				teamPOs.set(i, calculate.Calculate(teamPOs.get(i)));
+			}
+			teamPOs2 = g.getByEfficiency(teamPOs, condition, "DESC");
+			for (int i = 0; i < teamPOs2.size(); i++) {
 				GetTeamVO getTeamVO = new GetTeamVO();
-				TeamVO teamVO = getTeamVO.GetTeamVO(teamPOs.get(i));
+				TeamVO teamVO = getTeamVO.GetTeamVO(teamPOs2.get(i));
 				teamVOs.add(teamVO);
 			}
 			
