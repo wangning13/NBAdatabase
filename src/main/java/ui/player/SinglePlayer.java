@@ -3,6 +3,8 @@ package ui.player;
 import java.awt.Font;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.awt.event.MouseAdapter;
+import java.awt.event.MouseEvent;
 import java.util.ArrayList;
 
 import javax.swing.JButton;
@@ -20,6 +22,7 @@ import ui.main.MyButton;
 import ui.main.MyPanel;
 import ui.material.Img;
 import ui.tools.MyTable;
+import ui.tools.Translate;
 import vo.PlayerMatchVO;
 import vo.PlayerVO;
 import vo.PlayerinfoVO;
@@ -28,6 +31,7 @@ import vo.PlayerinfoVO;
 public class SinglePlayer extends MyPanel implements ActionListener{
 	PlayerRankService prs = new PlayerRank();
 	TeamRankService trs = new TeamRank();
+	public boolean flag = false;
 	ArrayList<PlayerMatchVO> matches;
 	String playerName;
 	Frame frame;
@@ -235,6 +239,14 @@ public class SinglePlayer extends MyPanel implements ActionListener{
 		model1.setDataVector(data1, columnNames1);
 	    table1.setWidth();
 		table1.updateUI();
+	    table1.addMouseListener(new MouseAdapter() {    //这里使用MouseAdapter代替MouseListener，因为MouseListener要重写的方法太多
+			public void mouseClicked(MouseEvent e) {
+				int row = table1.getSelectedRow();
+				int column = table1.getSelectedColumn();
+				if(column==0)
+				  jump(row);
+			}
+		});
 		
 	/*    Object[][] data2 = new Object[1][];
 		
@@ -248,6 +260,15 @@ public class SinglePlayer extends MyPanel implements ActionListener{
 		model2.setDataVector(getData2(matches), columnNames2);
 	    table2.setWidth();
 		table2.updateUI();
+	}
+	
+	public void jump(int row){
+		if(table1.getValueAt(row, 0)!=null){
+		  String team = table1.getValueAt(row, 0).toString();
+		  frame.change(this, frame.singleTeamPanel);
+		  frame.singleTeamPanel.update(team);
+		  frame.singleTeamPanel.flag = true;
+		}
 	}
 	
 	public Object[][] getData2(ArrayList<PlayerMatchVO> matches){
@@ -266,7 +287,12 @@ public class SinglePlayer extends MyPanel implements ActionListener{
 			frame.change(this, frame.mainFrame);
 		}
 		else if(e.getActionCommand().equals("back")){
-			frame.change(this, frame.playersSelectPanel);
+			if(flag){
+			    frame.change(this, frame.singleTeamPanel);
+			    frame.singleTeamPanel.flag = false;
+			}
+			else
+			    frame.change(this, frame.playersSelectPanel);
 		}
 		else if(e.getActionCommand().equals("search")){
 			matches = prs.getPlayerMonthMatch(season.getSelectedItem().toString().substring(2)+"-"+month.getSelectedItem().toString().substring(0,2),playerName);
@@ -280,7 +306,5 @@ public class SinglePlayer extends MyPanel implements ActionListener{
 		    table2.setWidth();
 			table2.updateUI();
 		}
-		
 	}
-
 }

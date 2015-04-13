@@ -10,24 +10,31 @@ import javax.swing.JComboBox;
 import javax.swing.JLabel;
 import javax.swing.JScrollPane;
 import javax.swing.table.DefaultTableModel;
+
 import businesslogic.playerbl.PlayerRank;
+import businesslogic.teambl.TeamRank;
 import businesslogicservice.playerblservice.PlayerRankService;
+import businesslogicservice.teamblservice.TeamRankService;
 import ui.main.Frame;
 import ui.main.MyPanel;
 import ui.material.Img;
 import ui.tools.MyTable;
 import ui.tools.Translate;
+import vo.PlayerMatchVO;
 import vo.PlayerVO;
 import vo.TeamVO;
 
 @SuppressWarnings("serial")
 public class Statistics extends MyPanel implements ActionListener{
 	PlayerRankService prs = new PlayerRank();
+	TeamRankService trs = new TeamRank();
 	Frame frame;
 	JScrollPane pane;
 	MyTable table;
 	DefaultTableModel model;
 	String[] columnNames = {"球员名称","所属球队","参赛场数","先发场数","篮板数","助攻数","在场时间","投篮命中率","三分命中率","罚球命中率","进攻数","防守数","抢断数","盖帽数","失误数","犯规数","得分","效率","GmSc效率值","真实命中率","投篮效率","篮板率","进攻篮板率","防守篮板率","助攻率","抢断率","盖帽率","失误率","使用率","场均得分","场均时间","场均篮板","场均助攻","场均投篮命中数","场均投篮出手数","场均三分命中数","场均三分出手数","场均罚球命中数","场均罚球出手数","场均进攻数","场均防守数","场均抢断数","场均盖帽数","场均失误数","场均犯规数"};
+	String[] columnNames1 = {"姓名","对手","上场时间","得分","投篮命中数","投篮出手数","三分命中数","三分出手数","罚球命中数","罚球出手数","进攻篮板数","防守篮板数","篮板数","助攻数","盖帽数","犯规数","抢断数","失误数"};
+
 	JLabel rankingBand = new JLabel(Img.RANKINGBAND);
 
 	JComboBox<String> type = new JComboBox<String>();
@@ -227,6 +234,16 @@ public class Statistics extends MyPanel implements ActionListener{
 		return data;
     }
 	
+	public Object[][] getData1(ArrayList<PlayerMatchVO> matches){
+	    int num = matches.size();
+	    Object[][] data = new Object[num][];
+	    for(int i = 0;i<num;i++){
+	    	Object[] temp = {matches.get(i).getPlayername(),trs.getTeamMatch(matches.get(i).getDate(), matches.get(i).getTeam()).getOpponent(),matches.get(i).getMinutes(),matches.get(i).getScoring(),matches.get(i).getFieldGoal(),matches.get(i).getFieldGoalAttempts(),matches.get(i).getThreepointFieldGoal(),matches.get(i).getThreepointFieldGoalAttempts(),matches.get(i).getFreeThrow(),matches.get(i).getFreeThrowAttempts(),matches.get(i).getOffensiveRebound(),matches.get(i).getDefensiveRebound(),matches.get(i).getBackboard(),matches.get(i).getAssist(),matches.get(i).getBlock(),matches.get(i).getFoul(),matches.get(i).getSteal(),matches.get(i).getTurnOver()};
+	    	data[i] = temp;
+	    }
+	    return data;
+	}
+    
 	public void actionPerformed(ActionEvent e) {
 		// TODO Auto-generated method stub
 		if(e.getActionCommand().equals("home")||e.getActionCommand().equals("back")){
@@ -253,10 +270,10 @@ public class Statistics extends MyPanel implements ActionListener{
 		}
 		else if(e.getActionCommand().equals("search")){
              if(hot.getSelectedIndex()==0){
-    		/*	 Object[][] data = getData(prs.getDayTop("h", Translate.translate1(term1.getSelectedItem().toString())));
-    			 model.setDataVector(data, columnNames);
+    			 Object[][] data = getData1(prs.getDayTop("14-04-01", Translate.translate1(term1.getSelectedItem().toString())));
+    			 model.setDataVector(data, columnNames1);
     		     table.setWidth();
-    			 table.updateUI();	 */
+    			 table.updateUI();	 
              }
              else if(hot.getSelectedIndex()==1){
        			 Object[][] data = getData(prs.getSeasonTop("13-14", Translate.translate1(term1.getSelectedItem().toString())));

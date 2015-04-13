@@ -81,6 +81,7 @@ public class TeamsSelect extends MyPanel implements ActionListener{
 		String team = Translate.translate(temp);
 		frame.change(this, frame.singleTeamPanel);
 		frame.singleTeamPanel.update(team);
+		frame.singleTeamPanel.flag = false;
 	}
 	
 	public void actionPerformed(ActionEvent e) {

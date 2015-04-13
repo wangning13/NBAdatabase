@@ -33,6 +33,7 @@ import vo.TeaminfoVO;
 public class SingleTeam extends MyPanel implements ActionListener{
 	TeamRankService trs = new TeamRank();
 	PlayerRankService prs = new PlayerRank();
+	public boolean flag = false;
 	String name;
 	ArrayList<TeamMonthMatchVO> matches;
 	Frame frame;
@@ -181,6 +182,16 @@ public class SingleTeam extends MyPanel implements ActionListener{
 	    this.add(pane1);
 	    pane1.setBounds(300, 435, 752, 215);
 	    
+	    table1.addMouseListener(new MouseAdapter() {    //这里使用MouseAdapter代替MouseListener，因为MouseListener要重写的方法太多
+			public void mouseClicked(MouseEvent e) {
+				int row = table1.getSelectedRow();
+				int column = table1.getSelectedColumn();
+				if(column==0)
+					jump1(row);
+			}
+		});
+  
+	    
        Object[][] data2 = null;
 	    model2 = new DefaultTableModel(new Object[][]{},columnNames2);
 	    model2.setDataVector(data2, columnNames2);
@@ -242,6 +253,17 @@ public class SingleTeam extends MyPanel implements ActionListener{
     	frame.singleMatchPanel.flag = true;
     }
 	
+    public void jump1(int row){
+    	if(table1.getValueAt(row, 0)!=null){
+    	    String name = table1.getValueAt(row, 0).toString();
+    	    if(!name.equals("")){
+    		  frame.change(this, frame.singlePlayerPanel);
+              frame.singlePlayerPanel.update(name);
+              frame.singlePlayerPanel.flag = true;
+    		}
+    	}
+    	
+    }
 
     
     public Object[][] getData(ArrayList<TeamMonthMatchVO> matches){
@@ -359,7 +381,12 @@ public class SingleTeam extends MyPanel implements ActionListener{
 			frame.change(this, frame.mainFrame);
 		}
 		else if(e.getActionCommand().equals("back")){
-			frame.change(this, frame.teamsSelectPanel);
+			if(flag){
+				frame.change(this, frame.singlePlayerPanel);
+				frame.singlePlayerPanel.flag = false;
+			}
+			else
+			    frame.change(this, frame.teamsSelectPanel);
 		}
 		else if(e.getActionCommand().equals("search")){
             matches = trs.getTeamMonthMatch(season.getSelectedItem().toString().substring(2)+"-"+month.getSelectedItem().toString().substring(0,2),name);
