@@ -35,6 +35,7 @@ public class testGetTeamData {
 			System.out.println(teamVOs.get(i).getOppenentScoring());
 			System.out.println(teamVOs.get(i).getDefensiveEfficiency());
 			System.out.println(teamVOs.get(i).getDefensivebackboardEfficiency());
+			System.out.println(teamVOs.get(i).getAverageAsist());
 		}
 		
 		
