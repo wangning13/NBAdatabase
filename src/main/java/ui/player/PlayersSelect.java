@@ -162,6 +162,7 @@ public class PlayersSelect extends MyPanel implements ActionListener{
 		    if(!name.equals("")){
 		        frame.change(this, frame.singlePlayerPanel);
 		        frame.singlePlayerPanel.update(name);
+		        frame.singlePlayerPanel.flag = false;
 		    }
 		}
 	}
