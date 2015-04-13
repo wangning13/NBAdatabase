@@ -17,6 +17,6 @@ public interface PlayerRankService {
 	public ArrayList<PlayerMatchVO> getPlayerMatchdata(String date,String team);
 	public ArrayList<PlayerMatchVO> getPlayerMonthMatch(String month,String team);
 	public ArrayList<PlayerMatchVO> getPlayerRecentFiveMatch(String player);
-	public ArrayList<PlayerMatchVO> getDayTop(String date,String condition);
+	public ArrayList<PlayerMatchVO> getDayTop(String condition);
 	public ArrayList<PlayerVO> getSeasonTop(String season,String condition);
 }

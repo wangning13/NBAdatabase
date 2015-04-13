@@ -130,11 +130,7 @@ public class PlayerRank implements PlayerRankService{
 			for (int i = 0; i < playerPOs.size(); i++) {
 				Calculate calculate = new Calculate();
 				playerPOs.set(i, calculate.Calculate(playerPOs.get(i)));
-				    
-					
 				}
-				
-			
 			ArrayList<PlayerPO> playerPOs2 = g.getByEfficiency(playerPOs, key, order);
 			for (int i = 0; i < playerPOs2.size(); i++) {
 				GetPlayerVO getPlayerVO = new GetPlayerVO();
@@ -294,13 +290,13 @@ public class PlayerRank implements PlayerRankService{
 		return playerMatchVOs;
 	}
 	
-	public ArrayList<PlayerMatchVO> getDayTop(String date,String condition){
+	public ArrayList<PlayerMatchVO> getDayTop(String condition){
 		ArrayList<PlayerMatchPO> playerMatchPOs = new ArrayList<PlayerMatchPO>();
 		ArrayList<PlayerMatchVO> playerMatchVOs = new ArrayList<PlayerMatchVO>();
 		GetPlayerdataDataService g;
 		try {
 			g = (GetPlayerdataDataService) Naming.lookup("rmi://"+rmi+":2015/GetPlayerdata");
-			playerMatchPOs = g.getDayTop(date, condition);
+			playerMatchPOs = g.getDayTop(condition);
 			for (int i = 0; i < playerMatchPOs.size(); i++) {
 				GetPlayerMatchVO getPlayerMatchVO = new GetPlayerMatchVO();
 				PlayerMatchVO playerMatchVO = getPlayerMatchVO.getPlayerMatchVO(playerMatchPOs.get(i));
@@ -330,6 +326,11 @@ public class PlayerRank implements PlayerRankService{
 		try {
 			g = (GetPlayerdataDataService) Naming.lookup("rmi://"+rmi+":2015/GetPlayerdata");
 			playerPOs = g.getSeasonTop(season, "backboard");
+			System.out.println(playerPOs.get(0).getTeamBackboard());
+			System.out.println(playerPOs.get(0).getTeamMinutes());
+			System.out.println(playerPOs.get(0).getOpponentBackBoard());
+			System.out.println(playerPOs.get(0).getTeamFieldGoal());
+			System.out.println(playerPOs.get(0).getOpponentFieldGoalAttempts());
 			for (int i = 0; i < playerPOs.size(); i++) {
 				Calculate calculate = new Calculate();
 				playerPOs.set(i, calculate.Calculate(playerPOs.get(i)));
