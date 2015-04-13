@@ -92,13 +92,13 @@ public class Translate {
         	result = "offensiveRebound";
         else if(type.equals("防守篮板数"))
         	result = "defensiveRebound";
-        else if(type.equals("篮板数")||type.equals("篮板"))
+        else if(type.equals("篮板数")||type.equals("篮板")||type.equals("场均篮板"))
         	result = "backboard";
-        else if(type.equals("助攻数")||type.equals("助攻"))
+        else if(type.equals("助攻数")||type.equals("助攻")||type.equals("场均助攻"))
         	result = "assist";
-        else if(type.equals("抢断数")||type.equals("抢断"))
+        else if(type.equals("抢断数")||type.equals("抢断")||type.equals("场均抢断"))
         	result = "steal";
-        else if(type.equals("盖帽数")||type.equals("盖帽"))
+        else if(type.equals("盖帽数")||type.equals("盖帽")||type.equals("场均盖帽"))
         	result = "block";
         else if(type.equals("失误数")||type.equals("失误"))
         	result = "turnOver";
@@ -126,7 +126,7 @@ public class Translate {
         	result = "stealEfficiency";
         else if(type.equals("助攻效率"))
         	result = "assitEfficiency";
-        else if(type.equals("得分"))
+        else if(type.equals("得分")||type.equals("场均得分"))
         	result = "scoring";
         else if(type.equals("球员名称"))
         	result = "playerName";

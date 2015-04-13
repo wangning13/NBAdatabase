@@ -15,16 +15,12 @@ import javax.swing.JScrollPane;
 import javax.swing.table.DefaultTableModel;
 
 import businesslogic.playerbl.PlayerRank;
-import businesslogic.teambl.TeamRank;
 import businesslogicservice.playerblservice.PlayerRankService;
-import businesslogicservice.teamblservice.TeamRankService;
 import ui.main.Frame;
 import ui.main.MyPanel;
 import ui.material.Img;
 import ui.tools.MyTable;
-import ui.tools.Translate;
 import vo.PlayerMatchVO;
-import vo.TeamMatchVO;
 import vo.TeamMonthMatchVO;
 
 @SuppressWarnings("serial")
@@ -86,10 +82,10 @@ public class SingleMatch extends MyPanel implements ActionListener{
 		jl6.setBounds(820, 150, 70, 30);
 		jl6.setFont(font1);
 		this.add(point1);
-		point1.setBounds(200, 175, 50, 50);
+		point1.setBounds(202, 175, 50, 50);
 		point1.setFont(font1);
 		this.add(point2);
-		point2.setBounds(825, 175, 50, 50);
+		point2.setBounds(823, 175, 50, 50);
 		point2.setFont(font1);
 		this.add(jl1);
 		jl1.setBounds(310, 150, 100, 30);

@@ -233,23 +233,43 @@ public class Statistics extends MyPanel implements ActionListener{
 			frame.change(this, frame.mainFrame);
 		}
 		
-		if(e.getActionCommand().equals("descending")){	
+		else if(e.getActionCommand().equals("descending")){	
 			 Object[][] data = getData(prs.getAllPlayerdata("13-14",Translate.translate1(type.getSelectedItem().toString()), "DESC"));
 			 model.setDataVector(data, columnNames);
 		     table.setWidth();
 			 table.updateUI();
 		}
-		if(e.getActionCommand().equals("ascending")){
+		else if(e.getActionCommand().equals("ascending")){
 			 Object[][] data = getData(prs.getAllPlayerdata("13-14",Translate.translate1(type.getSelectedItem().toString()), "ASC"));
 			 model.setDataVector(data, columnNames);
 		     table.setWidth();
 			 table.updateUI();
 		}
-		if(e.getActionCommand().equals("filter")){
+		else if(e.getActionCommand().equals("filter")){
 			 Object[][] data = getData(prs.getFirstFifty("13-14",Translate.translate1(posision.getSelectedItem().toString()),Translate.translate1(area.getSelectedItem().toString()),Translate.translate1(term.getSelectedItem().toString())));
 			 model.setDataVector(data, columnNames);
 		     table.setWidth();
 			 table.updateUI();
+		}
+		else if(e.getActionCommand().equals("search")){
+             if(hot.getSelectedIndex()==0){
+    		/*	 Object[][] data = getData(prs.getDayTop("h", Translate.translate1(term1.getSelectedItem().toString())));
+    			 model.setDataVector(data, columnNames);
+    		     table.setWidth();
+    			 table.updateUI();	 */
+             }
+             else if(hot.getSelectedIndex()==1){
+       			 Object[][] data = getData(prs.getSeasonTop("13-14", Translate.translate1(term1.getSelectedItem().toString())));
+    			 model.setDataVector(data, columnNames);
+    		     table.setWidth();
+    			 table.updateUI();	
+             }
+             else if(hot.getSelectedIndex()==2){
+       			/* Object[][] data = getData(prs.get);
+    			 model.setDataVector(data, columnNames);
+    		     table.setWidth();
+    			 table.updateUI();*/	
+             }
 		}
 	}
 

@@ -320,7 +320,7 @@ public class Ranking extends MyPanel implements ActionListener{
 		    table1.setWidth();
 			table1.updateUI();
 		}
-		if(e.getActionCommand().equals("east")){
+		else if(e.getActionCommand().equals("east")){
 		/*	pane1.setVisible(false);
 			pane2.setVisible(false);
 			pane3.setVisible(true);
@@ -334,46 +334,46 @@ public class Ranking extends MyPanel implements ActionListener{
 		    table1.setWidth();
 			table1.updateUI();
 		}
-		if(e.getActionCommand().equals("southwest")){
+		else if(e.getActionCommand().equals("southwest")){
 			Object[][] data = getData(trs.getTeamData("13-14","`partition`='Southwest'", "wins", "DESC"));
 			model1.setDataVector(data, columnNames1);
 		    table1.setWidth();
 			table1.updateUI();
 		}
-		if(e.getActionCommand().equals("northwest")){
+		else if(e.getActionCommand().equals("northwest")){
 			Object[][] data = getData(trs.getTeamData("13-14","`partition`='Northwest'", "wins", "DESC"));
 			model1.setDataVector(data, columnNames1);
 		    table1.setWidth();
 			table1.updateUI();
 		}
-		if(e.getActionCommand().equals("pacific")){
+		else if(e.getActionCommand().equals("pacific")){
 			Object[][] data = getData(trs.getTeamData("13-14","`partition`='Pacific'", "wins", "DESC"));
 			model1.setDataVector(data, columnNames1);
 		    table1.setWidth();
 			table1.updateUI();
 		}
-		if(e.getActionCommand().equals("southeast")){
+		else if(e.getActionCommand().equals("southeast")){
 			Object[][] data = getData(trs.getTeamData("13-14","`partition`='Southeast'", "wins", "DESC"));
 			model1.setDataVector(data, columnNames1);
 		    table1.setWidth();
 			table1.updateUI();
 		}
-		if(e.getActionCommand().equals("central")){
+		else if(e.getActionCommand().equals("central")){
 			Object[][] data = getData(trs.getTeamData("13-14","`partition`='Central'", "wins", "DESC"));
 			model1.setDataVector(data, columnNames1);
 		    table1.setWidth();
 			table1.updateUI();
 		}
-		if(e.getActionCommand().equals("atlantic")){
+		else if(e.getActionCommand().equals("atlantic")){
 			Object[][] data = getData(trs.getTeamData("13-14","`partition`='Atlantic'", "wins", "DESC"));
 			model1.setDataVector(data, columnNames1);
 		    table1.setWidth();
 			table1.updateUI();
 		}
-		if(e.getActionCommand().equals("home")||e.getActionCommand().equals("back")){
+		else if(e.getActionCommand().equals("home")||e.getActionCommand().equals("back")){
 			frame.change(this, frame.mainFrame);
 		}
-		if(e.getActionCommand().equals("descending")){
+		else if(e.getActionCommand().equals("descending")){
 			/*pane1.setVisible(false);
 			pane2.setVisible(false);
 			pane3.setVisible(false);
@@ -389,7 +389,7 @@ public class Ranking extends MyPanel implements ActionListener{
 		    table1.setWidth();
 			table1.updateUI();
 		}
-		if(e.getActionCommand().equals("ascending")){
+		else if(e.getActionCommand().equals("ascending")){
 			/*pane1.setVisible(false);
 			pane2.setVisible(false);
 			pane3.setVisible(false);
@@ -405,7 +405,12 @@ public class Ranking extends MyPanel implements ActionListener{
 		    table1.setWidth();
 			table1.updateUI();
 		}
-		
+		else if(e.getActionCommand().equals("search")){
+			Object[][] data = getData(trs.getSeasonTop("13-14", Translate.translate1(term.getSelectedItem().toString())));
+			model1.setDataVector(data, columnNames1);
+		    table1.setWidth();
+			table1.updateUI();
+		}
 		
 	}
 
