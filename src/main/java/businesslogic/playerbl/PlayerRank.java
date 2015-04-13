@@ -325,7 +325,7 @@ public class PlayerRank implements PlayerRankService{
 		GetPlayerdataDataService g;
 		try {
 			g = (GetPlayerdataDataService) Naming.lookup("rmi://"+rmi+":2015/GetPlayerdata");
-			playerPOs = g.getSeasonTop(season, "backboard");
+			playerPOs = g.getAllPlayerdata(season, "backboard", "DESC");
 			System.out.println(playerPOs.get(0).getTeamBackboard());
 			System.out.println(playerPOs.get(0).getTeamMinutes());
 			System.out.println(playerPOs.get(0).getOpponentBackBoard());
@@ -336,7 +336,7 @@ public class PlayerRank implements PlayerRankService{
 				playerPOs.set(i, calculate.Calculate(playerPOs.get(i)));
 			}
 			playerPOs2 = g.getByEfficiency(playerPOs, condition, "DESC");
-			for (int i = 0; i < playerPOs2.size(); i++) {
+			for (int i = 0; i < 5; i++) {
 				GetPlayerVO2 getPlayerVO2 = new GetPlayerVO2();
 				PlayerVO playerVO = getPlayerVO2.getPlayerVO2(playerPOs2.get(i));
 				playerVOs.add(playerVO);
@@ -355,4 +355,38 @@ public class PlayerRank implements PlayerRankService{
 		return playerVOs;
 	}
 	
+	
+	public ArrayList<PlayerVO> getMostImporvedPlayer(String season,String key){
+		ArrayList<PlayerVO> playerVOs = new ArrayList<PlayerVO>();
+		ArrayList<PlayerPO> playerPOs = new ArrayList<PlayerPO>();
+		ArrayList<PlayerPO> playerPOs2 = new ArrayList<PlayerPO>();
+		GetPlayerdataDataService g;
+		try {
+			g = (GetPlayerdataDataService) Naming.lookup("rmi://"+rmi+":2015/GetPlayerdata");
+			playerPOs = g.getAllPlayerdata(season, "backboard", "DESC");
+			for (int i = 0; i < playerPOs.size(); i++) {
+				Calculate calculate = new Calculate();
+				playerPOs.set(i, calculate.Calculate(playerPOs.get(i)));
+			}
+			playerPOs2 = g.getByEfficiency(playerPOs, key, "DESC");
+			for (int i = 0; i < 5; i++) {
+				GetPlayerVO getPlayerVO = new GetPlayerVO();
+				PlayerVO playerVO = getPlayerVO.getPlayerVO(playerPOs2.get(i));
+				playerVOs.add(playerVO);
+			}
+			
+		} catch (MalformedURLException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		} catch (RemoteException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		} catch (NotBoundException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+		
+		
+		return playerVOs;
+	}
 }

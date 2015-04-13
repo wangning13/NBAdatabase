@@ -72,6 +72,13 @@ public class PlayerVO {
 	double previousAverageScoring;//五场前的平均得分
 	double nearlyFiveAverageScoring;//近五场的平均得分
 	int doubleDouble=0;//两双次数
+	
+	double nearlyFiveBackboardPercentage;//近五场篮板提升率
+	double nearlyFiveAssistPercentage;//近五场助攻提升率
+	double previousAverageBackboard;//五场前的平均篮板
+	double nearlyFiveAverageBackboard;//近五场的平均篮板
+	double previousAverageAssist;//五场前的平均助攻
+	double nearlyFiveAverageAssist;//近五场的平均助攻
 	public PlayerVO(String playerName, String team, int appearance,
 			int firstPlay, int backboard, double averageBackboard, int assist,
 			double averageAssist, double minutes, double averageMinute,
@@ -102,7 +109,12 @@ public class PlayerVO {
 			double stealPercentage, double blockPercentage,
 			double turnOverPercentage, double usage,
 			double previousAverageScoring, double nearlyFiveAverageScoring,
-			int doubleDouble) {
+			int doubleDouble,double nearlyFiveBackboardPercentage,
+			double nearlyFiveAssistPercentage,
+			double previousAverageBackboard,
+			double nearlyFiveAverageBackboard,
+			double previousAverageAssist,
+			double nearlyFiveAverageAssist) {
 		super();
 		this.playerName = playerName;
 		this.team = team;
@@ -173,6 +185,13 @@ public class PlayerVO {
 		this.nearlyFiveAverageScoring = nearlyFiveAverageScoring;
 		this.doubleDouble = doubleDouble;
 		this.fielfGoalShotPercentage = fieldGoalShotPercentage;
+		this.nearlyFiveBackboardPercentage = nearlyFiveBackboardPercentage;
+		this.nearlyFiveAssistPercentage = nearlyFiveAssistPercentage;
+		this.previousAverageBackboard = previousAverageBackboard;
+		this.nearlyFiveAverageBackboard = nearlyFiveAverageBackboard;
+		this.previousAverageAssist = previousAverageAssist;
+		this.nearlyFiveAverageAssist = nearlyFiveAverageAssist;
+		
 	}
 	public PlayerVO() {
 		// TODO Auto-generated constructor stub
@@ -592,6 +611,43 @@ public class PlayerVO {
 	}
 	public void setFielfGoalShotPercentage(double fielfGoalShotPercentage) {
 		this.fielfGoalShotPercentage = fielfGoalShotPercentage;
+	}
+	public double getNearlyFiveBackboardPercentage() {
+		return nearlyFiveBackboardPercentage;
+	}
+	public void setNearlyFiveBackboardPercentage(
+			double nearlyFiveBackboardPercentage) {
+		this.nearlyFiveBackboardPercentage = nearlyFiveBackboardPercentage;
+	}
+	public double getNearlyFiveAssistPercentage() {
+		return nearlyFiveAssistPercentage;
+	}
+	public void setNearlyFiveAssistPercentage(double nearlyFiveAssistPercentage) {
+		this.nearlyFiveAssistPercentage = nearlyFiveAssistPercentage;
+	}
+	public double getPreviousAverageBackboard() {
+		return previousAverageBackboard;
+	}
+	public void setPreviousAverageBackboard(double previousAverageBackboard) {
+		this.previousAverageBackboard = previousAverageBackboard;
+	}
+	public double getNearlyFiveAverageBackboard() {
+		return nearlyFiveAverageBackboard;
+	}
+	public void setNearlyFiveAverageBackboard(double nearlyFiveAverageBackboard) {
+		this.nearlyFiveAverageBackboard = nearlyFiveAverageBackboard;
+	}
+	public double getPreviousAverageAssist() {
+		return previousAverageAssist;
+	}
+	public void setPreviousAverageAssist(double previousAverageAssist) {
+		this.previousAverageAssist = previousAverageAssist;
+	}
+	public double getNearlyFiveAverageAssist() {
+		return nearlyFiveAverageAssist;
+	}
+	public void setNearlyFiveAverageAssist(double nearlyFiveAverageAssist) {
+		this.nearlyFiveAverageAssist = nearlyFiveAverageAssist;
 	}
 	
 

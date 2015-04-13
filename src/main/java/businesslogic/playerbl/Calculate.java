@@ -98,6 +98,18 @@ public class Calculate {
 			playerPO.setUsage(Double.parseDouble(df.format((playerPO.getFieldGoalAttempts()+0.44*playerPO.getFreeThrowAttempts()+playerPO.getTurnOver())*(playerPO.getTeamMinutes()/5)/playerPO.getMinutes()/(playerPO.getTeamFieldGoalAttempts()+0.44*playerPO.getTeamFreeThrowAttempts()+playerPO.getTeamTurnOver()))));
 
 		}
+		if (playerPO.getPreviousAverageBackboard()==0) {
+			playerPO.setNearlyFiveBackboardPercentage(0);
+		}else {
+			playerPO.setNearlyFiveBackboardPercentage((playerPO.getNearlyFiveAverageBackboard()-playerPO.getPreviousAverageBackboard())/playerPO.getPreviousAverageBackboard());
+
+		}
+		if (playerPO.getPreviousAverageAssist()==0) {
+			playerPO.setNearlyFiveAssistPercentage(0);
+		}else {
+			playerPO.setNearlyFiveAssistPercentage((playerPO.getNearlyFiveAverageAssist()-playerPO.getPreviousAverageAssist())/playerPO.getPreviousAverageAssist());
+
+		}
 		return playerPO;
 	}
 

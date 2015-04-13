@@ -80,7 +80,13 @@ public class GetPlayerVO2 {
 					Double.parseDouble(df.format(playerPO.getUsage())),
 					Double.parseDouble(df.format(playerPO.getPreviousAverageScoring())),
 					Double.parseDouble(df.format(playerPO.getNearlyFiveAverageScoring())),
-					playerPO.getDoubleDouble()
+					playerPO.getDoubleDouble(),
+					Double.parseDouble(df.format(playerPO.getNearlyFiveBackboardPercentage())),
+					Double.parseDouble(df.format(playerPO.getNearlyFiveAssistPercentage())),
+					Double.parseDouble(df.format(playerPO.getPreviousAverageBackboard())),
+					Double.parseDouble(df.format(playerPO.getNearlyFiveAverageBackboard())),
+					Double.parseDouble(df.format(playerPO.getPreviousAverageAssist())),
+					Double.parseDouble(df.format(playerPO.getNearlyFiveAverageAssist()))
 					);
 		}else {
 			playerVO = new PlayerVO(
@@ -152,7 +158,13 @@ public class GetPlayerVO2 {
 					Double.parseDouble(df.format(playerPO.getUsage())),
 					Double.parseDouble(df.format(playerPO.getPreviousAverageScoring())),
 					Double.parseDouble(df.format(playerPO.getNearlyFiveAverageScoring())),
-					playerPO.getDoubleDouble()
+					playerPO.getDoubleDouble(),
+					Double.parseDouble(df.format(playerPO.getNearlyFiveBackboardPercentage())),
+					Double.parseDouble(df.format(playerPO.getNearlyFiveAssistPercentage())),
+					Double.parseDouble(df.format(playerPO.getPreviousAverageBackboard())),
+					Double.parseDouble(df.format(playerPO.getNearlyFiveAverageBackboard())),
+					Double.parseDouble(df.format(playerPO.getPreviousAverageAssist())),
+					Double.parseDouble(df.format(playerPO.getNearlyFiveAverageAssist()))
 					);
 		}
 		return playerVO;

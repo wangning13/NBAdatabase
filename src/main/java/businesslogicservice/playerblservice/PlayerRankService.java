@@ -19,4 +19,5 @@ public interface PlayerRankService {
 	public ArrayList<PlayerMatchVO> getPlayerRecentFiveMatch(String player);
 	public ArrayList<PlayerMatchVO> getDayTop(String condition);
 	public ArrayList<PlayerVO> getSeasonTop(String season,String condition);
+	public ArrayList<PlayerVO> getMostImporvedPlayer(String season,String key);
 }
