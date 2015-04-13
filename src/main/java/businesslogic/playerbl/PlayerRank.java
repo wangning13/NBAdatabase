@@ -324,14 +324,20 @@ public class PlayerRank implements PlayerRankService{
 	//仅适用于场均
 	public ArrayList<PlayerVO> getSeasonTop(String season,String condition){
 		ArrayList<PlayerPO> playerPOs = new ArrayList<PlayerPO>();
+		ArrayList<PlayerPO> playerPOs2 = new ArrayList<PlayerPO>();
 		ArrayList<PlayerVO> playerVOs = new ArrayList<PlayerVO>();
 		GetPlayerdataDataService g;
 		try {
 			g = (GetPlayerdataDataService) Naming.lookup("rmi://"+rmi+":2015/GetPlayerdata");
-			playerPOs = g.getSeasonTop(season, condition);
+			playerPOs = g.getSeasonTop(season, "backboard");
 			for (int i = 0; i < playerPOs.size(); i++) {
-				GetPlayerVO getPlayerVO = new GetPlayerVO();
-				PlayerVO playerVO = getPlayerVO.getPlayerVO(playerPOs.get(i));
+				Calculate calculate = new Calculate();
+				playerPOs.set(i, calculate.Calculate(playerPOs.get(i)));
+			}
+			playerPOs2 = g.getByEfficiency(playerPOs, condition, "DESC");
+			for (int i = 0; i < playerPOs2.size(); i++) {
+				GetPlayerVO2 getPlayerVO2 = new GetPlayerVO2();
+				PlayerVO playerVO = getPlayerVO2.getPlayerVO2(playerPOs2.get(i));
 				playerVOs.add(playerVO);
 				
 			}
