@@ -306,7 +306,5 @@ public class SinglePlayer extends MyPanel implements ActionListener{
 		    table2.setWidth();
 			table2.updateUI();
 		}
-		
 	}
-
 }
