@@ -280,8 +280,8 @@ public class TeamRank implements TeamRankService{
 			}
 			teamPOs2 = g.getByEfficiency(teamPOs, condition, "DESC");
 			for (int i = 0; i < 5; i++) {
-				GetTeamVO2 getTeamVO2 = new GetTeamVO2();
-				TeamVO teamVO = getTeamVO2.GetTeamVO2(teamPOs2.get(i));
+				GetTeamVO getTeamVO = new GetTeamVO();
+				TeamVO teamVO = getTeamVO.GetTeamVO(teamPOs2.get(i));
 				teamVOs.add(teamVO);
 			}
 			
