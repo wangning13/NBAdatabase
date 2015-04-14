@@ -282,10 +282,10 @@ public class Statistics extends MyPanel implements ActionListener{
     			 table.updateUI();	
              }
              else if(hot.getSelectedIndex()==2){
-       			/* Object[][] data = getData(prs.get);
+       			 Object[][] data = getData(prs.getMostImporvedPlayer("13-14", Translate.translate1(term1.getSelectedItem().toString())));
     			 model.setDataVector(data, columnNames);
     		     table.setWidth();
-    			 table.updateUI();*/	
+    			 table.updateUI();
              }
 		}
 	}
