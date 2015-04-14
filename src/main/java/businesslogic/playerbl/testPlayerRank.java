@@ -44,7 +44,7 @@ public class testPlayerRank {
 //		}
 
 		ArrayList<PlayerVO> playerVOs = playerRank.getSeasonTop("13-14", "backboard");
-		System.out.println(playerVOs.size());
+//		System.out.println(playerVOs.size());
 		for (int i = 0; i < playerVOs.size(); i++) {
 //			System.out.println(playerVOs.get(i).getMinutes());
 //			System.out.println(playerVOs.get(i).getBackboardPercentage());

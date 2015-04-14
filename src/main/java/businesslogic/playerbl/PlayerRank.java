@@ -326,22 +326,29 @@ public class PlayerRank implements PlayerRankService{
 		try {
 			g = (GetPlayerdataDataService) Naming.lookup("rmi://"+rmi+":2015/GetPlayerdata");
 			playerPOs = g.getAllPlayerdata(season, "backboard", "DESC");
+			System.out.println(playerPOs.size()+"===s1");
 			System.out.println(playerPOs.get(0).getTeamBackboard());
 			System.out.println(playerPOs.get(0).getTeamMinutes());
 			System.out.println(playerPOs.get(0).getOpponentBackBoard());
 			System.out.println(playerPOs.get(0).getTeamFieldGoal());
 			System.out.println(playerPOs.get(0).getOpponentFieldGoalAttempts());
+			System.out.println(playerPOs.get(0).getFieldGoalShotPercentage());
+			System.out.println(playerPOs.get(0).getFieldGoalAttempts());
+			System.out.println(playerPOs.get(0).getFieldGoal());
 			for (int i = 0; i < playerPOs.size(); i++) {
 				Calculate calculate = new Calculate();
 				playerPOs.set(i, calculate.Calculate(playerPOs.get(i)));
 			}
+			System.out.println(playerPOs.get(0).getFieldGoalShotPercentage());
 			playerPOs2 = g.getByEfficiency(playerPOs, condition, "DESC");
+			System.out.println(playerPOs2.size()+"===s2");
 			for (int i = 0; i < 5; i++) {
-				GetPlayerVO2 getPlayerVO2 = new GetPlayerVO2();
-				PlayerVO playerVO = getPlayerVO2.getPlayerVO2(playerPOs2.get(i));
+				GetPlayerVO getPlayerVO = new GetPlayerVO();
+				PlayerVO playerVO = getPlayerVO.getPlayerVO(playerPOs2.get(i));
 				playerVOs.add(playerVO);
 				
 			}
+			System.out.println(playerVOs.size()+"===vos");
 		} catch (MalformedURLException e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
