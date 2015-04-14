@@ -273,13 +273,13 @@ public class TeamRank implements TeamRankService{
     	GetTeamdataDataService g;
     	try {
 			g = (GetTeamdataDataService) Naming.lookup("rmi://"+rmi+":2015/GetTeamdata");
-			teamPOs = g.getSeasonTop(season, "wins");
+			teamPOs = g.getAllTeamdata(season, "wins", "DESC");
 			for (int i = 0; i < teamPOs.size(); i++) {
 				Calculate calculate = new Calculate();
 				teamPOs.set(i, calculate.Calculate(teamPOs.get(i)));
 			}
 			teamPOs2 = g.getByEfficiency(teamPOs, condition, "DESC");
-			for (int i = 0; i < teamPOs2.size(); i++) {
+			for (int i = 0; i < 5; i++) {
 				GetTeamVO2 getTeamVO2 = new GetTeamVO2();
 				TeamVO teamVO = getTeamVO2.GetTeamVO2(teamPOs2.get(i));
 				teamVOs.add(teamVO);
