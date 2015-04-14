@@ -193,7 +193,7 @@ public class Ranking extends MyPanel implements ActionListener{
 		term.addItem("罚球命中率");
 		  
 	    this.add(term);
-	    term.setBounds(830, 190, 100, 20);
+	    term.setBounds(830, 190, 110, 20);
 	    term.setFont(font1);
 	    this.add(jl);
 	    jl.setBounds(750, 190, 80, 20);

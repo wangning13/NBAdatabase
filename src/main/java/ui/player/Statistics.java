@@ -282,7 +282,15 @@ public class Statistics extends MyPanel implements ActionListener{
     			 table.updateUI();	
              }
              else if(hot.getSelectedIndex()==2){
-       			 Object[][] data = getData(prs.getMostImporvedPlayer("13-14", Translate.translate1(term1.getSelectedItem().toString())));
+            	 String key;
+            	 if(term1.getSelectedIndex()==0)
+            		 key = "nearlyFivePercentage";
+            	 else if(term1.getSelectedIndex()==1)
+            		 key = "nearlyFiveBackboardPercentage";
+            	 else 
+            		 key = "nearlyFiveAssistPercentage";
+            		
+       			 Object[][] data = getData(prs.getMostImporvedPlayer("13-14",key));
     			 model.setDataVector(data, columnNames);
     		     table.setWidth();
     			 table.updateUI();
