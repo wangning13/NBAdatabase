@@ -221,7 +221,7 @@ public class SingleTeam extends MyPanel implements ActionListener{
 	    int num = players.size();
 	    Object[][] data = new Object[num][];
 		for(int i = 0;i<num;i++){
-			System.out.println(players.get(i));
+			//System.out.println(players.get(i));
 			PlayerVO player = prs.getPlayerdata("13-14",players.get(i));
 			Object[] temp = {player.getPlayerName(),player.getAppearance(),player.getFirstPlay(),player.getBackboard(),player.getAssist(),player.getMinutes(),player.getFielfGoalShotPercentage(),player.getThreePointShotPercentage(),player.getFreeThrowPercentage(),player.getOffensiveRebound(),player.getDefensiveRebound(),player.getSteal(),player.getBlock(),player.getTurnOver(),player.getFoul(),player.getScoring(),player.getEfficiency(),player.getGmScEfficiency(),player.getTrueShootingPercentage(),player.getShootingEfficiency(),player.getBackboardPercentage(),player.getOffensiveReboundPercentage(),player.getDefensiveReboundPercentage(),player.getAssistPercentage(),player.getStealPercentage(),player.getBlockPercentage(),player.getTurnOverPercentage(),player.getUsage()};
 		    data[i] = temp;

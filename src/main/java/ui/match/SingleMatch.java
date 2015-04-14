@@ -31,7 +31,7 @@ public class SingleMatch extends MyPanel implements ActionListener{
 	JScrollPane pane1;
 	MyTable table1;
 	DefaultTableModel model1;
-	String[] columnNames1 = {"主队","位置","上场时间","得分","投篮命中数","投篮出手数","三分命中数","三分出手数","罚球命中数","罚球出手数","进攻篮板数","防守篮板数","篮板数","助攻数","盖帽数","犯规数","抢断数","失误数"};
+	String[] columnNames1 = {"主队","上场时间","得分","投篮命中数","投篮出手数","三分命中数","三分出手数","罚球命中数","罚球出手数","进攻篮板数","防守篮板数","篮板数","助攻数","盖帽数","犯规数","抢断数","失误数"};
 	JScrollPane pane2;
 	MyTable table2;
 	DefaultTableModel model2;
@@ -203,7 +203,7 @@ public class SingleMatch extends MyPanel implements ActionListener{
     	int num = matches.size();
     	Object[][] data = new Object[num][];
 		for(int i = 0;i<num;i++){
-			Object[] temp = {matches.get(i).getPlayername(),matches.get(i).getPosition(),matches.get(i).getMinutes(),matches.get(i).getScoring(),matches.get(i).getFieldGoal(),matches.get(i).getFieldGoalAttempts(),matches.get(i).getThreepointFieldGoal(),matches.get(i).getThreepointFieldGoalAttempts(),matches.get(i).getFreeThrow(),matches.get(i).getFreeThrowAttempts(),matches.get(i).getOffensiveRebound(),matches.get(i).getDefensiveRebound(),matches.get(i).getBackboard(),matches.get(i).getAssist(),matches.get(i).getBlock(),matches.get(i).getFoul(),matches.get(i).getSteal(),matches.get(i).getTurnOver()};
+			Object[] temp = {matches.get(i).getPlayername(),matches.get(i).getMinutes(),matches.get(i).getScoring(),matches.get(i).getFieldGoal(),matches.get(i).getFieldGoalAttempts(),matches.get(i).getThreepointFieldGoal(),matches.get(i).getThreepointFieldGoalAttempts(),matches.get(i).getFreeThrow(),matches.get(i).getFreeThrowAttempts(),matches.get(i).getOffensiveRebound(),matches.get(i).getDefensiveRebound(),matches.get(i).getBackboard(),matches.get(i).getAssist(),matches.get(i).getBlock(),matches.get(i).getFoul(),matches.get(i).getSteal(),matches.get(i).getTurnOver()};
 		    data[i] = temp;
 		}
 		return data;

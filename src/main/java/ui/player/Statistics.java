@@ -270,7 +270,7 @@ public class Statistics extends MyPanel implements ActionListener{
 		}
 		else if(e.getActionCommand().equals("search")){
              if(hot.getSelectedIndex()==0){
-    			 Object[][] data = getData1(prs.getDayTop("14-04-01", Translate.translate1(term1.getSelectedItem().toString())));
+    			 Object[][] data = getData1(prs.getDayTop(Translate.translate1(term1.getSelectedItem().toString())));
     			 model.setDataVector(data, columnNames1);
     		     table.setWidth();
     			 table.updateUI();	 
