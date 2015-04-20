@@ -66,6 +66,7 @@ public class SingleMatch extends MyPanel implements ActionListener{
 	//JLabel jl8 = new JLabel("客队");
 
 	Font font1 = new Font("黑体", Font.BOLD, 16);
+	Font font2 = new Font("黑体", Font.BOLD, 40);
 	public SingleMatch(Frame frame) {
 		super(frame);
 		// TODO Auto-generated constructor stub
@@ -82,13 +83,13 @@ public class SingleMatch extends MyPanel implements ActionListener{
 		jl6.setBounds(820, 150, 70, 30);
 		jl6.setFont(font1);
 		this.add(point1);
-		point1.setBounds(202, 175, 50, 50);
-		point1.setFont(font1);
+		point1.setBounds(190, 155, 200, 100);
+		point1.setFont(font2);
 		this.add(point2);
-		point2.setBounds(823, 175, 50, 50);
-		point2.setFont(font1);
+		point2.setBounds(810, 155, 200, 100);
+		point2.setFont(font2);
 		this.add(jl1);
-		jl1.setBounds(310, 150, 100, 30);
+		jl1.setBounds(313, 150, 100, 30);
 		jl1.setFont(font1);
 		this.add(jl2);
 		jl2.setBounds(440, 150, 100, 30);
@@ -101,29 +102,29 @@ public class SingleMatch extends MyPanel implements ActionListener{
 		jl4.setFont(font1);
 		
 		this.add(point1_1);
-		point1_1.setBounds(325, 190, 100, 30);
+		point1_1.setBounds(325, 180, 100, 30);
 		point1_1.setFont(font1);
 		this.add(point1_2);
-		point1_2.setBounds(455, 190, 100, 30);
+		point1_2.setBounds(455, 180, 100, 30);
 		point1_2.setFont(font1);
 		this.add(point1_3);
-		point1_3.setBounds(585, 190, 100, 30);
+		point1_3.setBounds(585, 180, 100, 30);
 		point1_3.setFont(font1);
 		this.add(point1_4);
-		point1_4.setBounds(715, 190, 100, 30);
+		point1_4.setBounds(715, 180, 100, 30);
 		point1_4.setFont(font1);
 		
 		this.add(point2_1);
-		point2_1.setBounds(325, 220, 100, 30);
+		point2_1.setBounds(325, 210, 100, 30);
 		point2_1.setFont(font1);
 		this.add(point2_2);
-		point2_2.setBounds(455, 220, 100, 30);
+		point2_2.setBounds(455, 210, 100, 30);
 		point2_2.setFont(font1);
 		this.add(point2_3);
-		point2_3.setBounds(585, 220, 100, 30);
+		point2_3.setBounds(585, 210, 100, 30);
 		point2_3.setFont(font1);
 		this.add(point2_4);
-		point2_4.setBounds(715, 220, 100, 30);
+		point2_4.setBounds(715, 210, 100, 30);
 		point2_4.setFont(font1);
 		
 		this.add(rankingBand);
